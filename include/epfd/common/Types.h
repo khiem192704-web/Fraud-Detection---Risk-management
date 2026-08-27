@@ -1,10 +1,10 @@
-#ifndef EPFD_COMMON_TYPES_HPP
-#define EPFD_COMMON_TYPES_HPP
+#pragma once
 
-#include <string>
-#include <cstdint>
 #include <chrono>
+#include <cstdint>
+#include <string>
 #include <string_view>
+
 
 namespace epfd {
 
@@ -13,32 +13,32 @@ namespace epfd {
 // ==========================================
 
 enum class TransactionType {
-    PURCHASE,
-    TRANSFER,
-    WITHDRAWAL,
-    DEPOSIT,
-    REFUND,
-    PAYMENT
+  PURCHASE,
+  TRANSFER,
+  WITHDRAWAL,
+  DEPOSIT,
+  REFUND,
+  PAYMENT
 };
 
 enum class TransactionStatus {
-    PENDING,
-    APPROVED,
-    REVIEW,
-    CHALLENGED,
-    REJECTED,
-    FAILED,
-    SETTLED,
-    CHARGEBACK,
-    DISPUTED
+  PENDING,
+  APPROVED,
+  REVIEW,
+  CHALLENGED,
+  REJECTED,
+  FAILED,
+  SETTLED,
+  CHARGEBACK,
+  DISPUTED
 };
 
 enum class PaymentType {
-    CREDIT_CARD,
-    DEBIT_CARD,
-    BANK_TRANSFER,
-    E_WALLET,
-    CRYPTO
+  CREDIT_CARD,
+  DEBIT_CARD,
+  BANK_TRANSFER,
+  E_WALLET,
+  CRYPTO
 };
 
 // ==========================================
@@ -46,29 +46,24 @@ enum class PaymentType {
 // ==========================================
 
 enum class RiskLevel {
-    VERY_LOW,   // [0, 20)
-    LOW,        // [20, 40)
-    MEDIUM,     // [40, 60)
-    HIGH,       // [60, 80)
-    CRITICAL    // [80, 100]
+  VERY_LOW, // [0, 20)
+  LOW,      // [20, 40)
+  MEDIUM,   // [40, 60)
+  HIGH,     // [60, 80)
+  CRITICAL  // [80, 100]
 };
 
-enum class DecisionAction {
-    APPROVE,
-    REVIEW,
-    CHALLENGE_3DS,
-    BLOCK
-};
+enum class DecisionAction { APPROVE, REVIEW, CHALLENGE_3DS, BLOCK };
 
 enum class FraudRuleCategory {
-    VELOCITY,
-    AMOUNT_DEVIATION,
-    GEO_LOCATION,
-    DEVICE_INTEGRITY,
-    CARD_TESTING,
-    ACCOUNT_TAKEOVER,
-    LIST_MATCHING,
-    BEHAVIORAL
+  VELOCITY,
+  AMOUNT_DEVIATION,
+  GEO_LOCATION,
+  DEVICE_INTEGRITY,
+  CARD_TESTING,
+  ACCOUNT_TAKEOVER,
+  LIST_MATCHING,
+  BEHAVIORAL
 };
 
 // ==========================================
@@ -76,18 +71,14 @@ enum class FraudRuleCategory {
 // ==========================================
 
 enum class CaseStatus {
-    OPEN,
-    IN_INVESTIGATION,
-    RESOLVED_CONFIRMED_FRAUD,
-    RESOLVED_FALSE_POSITIVE,
-    CLOSED
+  OPEN,
+  IN_INVESTIGATION,
+  RESOLVED_CONFIRMED_FRAUD,
+  RESOLVED_FALSE_POSITIVE,
+  CLOSED
 };
 
-enum class GroundTruthLabel {
-    LEGITIMATE = 0,
-    FRAUD = 1,
-    UNKNOWN = -1
-};
+enum class GroundTruthLabel { LEGITIMATE = 0, FRAUD = 1, UNKNOWN = -1 };
 
 // ==========================================
 // 4. Utility Timestamp Definition
@@ -108,5 +99,3 @@ std::string_view toString(CaseStatus status);
 std::string_view toString(GroundTruthLabel label);
 
 } // namespace epfd
-
-#endif // EPFD_COMMON_TYPES_HPP

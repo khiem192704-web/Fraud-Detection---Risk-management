@@ -1,8 +1,7 @@
-#ifndef EPFD_COMMON_CONSTANTS_HPP
-#define EPFD_COMMON_CONSTANTS_HPP
+#pragma once
 
-#include <cstddef>
 #include <chrono>
+#include <cstddef>
 
 namespace epfd {
 namespace constants {
@@ -21,7 +20,8 @@ constexpr double THRESHOLD_HIGH_MAX = 80.0;
 // Decision Thresholds
 constexpr double DECISION_APPROVE_BELOW = 30.0;
 constexpr double DECISION_CHALLENGE_BELOW = 60.0;
-constexpr double DECISION_REVIEW_BELOW = 80.0; // [60, 80) -> REVIEW, >= 80 -> BLOCK
+constexpr double DECISION_REVIEW_BELOW =
+    80.0; // [60, 80) -> REVIEW, >= 80 -> BLOCK
 
 // ==========================================
 // DSA Sliding Window Defaults
@@ -45,5 +45,3 @@ constexpr std::chrono::hours CASE_MEDIUM_SLA_HOURS{24};
 
 } // namespace constants
 } // namespace epfd
-
-#endif // EPFD_COMMON_CONSTANTS_HPP
