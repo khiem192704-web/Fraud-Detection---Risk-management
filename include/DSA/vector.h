@@ -36,7 +36,7 @@ class Vector{
             }
         }
         ~Vector(){  delete[] data; }
-        Vector& operator=(const Vector& other){
+        Vector& operator=(const Vector& other) noexpect {
             if(this != other){
                 delete[] data;
                 data = new T[other.capacity];
@@ -48,10 +48,10 @@ class Vector{
             }
             return *this;
         }
-        T& operator[](int index){
+        T& operator[](int index) noexpect {
             return data[index];
         }
-        const T& operator[](int index) const {
+        const T& operator[](int index) const noexpect{
             return data[index];
         }
         T& at(int index){
@@ -65,7 +65,7 @@ class Vector{
         T& get(int index){ return at(index); }
         const T& get(int index) const{ return at(index); }
         
-        bool empty() const {
+        bool empty() const noexpect {
             return size == 0;
         }
         
@@ -102,10 +102,10 @@ class Vector{
         }
         T* getData(){   return data; }
         const T* getData() const {   return data; }
-        int size() const {
+        int size() const noexpect{
             return size;
         }
-        int capacity() const {
+        int capacity() const noexpect{
             return capacity
         }
         
