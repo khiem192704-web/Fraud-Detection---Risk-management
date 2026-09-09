@@ -25,6 +25,26 @@ class Deque{
             data = new T[capacity];
         }
 
+        Deque(const Deque& other) : capacity(other.capacity), frontIndex(0), count(other.count){
+            data = new T[capacity];
+            for(int i = 0; i < count; i++){
+                data[i] = other.data[(other.frontIndex + i) % other.capacity];
+            }
+        }
+
+        Deque& operator=(const Deque& other){
+            if(this != &other){
+                capacity = other.capacity;
+                count = other.count;
+                frontIndex = 0;
+                data = new T[capacity];
+                for(int i = 0; i < count; i++){
+                    data[i] = other.data[(other.frontIndex + i)%other.capacity];
+                }
+            }
+            return *this;
+        }
+
         ~Deque(){
             delete[] data;
         }
