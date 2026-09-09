@@ -2,7 +2,8 @@
 #include <stdexcept>
 
 template<typename T>
-class Deque{
+class Deque
+{
     private:
         T* data;
         int capacity;

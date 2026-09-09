@@ -4,7 +4,8 @@
 #include <algorithm>
 
 template<typename T>
-class Vector{
+class Vector
+{
     private:
         T* data;
         int size;

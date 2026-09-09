@@ -7,7 +7,8 @@
 
 template<typename K, typename V>
 
-class Hash_map{
+class Hash_map
+{
     private:
          struct Node{
             V value;

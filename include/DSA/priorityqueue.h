@@ -39,7 +39,7 @@ class Priorityqueue{
             }
         }
     public:
-        Priorityqueue() = default;
+        Priorityqueue():heap(nullptr){};
 
         bool empty() const noexcept {
             return heap.empty();
