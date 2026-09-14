@@ -107,9 +107,7 @@ class Vector
             return capacity;
         }
         
-        T* begin(){
-            return data;
-        }
+        T* begin(){   return data;  }
         const T* begin() const {
             return data;
         }

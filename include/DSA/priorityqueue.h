@@ -1,12 +1,12 @@
 #pragma once
 
 #include<stdexcept>
-#include"include/DSA/Vector.h"
+#include<vector.h>
 
 template<typename T>
 class Priorityqueue{
     private:
-        Vector<T> heap;
+        std::vector<T> heap;
         void swap(T& a, T& b) noexcept {
             T temp = a;
             a = b;
