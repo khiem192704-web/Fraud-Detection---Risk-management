@@ -10,41 +10,44 @@ class Deque
         int frontIndex;
         int count;
 
-        void resize(int newCapacity){
+        void resize(int newCapacity){//Cấp phát vùng nhớ mới.
             T* newData = new T[newCapacity];
-            for(int i = 0; i < count; i++){
+            for(int i = 0; i < count; i++){//Sao chép phần tử
                 newData[i] = data[(frontIndex + i) % capacity];
             }
-            delete[] data;
-            data = newData;
-            capacity = newCapacity;
-            frontIndex = 0;
+            delete[] data; //Giải phóng bộ nhớ cũ
+            data = newData; //Cập nhật con trỏ
+            capacity = newCapacity; //Cập nhật dung lượng
+            frontIndex = 0; //Đặt lại frontIndex
         }
 
         void shrinkIfNeeded() {
             if (count > 0 && count <= capacity / 4 && capacity > 8) resize(capacity / 2);
         }
     public:
+        //default constructor
         Deque() : capacity(8), frontIndex(0), count(0){
             data = new T[capacity];
         }
-
+        //copy constructor Nó được gọi khi tạo object mới từ object cũ
         Deque(const Deque& other) : capacity(other.capacity), frontIndex(0), count(other.count){
             data = new T[capacity];
             for(int i = 0; i < count; i++){
                 data[i] = other.data[(other.frontIndex + i) % other.capacity];
             }
         }
-
+        //copy assignment operator Nó được gọi khi gán giá trị của object này cho object khác
         Deque& operator=(const Deque& other){
             if(this != &other){
+                T* newData = new T[other.capacity];
+                for(int i = 0; i < other.count; i++){
+                    newData[i] = other.data[(other.frontIndex + i)%other.capacity];
+                }
+                delete[] data;
+                data=newData;
                 capacity = other.capacity;
                 count = other.count;
                 frontIndex = 0;
-                data = new T[capacity];
-                for(int i = 0; i < count; i++){
-                    data[i] = other.data[(other.frontIndex + i)%other.capacity];
-                }
             }
             return *this;
         }
@@ -136,7 +139,7 @@ class Deque
             return data[(frontIndex + index) % capacity];
         }
 
-        void clear() noexcept{
+        void clear(){
             count = 0;
             frontIndex = 0;
         }

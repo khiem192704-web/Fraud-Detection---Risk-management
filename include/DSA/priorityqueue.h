@@ -63,7 +63,7 @@ class Priorityqueue{
             heap.pop_back();
             if(!heap.empty()) heapifyDown(0);
         }
-        void clear()  {
+        void clear(){
             heap.clear();
         }
 };
