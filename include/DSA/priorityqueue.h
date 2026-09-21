@@ -1,13 +1,13 @@
 #pragma once
 
 #include<stdexcept>
-#include<vector.h>
+#include<vector>
 
 template<typename T>
 class Priorityqueue{
     private:
         std::vector<T> heap;
-        void swap(T& a, T& b) noexcept {
+        void swap(T& a, T& b)  {
             T temp = a;
             a = b;
             b = temp;
@@ -27,7 +27,7 @@ class Priorityqueue{
             while(2*index + 1 < n){
                 int left = 2*index + 1;
                 int right = 2*index + 2;
-                int largest = index]
+                int largest = index;
 
                 if(left < n && heap[largest] < heap[left]) largest = left;
                 if(right < n && heap[largest] < heap[right]) largest = right;
@@ -41,11 +41,11 @@ class Priorityqueue{
     public:
         Priorityqueue():heap(){};
 
-        bool empty() const noexcept {
+        bool empty() const  {
             return heap.empty();
         }
 
-        int size() const noexcept {
+        int size() const  {
             return heap.size();
         }
 
@@ -54,7 +54,7 @@ class Priorityqueue{
             heapifyUp(heap.size() - 1);
         }
         const T& top() const {
-            if(heap.empty()) throw out_of_range("Priorityqueue is empty!");
+            if(heap.empty()) return throw std::out_of_range("Priorityqueue is empty!");
             return heap[0];
         }
         void pop(){
@@ -63,7 +63,7 @@ class Priorityqueue{
             heap.pop_back();
             if(!heap.empty()) heapifyDown(0);
         }
-        void clear() noexpect {
+        void clear()  {
             heap.clear();
         }
 };

@@ -21,6 +21,9 @@ class Deque
             frontIndex = 0;
         }
 
+        void shrinkIfNeeded() {
+            if (count > 0 && count <= capacity / 4 && capacity > 8) resize(capacity / 2);
+        }
     public:
         Deque() : capacity(8), frontIndex(0), count(0){
             data = new T[capacity];
@@ -50,11 +53,11 @@ class Deque
             delete[] data;
         }
 
-        bool empty() const noexcept{
+        bool empty() const {
             return count == 0;
         }
 
-        int size() const noexcept{
+        int size() const {
             return count;
         }
 
@@ -79,12 +82,14 @@ class Deque
         void pop_back(){
             if(empty()) return;
             count--;
+            shrinkIfNeeded();
         }
 
         void pop_front(){
             if(empty()) return;
             frontIndex = (frontIndex + 1) % capacity;
             count--;
+            shrinkIfNeeded();
         }
 
         T& front(){
@@ -135,4 +140,5 @@ class Deque
             count = 0;
             frontIndex = 0;
         }
+        
 };
