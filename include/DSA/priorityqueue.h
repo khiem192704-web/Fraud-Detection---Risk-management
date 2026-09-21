@@ -22,48 +22,73 @@ class Priorityqueue{
                 else break;
             }
         }
-        void heapifyDown(int index){
-            int n = heap.size();
-            while(2*index + 1 < n){
-                int left = 2*index + 1;
-                int right = 2*index + 2;
-                int largest = index]
+    }
 
-                if(left < n && heap[largest] < heap[left]) largest = left;
-                if(right < n && heap[largest] < heap[right]) largest = right;
-                if(largest != index){
-                    swap(heap[index], heap[largest]);
-                    index = largest;
-                }
-                else break;
+    void heapifyDown(int index) {
+        int n = heap.size();
+        while (2 * index + 1 < n) {
+            int left = 2 * index + 1;
+            int right = 2 * index + 2;
+            int largest = index;
+
+            if (left < n && comp(heap[largest], heap[left])) {
+                largest = left;
+            }
+            if (right < n && comp(heap[largest], heap[right])) {
+                largest = right;
+            }
+            if (largest != index) {
+                std::swap(heap[index], heap[largest]);
+                index = largest;
+            } else {
+                break;
             }
         }
-    public:
-        Priorityqueue():heap(){};
+    }
 
-        bool empty() const noexcept {
-            return heap.empty();
-        }
+public:
+    PriorityQueue() : heap(), comp(Compare()) {}
+    explicit PriorityQueue(const Compare& comparator) : heap(), comp(comparator) {}
 
-        int size() const noexcept {
-            return heap.size();
-        }
+    bool empty() const noexcept {
+        return heap.empty();
+    }
 
-        void push(const T& value){
-            heap.push_back(value);
-            heapifyUp(heap.size() - 1);
+    int size() const noexcept {
+        return heap.size();
+    }
+
+    void push(const T& value) {
+        heap.push_back(value);
+        heapifyUp(heap.size() - 1);
+    }
+
+    void push(T&& value) {
+        heap.push_back(std::move(value));
+        heapifyUp(heap.size() - 1);
+    }
+
+    const T& top() const {
+        if (heap.empty()) {
+            throw std::out_of_range("PriorityQueue is empty!");
         }
-        const T& top() const {
-            if(heap.empty()) throw out_of_range("Priorityqueue is empty!");
-            return heap[0];
+        return heap[0];
+    }
+
+    void pop() {
+        if (heap.empty()) {
+            throw std::out_of_range("PriorityQueue is empty!");
         }
-        void pop(){
-            if(heap.empty()) return;
-            heap[0] = heap.back();
-            heap.pop_back();
-            if(!heap.empty()) heapifyDown(0);
+        heap[0] = std::move(heap.back());
+        heap.pop_back();
+        if (!heap.empty()) {
+            heapifyDown(0);
         }
         void clear(){
             heap.clear();
         }
 };
+
+// Backwards compatibility alias
+template<typename T, typename Compare = std::less<T>>
+using Priorityqueue = PriorityQueue<T, Compare>;
