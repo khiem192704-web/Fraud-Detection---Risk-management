@@ -1,23 +1,25 @@
 #pragma once
-#include <stdexcept>
-#include <utility>
-#include <functional>
-#include "vector.h"
 
-template<typename T, typename Compare = std::less<T>>
-class PriorityQueue {
-private:
-    Vector<T> heap;
-    Compare comp;
+#include<stdexcept>
+#include<vector.h>
 
-    void heapifyUp(int index) {
-        while (index > 0) {
-            int p = (index - 1) / 2;
-            if (comp(heap[p], heap[index])) {
-                std::swap(heap[p], heap[index]);
-                index = p;
-            } else {
-                break;
+template<typename T>
+class Priorityqueue{
+    private:
+        std::vector<T> heap;
+        void swap(T& a, T& b) noexcept {
+            T temp = a;
+            a = b;
+            b = temp;
+        }
+        void heapifyUp (int index){
+            while(index > 0){
+                int p = (index - 1)/2;
+                if(heap[p] < heap[index]){
+                    swap(heap[p], heap[index]);
+                    index = p;
+                }
+                else break;
             }
         }
     }
@@ -82,16 +84,9 @@ public:
         if (!heap.empty()) {
             heapifyDown(0);
         }
-    }
-
-    void clear() noexcept {
-        heap.clear();
-    }
-
-    void swap(PriorityQueue& other) noexcept {
-        heap.swap(other.heap);
-        std::swap(comp, other.comp);
-    }
+        void clear(){
+            heap.clear();
+        }
 };
 
 // Backwards compatibility alias

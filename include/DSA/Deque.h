@@ -134,7 +134,7 @@ class Deque
             return data[(frontIndex + index) % capacity];
         }
 
-        void clear() noexcept{
+        void clear(){
             count = 0;
             frontIndex = 0;
         }

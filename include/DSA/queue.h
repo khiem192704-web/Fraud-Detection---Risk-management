@@ -23,11 +23,11 @@ class Queue
             return data.size();
         }
 
-        void push(const T& value){
+        void EnQueue(const T& value){
             data.push_back(value);
         }
 
-        void pop(){
+        void DeQueue(){
             data.pop_front();
         }
 
