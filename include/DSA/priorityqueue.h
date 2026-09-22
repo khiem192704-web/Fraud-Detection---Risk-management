@@ -1,12 +1,12 @@
 #pragma once
 
 #include<stdexcept>
-#include<vector>
+#include"vector.h"
 
 template<typename T>
 class Priorityqueue{
     private:
-        std::vector<T> heap;
+        Vector<T> heap;
         void swap(T& a, T& b)  {
             T temp = a;
             a = b;
@@ -54,7 +54,7 @@ class Priorityqueue{
             heapifyUp(heap.size() - 1);
         }
         const T& top() const {
-            if(heap.empty()) return throw std::out_of_range("Priorityqueue is empty!");
+            if(heap.empty()) throw std::out_of_range("Priorityqueue is empty!");
             return heap[0];
         }
         void pop(){

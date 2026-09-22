@@ -8,31 +8,26 @@ class Vector
 {
     private:
         T* data;
-        int size;
-        int capacity;
-        void resize(){
-            int newCapacity = (capacity == 0) ? 1 : capacity*2;
-            T* newData = new T[newCapacity];
-
-            for(int i = 0; i < size; i++){
-                newData[i] = data[i];
-            }
-
-            delete[] data;
-            data =  newData;
-            capacity = newCapacity;
+        int size_;
+        int capacity_;
+        void grow(){
+            reserve((capacity_ == 0) ? 1 : capacity_ * 2);
         }
     public:
-        Vector() : data(nullptr), size(0), capacity(0){}
-        Vector(int initSize) : size(initSize), capacity(initSize){
-            data = new T[capacity];
-            for(int i = 0; i < size; i++){
+        Vector() : data(nullptr), size_(0), capacity_(0){}
+        Vector(int initSize_) : size_(initSize_), capacity_(initSize_){
+            data = new T[capacity_];
+            for(int i = 0; i < size_; i++){
                 data[i] = T();
             }
         }
-        Vector(const Vector& other) : size(other.size), capacity(other.capacity){
-            data = new T[size];//capacity
-            for(int i = 0; i < size; i++){
+        Vector(const Vector& other) : size_(other.size_), capacity_(other.capacity_){
+            if(other.data == nullptr){
+                data = nullptr;
+                return;
+            }
+            data = new T[capacity_];
+            for(int i = 0; i < size_; i++){
                 data[i] = other.data[i];
             }
         }
@@ -41,10 +36,10 @@ class Vector
         Vector& operator=(const Vector& other) {
             if(this != &other){
                 delete[] data;
-                data = new T[other.size];
-                size = other.size;
-                capacity = other.capacity;
-                for(int i = 0; i < size; i++){
+                data = new T[other.capacity_];
+                size_ = other.size_;
+                capacity_ = other.capacity_;
+                for(int i = 0; i < size_; i++){
                     data[i] = other.data[i];
                 }
             }
@@ -57,51 +52,51 @@ class Vector
             return data[index];
         }
         // T& at(int index){
-        //     if(index < 0 || index >= size){ throw out_of_range("Vector index out of range");}
+        //     if(index < 0 || index >= size_){ throw std::out_of_range("Vector index out of range");}
         //     return data[index];
         // }
         // const T& at(int index) const{
-        //     if(index < 0 || index >= size){ throw out_of_range("Vector index out of range");}
+        //     if(index < 0 || index >= size_){ throw std::out_of_range("Vector index out of range");}
         //     return data[index];
         // }
         
         bool empty() const {
-            return size == 0;
+            return size_ == 0;
         }
         
         T& front(){
             if (empty()) {
-                throw out_of_range("Vector is empty");
+                throw std::out_of_range("Vector is empty");
             }
             return data[0];
         }
         
         const T& front() const{
             if (empty()) {
-                throw out_of_range("Vector is empty");
+                throw std::out_of_range("Vector is empty");
             }
             return data[0];
         }
         
         T& back(){
             if (empty()) {
-                throw out_of_range("Vector is empty");
+                throw std::out_of_range("Vector is empty");
             }
-            return data[size - 1];
+            return data[size_ - 1];
         }
         
         const T& back() const{
             if (empty()) {
-                throw out_of_range("Vector is empty");
+                throw std::out_of_range("Vector is empty");
             }
-            return data[size - 1];
+            return data[size_ - 1];
         }
         
         int size() const{
-            return size;
+            return size_;
         }
         int capacity() const{
-            return capacity;
+            return capacity_;
         }
         
         T* begin(){
@@ -111,86 +106,75 @@ class Vector
             return data;
         }
         T* end(){
-            return data + size;
+            return data + size_;
         }
         const T* end() const {
-            return data + size;
+            return data + size_;
         }
         void push_back(const T& value){
-            if(size == capacity){
-                resize();
+            if(size_ == capacity_){
+                grow();
             }
-            data[size++] = value;
+            data[size_++] = value;
         }
         
         void insert(int index, const T& value){
-            if(index < 0 || index > size){
-                throw out_of_range("Insert index out of range");
+            if(index < 0 || index > size_){
+                throw std::out_of_range("Insert index out of range");
             }
-            if(size == capacity) resize();
-            for(int i = size; i > index; i--) data[i] = data[i - 1];
+            if(size_ == capacity_) grow();
+            for(int i = size_; i > index; i--) data[i] = data[i - 1];
             data[index] = value;
-            size++;
+            size_++;
         }
-        /*void push_front(const T& value){
-            insert(0, value);
-        }*/
+        
         void pop_back(){
             if(empty()){
-                throw out_of_range("Vector is empty");
+                throw std::out_of_range("Vector is empty");
             }
-            size--;
+            size_--;
+            if (size_ > 0 && size_ <= capacity_ / 4) reserve(capacity_ / 2);
         }
         void erase(int index){
-            if(index < 0 || index >= size){
-                throw out_of_range("Iterator out of range");
+            if(index < 0 || index >= size_){
+                throw std::out_of_range("Iterator out of range");
             }
-            for(int i = index; i < size - 1; i++) data[i] = data[i + 1];
-            size--;
+            for(int i = index; i < size_ - 1; i++) data[i] = data[i + 1];
+            size_--;
+            if (size_ > 0 && size_ <= capacity_ / 4) reserve(capacity_ / 2);
         }
-        /*void pop_front(){
-            if(empty()){
-                throw out_of_range("Vector is empty");
-            }
-            erase(0);
-        }*/
-        void remove(int index){
-            erase(index);
-        }
+        
         void clear(){
-            size = 0;
+            size_ = 0;
         }
-        void reserve(int new_capacity){
-            if(new_capacity <= capacity) return;
-            T* new_data = new T[new_capacity];
-            for(int i = 0; i < size; i++) new_data[i] = data[i];
+        void reserve(int new_capacity_){
+            if(new_capacity_ <= capacity_) return;
+            T* new_data = new T[new_capacity_];
+            for(int i = 0; i < size_; i++) new_data[i] = data[i];
             delete[] data;
             data = new_data;
-            capacity = new_capacity;
+            capacity_ = new_capacity_;
         }
-        void reNewsize(int new_size){
-            if(new_size >capacity){
-                reserve(new_size);
+        void resize_(int new_size_){
+            if(new_size_ >capacity_){
+                reserve(new_size_);
             }
-            for(int i = size; i < new_size; i++) data[i] = T();
-            size = new_size;
+            for(int i = size_; i < new_size_; i++) data[i] = T();
+            size_ = new_size_;
         }
-        /*int find(const T& value){
-            for(int i = 0; i < size; i++){
-                if(data[i] == value) return i;
-            }
-            return -1;
-        }
-        bool contains(const T& value) const {
-            return find(value) != -1;
-        }*/
-        void fit_capacity(){
-            if(capacity > size){
-                T* new_data = new T[size];
-                for(int i = 0; i < size;  i++) new_data[i] = data[i];
+        void fit_capacity_(){
+            if(capacity_ <= size_) return;
+            if(size_ == 0){ 
                 delete[] data;
-                data = new_data;
-                capacity = size;
+                data = nullptr;
+                capacity_ = 0;
+                return;
             }
-        }
+            T* new_data = new T[size_];
+            for(int i = 0; i < size_;  i++) new_data[i] = data[i];
+            delete[] data;
+            data = new_data;
+            capacity_ = size_;
+            
+        }        
 };
