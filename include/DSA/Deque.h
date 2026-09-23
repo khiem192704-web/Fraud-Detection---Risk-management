@@ -1,4 +1,4 @@
-#pragma
+#pragma once
 #include <stdexcept>
 template<typename T>
 class Deque
@@ -31,6 +31,7 @@ public:
     Deque(const Deque&other): capacity(other.capacity),
         frontIndex(0),
         count(other.count){
+            data=new T[capacity];
         for(int i=0;i<count;i++){
             data[i]=other.data[(other.frontIndex+i)%other.capacity];
         }
@@ -77,11 +78,13 @@ public:
     void pop_back(){
         if(empty())return;
         count--;
+        shrinkIfNeeded();
     }
     void pop_front(){
         if(empty())return;
         frontIndex=(frontIndex+1)%capacity;
         count--;
+        shrinkIfNeeded();
     }
     T& front(){
         if(empty()){
