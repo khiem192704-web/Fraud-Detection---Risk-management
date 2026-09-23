@@ -63,7 +63,7 @@ class Deque
             data[index]=value;
             count++;
         }
-        void push_back(const T& value){
+        void push_front(const T& value){
             if(count==capacity){
                 resize(capacity*2);
             }
