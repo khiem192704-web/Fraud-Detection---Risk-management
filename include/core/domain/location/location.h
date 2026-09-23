@@ -17,9 +17,9 @@ class Location {
         void setPostalCode(const std::string&);
         void setCoordinates(double, double);
 
-        std::string& getCountry() const;
-        std::string& getCity() const;
-        std::string& getPostalCode() const;
+        const std::string& getCountry() const;
+        const std::string& getCity() const;
+        const std::string& getPostalCode() const;
         double getLatitude() const;
         double getLongitude() const;
 
