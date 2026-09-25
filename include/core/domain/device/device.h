@@ -1,5 +1,5 @@
 #pragma once
-#include"location.h"
+#include "core/domain/location/location.h"
 
 class Device{
     private:
@@ -20,10 +20,10 @@ class Device{
         void SetIs_Virtual(bool);
         void SetIs_Hacker(bool);
 
-        std::string& GetDevice_ID() const;
-        std::string& GetIP_Address() const;
-        std::string& GetDevice_Fingerprint() const;
-        Location& GetLocation() const;
+        const std::string& GetDevice_ID() const;
+        const std::string& GetIP_Address() const;
+        const std::string& GetDevice_Fingerprint() const;
+        const Location& GetLocation() const;
         bool GetIs_Virtual() const;
         bool GetIs_Hacker() const;
 
