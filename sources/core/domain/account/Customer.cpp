@@ -1,16 +1,16 @@
-#include "Customer.h"
+#include "core/domain/account/Customer.h"
 
 // ==================== Constructor ====================
 
-Customer::Customer() {
-    this->customer_id = "";
-    this->fullname = "";
-    this->email = "";
-    this->phone_number = "";
-    this->home_location = Location();
-    this->risk_tier = CustomerRiskTier::NEW;
-    this->baseline_risk_score = 10.0;
-    this->is_kyc_verified = false;
+Customer::Customer()
+    : customer_id(""),
+      fullname(""),
+      email(""),
+      phone_number(""),
+      home_location(),
+      risk_tier(CustomerRiskTier::NEW),
+      baseline_risk_score(10.0),
+      is_kyc_verified(false) {
 }
 
 Customer::Customer(
@@ -19,16 +19,15 @@ Customer::Customer(
     const std::string& mail,
     const std::string& phone,
     const Location& location
-) {
-    this->customer_id = id;
-    this->fullname = name;
-    this->email = mail;
-    this->phone_number = phone;
-    this->home_location = location;
-
-    this->risk_tier = CustomerRiskTier::NEW;
-    this->baseline_risk_score = 10.0;
-    this->is_kyc_verified = false;
+)
+    : customer_id(id),
+      fullname(name),
+      email(mail),
+      phone_number(phone),
+      home_location(location),
+      risk_tier(CustomerRiskTier::NEW),
+      baseline_risk_score(10.0),
+      is_kyc_verified(false) {
 }
 
 // ==================== Getter ====================
