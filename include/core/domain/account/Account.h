@@ -41,7 +41,7 @@ class Account{
 
             this->account_id = account_id;
             this->customer_id = customer_id;
-            this->balance = balance >= 0.0 ? balance : 0.0; // đảm bảo số dư không âm
+            this->balance = balance >= 0.0 ? balance : 0.0; // Sử dụng toán tử 3 ngôi giúp đảm bảo số dư không âm
             this->currency = currency;
             this->status = AccountStatus::ACTIVE;
             this->created_at = created_at;
