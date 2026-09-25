@@ -1,14 +1,14 @@
-#include "Account.h"
+#include "core/domain/account/Account.h"
 #include <sstream>
 
 // Constructor mặc định
-Account::Account() {
-    this->account_id = "";
-    this->customer_id = "";
-    this->balance = 0.0;
-    this->currency = "USD";
-    this->status = AccountStatus::ACTIVE;
-    this->created_at = std::chrono::system_clock::now();
+Account::Account()
+    : account_id(""),
+      customer_id(""),
+      balance(0.0),
+      currency("USD"),
+      status(AccountStatus::ACTIVE),
+      created_at(std::chrono::system_clock::now()) {
 }
 
 // Constructor có tham số
@@ -16,15 +16,15 @@ Account::Account(const std::string& account_id,
                  const std::string& customer_id,
                  double balance,
                  const std::string& currency,
-                 Timestamp created_at) {
-
-    this->account_id = account_id;
-    this->customer_id = customer_id;
-    this->balance = balance >= 0.0 ? balance : 0.0;
-    this->currency = currency;
-    this->status = AccountStatus::ACTIVE;
-    this->created_at = created_at;
+                 Timestamp created_at)
+    : account_id(account_id),
+      customer_id(customer_id),
+      balance(balance >= 0.0 ? balance : 0.0),
+      currency(currency),
+      status(AccountStatus::ACTIVE),
+      created_at(created_at) {
 }
+
 
 // Getter
 const std::string& Account::getAccountId() const {
