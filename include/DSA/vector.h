@@ -133,7 +133,7 @@ class Vector
                 throw std::out_of_range("Vector is empty");
             }
             this->size_--;
-            if (this->size_ > 0 && this->size_ <= this->capacity_ / 4) fit_capacity();
+            if (this->size_ > 0 && 2 * this->size_ <= this->capacity_ / 4) fit_capacity();
         }
         void erase(int index){
             if(index < 0 || index >= size_){
@@ -141,7 +141,7 @@ class Vector
             }
             for(int i = index; i < this->size_ - 1; i++) this->data[i] = this->data[i + 1];
             this->size_--;
-            if (this->size_ > 0 && this->size_ <= this->capacity_ / 4) fit_capacity();
+            if (this->size_ > 0 && 2 * this->size_ <= this->capacity_ / 4) fit_capacity();
         }
 
         void clear(){
