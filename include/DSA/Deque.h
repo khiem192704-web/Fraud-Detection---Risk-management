@@ -3,6 +3,7 @@
 template<typename T>
 class Deque
 {
+private:
     T* data;
     int capacity;
     int frontIndex;

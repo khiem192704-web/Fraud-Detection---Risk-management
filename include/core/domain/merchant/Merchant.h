@@ -67,7 +67,13 @@ public:
     Merchant(
         const std::string& merchant_id,
         const std::string& name,
-        const std::string& mcc,
+        const std::string& mcc,/*
+        Ví dụ phổ biến:
+        5411: Siêu thị, cửa hàng bách hóa 
+        5812: Nhà hàng, quán ăn 
+        7995: Cờ bạc, cá cược trực tuyến 
+        4829: Chuyển tiền, lệnh chuyển tiền 
+        */
         MerchantCategory category,
         const Location& location,
         double baseline_risk_score = 10.0,
