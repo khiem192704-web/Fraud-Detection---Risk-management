@@ -11,15 +11,15 @@ class Queue
     public:
         Queue():data(){}
 
-        bool empty() const noexcept{
+        bool empty() const {
             return data.empty();
         }
 
-        void clear() const noexcept{
+        void clear() const {
             return data.clear();
         }
 
-        int size() const noexcept{
+        int size() const {
             return data.size();
         }
 

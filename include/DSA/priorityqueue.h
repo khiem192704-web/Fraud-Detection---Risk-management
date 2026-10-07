@@ -59,7 +59,7 @@ class Priorityqueue{
         }
         void pop(){
             if(heap.empty()) return;
-            heap[0] = heap.back();
+            swap(heap[0], heap.back());
             heap.pop_back();
             if(!heap.empty()) heapifyDown(0);
         }

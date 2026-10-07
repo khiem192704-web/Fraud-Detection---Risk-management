@@ -2,7 +2,7 @@
 
 #include <string>
 #include "DSA/vector.h"
-#include "core/domain/location/location.h"
+#include "core/domain/location/Location.h"
 
 enum class CustomerRiskTier {
     NEW,
