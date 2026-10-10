@@ -5,8 +5,6 @@
 #include "Location.h"
 #include "Device.h"
 
-namespace epfd {
-
 class Transaction {
     private:
         std::string transaction_id;
@@ -21,7 +19,7 @@ class Transaction {
         std::string ip_address;
         Device device;
         std::string merchant_id;
-        PaymentMethod payment_method;
+        PaymentType payment_method;
         TransactionStatus status{TransactionStatus::PENDING};
         Timestamp created_at{std::chrono::system_clock::now()};
         Timestamp updated_at{std::chrono::system_clock::now()};
@@ -29,7 +27,7 @@ class Transaction {
     public:
         Transaction(){};
         Transaction(const std::string&, TransactionType, const std::string&, const std::string&, const std::string&, double, 
-            const std::string&, Timestamp, const Location&, const std::string&, const Device&, const std::string&, const PaymentMethod&);
+            const std::string&, Timestamp, const Location&, const std::string&, const Device&, const std::string&, const PaymentType&);
 
         // Setters / State updates
         void SetStatus(TransactionStatus);
@@ -51,7 +49,7 @@ class Transaction {
         const std::string& GetIP_Address() const;
         const Device& GetDevice() const;
         const std::string& GetMerchant_ID() const;
-        const PaymentMethod& GetPayment_Method() const;
+        const PaymentType& GetPayment_Method() const;
         TransactionStatus GetStatus() const;
         Timestamp GetCreated_At() const;
         Timestamp GetUpdated_At() const;
@@ -70,5 +68,3 @@ class Transaction {
         bool isHighValue(double) const;
         std::string getSummary() const;
 };
-
-} 
