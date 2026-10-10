@@ -1,6 +1,6 @@
 #pragma once
 #include<string>
-#include"PaymentType.h"
+#include"common/Types.h"
 
 class PaymentMethod {
 private:

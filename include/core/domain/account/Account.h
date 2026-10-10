@@ -3,14 +3,7 @@
 #include <string>
 #include <chrono>
 #include <ostream>
-
-using Timestamp = std::chrono::system_clock::time_point;
-
-enum class AccountStatus {
-    ACTIVE,
-    FROZEN,
-    CLOSED
-};
+#include "common/Types.h"
 
 class Account {
 private:

@@ -3,46 +3,8 @@
 #include <string>
 #include <chrono>
 #include <ostream>
-
+#include "common/Types.h"
 #include "core/domain/location/location.h"
-
-using Timestamp = std::chrono::system_clock::time_point;
-
-// ==================== Enum ====================
-
-enum class MerchantCategory {
-    RETAIL,
-    GROCERY,
-    ELECTRONICS,
-    RESTAURANT,
-    TRAVEL,
-    ENTERTAINMENT,
-    GAMBLING,
-    CRYPTO,
-    FINANCIAL_SERVICES,
-    OTHER
-};
-
-enum class MerchantRiskTier {
-    TRUSTED,
-    STANDARD,
-    ELEVATED,
-    SUSPICIOUS,
-    BLACKLISTED
-};
-
-enum class MerchantStatus {
-    ACTIVE,
-    SUSPENDED
-};
-
-// ==================== Enum Helpers ====================
-
-std::string toString(MerchantCategory category);
-std::string toString(MerchantRiskTier tier);
-std::string toString(MerchantStatus status);
-
-// ==================== Merchant ====================
 
 class Merchant {
 private:

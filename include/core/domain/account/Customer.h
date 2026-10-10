@@ -3,14 +3,7 @@
 #include <string>
 #include "DSA/vector.h"
 #include "core/domain/location/Location.h"
-
-enum class CustomerRiskTier {
-    NEW,
-    ESTABLISHED,
-    TRUSTED,
-    SUSPICIOUS,
-    BANNED
-};
+#include "common/Types.h"
 
 class Customer {
 private:
