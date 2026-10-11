@@ -1,9 +1,9 @@
 #pragma once
 #include <string>
 #include <chrono>
-#include "common/Types.h"
-#include "Location.h"
-#include "Device.h"
+#include "core/common/Types.h"
+#include "core/domain/location/location.h"
+#include "core/domain/device/device.h"
 
 class Transaction {
     private:
@@ -25,7 +25,7 @@ class Transaction {
         Timestamp updated_at{std::chrono::system_clock::now()};
 
     public:
-        Transaction(){};
+        Transaction();
         Transaction(const std::string&, TransactionType, const std::string&, const std::string&, const std::string&, double, 
             const std::string&, Timestamp, const Location&, const std::string&, const Device&, const std::string&, const PaymentType&);
 

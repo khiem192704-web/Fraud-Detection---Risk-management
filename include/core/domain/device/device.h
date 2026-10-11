@@ -1,5 +1,5 @@
 #pragma once
-#include "core/domain/location/Location.h"
+#include "core/domain/location/location.h"
 
 class Device{
     private:
@@ -10,8 +10,8 @@ class Device{
         bool is_virtual{false}; // máy ảo hoặc giả lập trên máy tính
         bool is_hacker{false};
     public:
-        Device(){};
-        Device(const std::string&, const std::string&, const std::string&, const Location&, bool, bool);
+        Device();
+        Device(const std::string& device_id, const std::string& ip_address, const std::string& device_fingerprint, const Location& location, bool is_virtual = false, bool is_hacker = false);
 
         void SetDevice_ID(const std::string&);
         void SetIP_Address(const std::string&);

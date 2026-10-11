@@ -2,8 +2,8 @@
 
 #include <string>
 #include "DSA/vector.h"
-#include "core/domain/location/Location.h"
-#include "common/Types.h"
+#include "core/domain/location/location.h"
+#include "core/common/Types.h"
 
 class Customer {
 private:

@@ -3,7 +3,7 @@
 #include <string>
 #include <chrono>
 #include <ostream>
-#include "common/Types.h"
+#include "core/common/Types.h"
 #include "core/domain/location/location.h"
 
 class Merchant {

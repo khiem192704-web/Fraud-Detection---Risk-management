@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <chrono>
-#include "common/Types.h"
+#include "core/common/Types.h"
 
 class FraudAlert {
     private:
@@ -16,7 +16,7 @@ class FraudAlert {
         Timestamp triggered_at{std::chrono::system_clock::now()};
 
     public:
-        FraudAlert(){};
+        FraudAlert();
         FraudAlert(const std::string&,
                    const std::string&,
                    const std::string&,
