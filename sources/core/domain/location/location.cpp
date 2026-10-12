@@ -27,9 +27,9 @@ void Location::setCoordinates(double latitude, double longitude) {
     this->longitude = longitude;
 }
 
-std::string& Location::getCountry() const { return country; }
-std::string& Location::getCity() const{return city;}
-std::string& Location::getPostalCode() const{return postal_code;}
+const std::string& Location::getCountry() const { return country; }
+const std::string& Location::getCity() const{return city;}
+const std::string& Location::getPostalCode() const{return postal_code;}
 double Location::getLatitude() const{return latitude;}
 double Location::getLongitude() const{return longitude;}
 

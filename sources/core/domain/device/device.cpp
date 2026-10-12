@@ -11,10 +11,10 @@ void Device::SetLocation(const Location& Location){ this->location = Location; }
 void Device::SetIs_Virtual(bool Is_Virtual){ this->is_virtual = Is_Virtual; }
 void Device::SetIs_Hacker(bool Is_Hacker){ this->is_hacker = Is_Hacker; }
 
-std::string& Device::GetDevice_ID() const { return device_id; }
-std::string& Device::GetIP_Address() const { return ip_address; }
-std::string& Device::GetDevice_Fingerprint() const { return device_fingerprint; }
-Location& Device::GetLocation() const { return location; }
+const std::string& Device::GetDevice_ID() const { return device_id; }
+const std::string& Device::GetIP_Address() const { return ip_address; }
+const std::string& Device::GetDevice_Fingerprint() const { return device_fingerprint; }
+const Location& Device::GetLocation() const { return location; }
 bool Device::GetIs_Virtual() const { return is_virtual; }
 bool Device::GetIs_Hacker() const { return is_hacker; }
 
