@@ -9,7 +9,7 @@ class FraudAlert {
         std::string transaction_id;
         std::string rule_id;
         std::string rule_name;
-        FraudRuleCategory category{FraudRuleCategory::VELOCITY};
+        FraudRuleCategory category{FraudRuleCategory::RAPID_TRANSACTIONS};
         double score_contribution{0.0};
         std::string reason;
         RiskLevel severity{RiskLevel::MEDIUM};
@@ -17,15 +17,15 @@ class FraudAlert {
 
     public:
         FraudAlert();
-        FraudAlert(const std::string&,
-                   const std::string&,
-                   const std::string&,
-                   const std::string&,
-                   FraudRuleCategory,
-                   double,
-                   const std::string&,
-                   RiskLevel,
-                   Timestamp);
+        FraudAlert(const std::string& alert_id,
+                   const std::string& transaction_id,
+                   const std::string& rule_id,
+                   const std::string& rule_name,
+                   FraudRuleCategory category = FraudRuleCategory::RAPID_TRANSACTIONS,
+                   double score_contribution = 0.0,
+                   const std::string& reason,
+                   RiskLevel severity = RiskLevel::MEDIUM,
+                   Timestamp triggered_at = Timestamp{std::chrono::system_clock::now()});
 
         // --- Getters ---
         const std::string& getAlertId() const;

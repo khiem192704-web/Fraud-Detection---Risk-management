@@ -59,14 +59,14 @@ enum class MerchantStatus {
 };
 
 enum class FraudRuleCategory {
-    VELOCITY,
-    AMOUNT_DEVIATION,
-    GEO_LOCATION,
-    DEVICE_INTEGRITY,
-    CARD_TESTING,
-    ACCOUNT_TAKEOVER,
-    LIST_MATCHING,
-    BEHAVIORAL
+    RAPID_TRANSACTIONS,   // Tần suất giao dịch dồn dập trong thời gian ngắn
+    UNUSUAL_AMOUNT,       // Số tiền bất thường, lệch khỏi thói quen chi tiêu 
+    STRANGE_LOCATION,     // Vị trí địa lý bất thường / Di chuyển bất khả thi
+    SUSPICIOUS_DEVICE,    // Thiết bị nghi vấn (root/jailbreak, VPN/proxy, giả lập) 
+    CARD_TESTING,         // Hành vi quét / thử thẻ hàng loạt bằng số tiền nhỏ 
+    STOLEN_ACCOUNT,       // Dấu hiệu tài khoản bị chiếm đoạt / đổi chủ 
+    BLACKLIST_MATCH,      // Trùng khớp thông tin trong danh sách đen
+    ABNORMAL_BEHAVIOR     // Hành vi tương tác bất thường (bot gõ, khung giờ lạ) 
 };
 enum class RiskLevel {
     VERY_LOW,   // [0, 20)
