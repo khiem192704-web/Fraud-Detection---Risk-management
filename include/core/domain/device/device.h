@@ -1,5 +1,5 @@
 #pragma once
-#include "core/domain/location/location.h"
+#include "core/domain/location/Location.h"
 
 class Device{
     private:
