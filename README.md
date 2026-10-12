@@ -10,7 +10,7 @@
 ## 🚀 Các Điểm Nổi Bật & Thế Mạnh Kiến Trúc
 
 - **Thông Lượng Cực Cao & Độ Trễ Cực Thấp**: Đạt thông lượng xử lý **$165,000+\text{ TPS}$**, độ trễ trung bình chỉ **$6.06\mu\text{s}$ ($0.006\text{ms}$)** và phân vị độ trễ P99 dưới **$26\mu\text{s}$**.
-- **100% Cấu Trúc Dữ Liệu Tự Viết Tay (Custom DSA)**: Hiện thực từ đầu các cấu trúc dữ liệu `Vector`, `Deque`, `LinkedList`, `HashMap`, `HashSet`, `PriorityQueue`, `TimeWindowBuffer`, và `FraudRingGraph`, mang lại tốc độ tăng tốc thuật toán lên đến **$109\times$** so với cách quét tuần tự ngây thơ.
+- **100% Cấu Trúc Dữ Liệu Tự Viết Tay (Custom DSA)**: Hiện thực từ đầu các cấu trúc dữ liệu `Vector`, `Deque`, `HashMap`, `HashSet`, `PriorityQueue`, `TimeWindowBuffer`, và `FraudRingGraph`, mang lại tốc độ tăng tốc thuật toán lên đến **$109\times$** so với cách quét tuần tự ngây thơ.
 - **Động Cơ Chấm Điểm Rủi Ro Đa Nhân Tố & Có Khả Năng Giải Thích (Explainable Risk Engine)**: Tổng hợp 12 luật gian lận tất định + xác suất học máy đã hiệu chuẩn + phân tầng khách hàng KYC thành điểm rủi ro trực quan ($0 - 100$).
 - **Quy Trình ML Nghiêm Ngặt & Không Rò Rỉ Dữ Liệu Tương Lai (Zero-Leakage)**: Phân chia tập dữ liệu theo dòng thời gian ($0.0$ rò rỉ), sai số hiệu chuẩn xác suất cực thấp ($\text{ECE} = 0.028\%$, $\text{Brier} = 0.000022$), suy luận trực tiếp trong C++ cấp microsecond.
 - **Quản Lý Hồ Sơ Điều Tra & Vòng Lặp Phản Hồi (Case Management & Feedback Loop)**: Bàn làm việc điều tra viên (`ReviewCase`), ghi nhận biến cố thực tế như Chargeback (`OutcomeTracker`) và tự động lưu trữ/xuất nhãn Ground Truth (`LabelStore`).
