@@ -46,11 +46,11 @@ enum class MerchantCategory {
 };
 
 enum class MerchantRiskTier {
-    TRUSTED,
-    STANDARD,
-    ELEVATED,
-    SUSPICIOUS,
-    BLACKLISTED
+    TRUSTED,//Không có rủi ro
+    STANDARD,//Mức độ rủi ro thấp
+    ELEVATED,//Mức độ rủi ro trung bình
+    SUSPICIOUS,//Mức độ rủi ro cao
+    BLACKLISTED//Mức độ rủi ro rất cao
 };
 
 enum class MerchantStatus {
@@ -121,5 +121,7 @@ std::string_view toString(FraudRuleCategory category);
 std::ostream& operator<<(std::ostream& os, FraudRuleCategory category);
 
 std::string toString(MerchantCategory category);
+
 std::string toString(MerchantRiskTier tier);
+
 std::string toString(MerchantStatus status);

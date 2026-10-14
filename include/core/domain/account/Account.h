@@ -57,8 +57,3 @@ public:
 
 // Operator
 std::ostream& operator<<(std::ostream& os, const Account& account);
-
-namespace epfd {
-    using Account = ::Account;
-    using AccountStatus = ::AccountStatus;
-}
