@@ -1,6 +1,5 @@
 #pragma once
 #include "core/domain/location/location.h"
-
 class Device{
     private:
         std::string device_id;
