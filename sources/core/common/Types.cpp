@@ -74,15 +74,15 @@ std::string_view toString(CustomerRiskTier tier) {
 
 std::string_view toString(FraudRuleCategory category) {
     switch (category) {
-        case FraudRuleCategory::VELOCITY:         return "VELOCITY";
-        case FraudRuleCategory::AMOUNT_DEVIATION: return "AMOUNT_DEVIATION";
-        case FraudRuleCategory::GEO_LOCATION:     return "GEO_LOCATION";
-        case FraudRuleCategory::DEVICE_INTEGRITY: return "DEVICE_INTEGRITY";
-        case FraudRuleCategory::CARD_TESTING:     return "CARD_TESTING";
-        case FraudRuleCategory::ACCOUNT_TAKEOVER: return "ACCOUNT_TAKEOVER";
-        case FraudRuleCategory::LIST_MATCHING:    return "LIST_MATCHING";
-        case FraudRuleCategory::BEHAVIORAL:       return "BEHAVIORAL";
-        default:                                  return "UNKNOWN";
+        case FraudRuleCategory::RAPID_TRANSACTIONS:  return "RAPID_TRANSACTIONS";
+        case FraudRuleCategory::UNUSUAL_AMOUNT:      return "UNUSUAL_AMOUNT";
+        case FraudRuleCategory::STRANGE_LOCATION:    return "STRANGE_LOCATION";
+        case FraudRuleCategory::SUSPICIOUS_DEVICE:   return "SUSPICIOUS_DEVICE";
+        case FraudRuleCategory::CARD_TESTING:        return "CARD_TESTING";
+        case FraudRuleCategory::STOLEN_ACCOUNT:      return "STOLEN_ACCOUNT";
+        case FraudRuleCategory::BLACKLIST_MATCH:     return "BLACKLIST_MATCH";
+        case FraudRuleCategory::ABNORMAL_BEHAVIOR:   return "ABNORMAL_BEHAVIOR";
+        default:                                     return "UNKNOWN";
     }
 }
 
@@ -149,4 +149,16 @@ std::ostream& operator<<(std::ostream& os, CustomerRiskTier tier) {
 
 std::ostream& operator<<(std::ostream& os, FraudRuleCategory category) {
     return os << toString(category);
+}
+
+std::ostream& operator<<(std::ostream& os, MerchantCategory category) {
+    return os << toString(category);
+}
+
+std::ostream& operator<<(std::ostream& os, MerchantRiskTier tier) {
+    return os << toString(tier);
+}
+
+std::ostream& operator<<(std::ostream& os, MerchantStatus status) {
+    return os << toString(status);
 }

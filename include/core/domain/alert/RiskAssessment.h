@@ -41,8 +41,8 @@ class RiskAssessment {
 
         // --- Decision Checks ---
         bool isApproved() const;
-        bool isUnderReview() const;         // Đổi từ isReviewed -> isUnderReview (đang chờ duyệt)
-        bool isChallengeRequired() const;   // Đổi từ isChallenged -> isChallengeRequired (cần xác thực 3D Secure/OTP)
+        bool isReview() const;       
+        bool isChallenge() const;   
         bool isBlocked() const;
 
         std::string getSummary() const;     // Đồng bộ tên hàm tóm tắt dữ liệu

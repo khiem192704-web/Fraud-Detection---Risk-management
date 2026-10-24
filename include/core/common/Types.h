@@ -121,7 +121,10 @@ std::string_view toString(FraudRuleCategory category);
 std::ostream& operator<<(std::ostream& os, FraudRuleCategory category);
 
 std::string toString(MerchantCategory category);
+std::ostream& operator<<(std::ostream& os, MerchantCategory category);
 
 std::string toString(MerchantRiskTier tier);
+std::ostream& operator<<(std::ostream& os, MerchantRiskTier tier);
 
 std::string toString(MerchantStatus status);
+std::ostream& operator<<(std::ostream& os, MerchantStatus status);
