@@ -1,9 +1,16 @@
-#include<iostream>
-#include "test_framework.hpp"
-#include"dsa/priorityqueue.h"
+#include <iostream>
+#include "dsa/vector.h"
+
 int main() {
-    Priorityqueue<int> a,b,c;
-    for(int i = 0; i <= 10; i++) a.push(i);
-    for(int i = 0; i <= 10; i++) std::cout<<a.top();
-    return epfd::test::TestRegistry::instance().runAll();
+    Vector<int> vec;
+    vec.push_back(10);
+    vec.push_back(20);
+    vec.push_back(30);
+
+    std::cout << "Kich thuoc: " << vec.size() << std::endl;
+    for (int i = 0; i < vec.size(); i++) {
+        std::cout << "vec[" << i << "] = " << vec[i] << std::endl;
+    }
+
+    return 0;
 }

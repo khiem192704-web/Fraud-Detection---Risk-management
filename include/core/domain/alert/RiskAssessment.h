@@ -3,7 +3,7 @@
 #include "dsa/vector.h"
 #include "FraudAlert.h"
 #include <chrono>
-#include "common/Types.h"
+#include "core/common/Types.h"
 
 class RiskAssessment {
     private:

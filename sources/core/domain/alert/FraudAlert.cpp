@@ -2,14 +2,13 @@
 
 FraudAlert::FraudAlert(){};
 FraudAlert::FraudAlert(const std::string& alert_id, const std::string& transaction_id,
-                    const std::string& rule_id, const std::string& rule_name,
-                    FraudRuleCategory category = FraudRuleCategory::RAPID_TRANSACTIONS,
-                    double score_contribution = 0.0, const std::string& reason, RiskLevel severity = RiskLevel::MEDIUM,
-                    Timestamp triggered_at = Timestamp{std::chrono::system_clock::now()}):
-                            alert_id(alert_id), transaction_id(transaction_id), rule_id(rule_id), rule_name(rule_name),
+                       const std::string& rule_id, const std::string& rule_name,
+                       const std::string& reason, FraudRuleCategory category,
+                       double score_contribution, RiskLevel severity,
+                       Timestamp triggered_at)
+                            : alert_id(alert_id), transaction_id(transaction_id), rule_id(rule_id), rule_name(rule_name),
                             category(category), score_contribution(score_contribution), reason(reason), severity(severity),
                             triggered_at(triggered_at) {}
-
 // --- Getters ---
 const std::string& FraudAlert::getAlertId() const {
     return alert_id;

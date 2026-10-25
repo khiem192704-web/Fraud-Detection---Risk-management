@@ -21,9 +21,9 @@ class FraudAlert {
                    const std::string& transaction_id,
                    const std::string& rule_id,
                    const std::string& rule_name,
+                   const std::string& reason,
                    FraudRuleCategory category = FraudRuleCategory::RAPID_TRANSACTIONS,
                    double score_contribution = 0.0,
-                   const std::string& reason,
                    RiskLevel severity = RiskLevel::MEDIUM,
                    Timestamp triggered_at = Timestamp{std::chrono::system_clock::now()});
 
