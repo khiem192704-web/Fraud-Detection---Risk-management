@@ -15,7 +15,7 @@ class Queue
             return data.empty();
         }
 
-        void clear() const {
+        void clear() {
             return data.clear();
         }
 

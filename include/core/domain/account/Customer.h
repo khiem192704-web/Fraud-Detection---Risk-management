@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "DSA/vector.h"
+#include "dsa/vector.h"
 #include "core/domain/location/location.h"
 #include "core/common/Types.h"
 
