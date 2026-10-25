@@ -7,18 +7,18 @@
 
 class Transaction {
     private:
-        std::string transaction_id;
+        std::string transactionid;
         TransactionType type{TransactionType::BUY};
-        std::string customer_id;
-        std::string recipient_id;
-        std::string account_id;
+        std::string customerid;
+        std::string recipientid;
+        std::string accountid;
         double amount{0.0};
         std::string currency{"USD"};
         Timestamp timestamp{std::chrono::system_clock::now()};
         Location location;
         std::string ip_address;
         Device device;
-        std::string merchant_id;
+        std::string merchantid;
         PaymentType payment_method;
         TransactionStatus status{TransactionStatus::PENDING};
         Timestamp created_at{std::chrono::system_clock::now()};
@@ -37,18 +37,18 @@ class Transaction {
         void SetDevice(const Device&);
 
         // Getters
-        const std::string& GetTransaction_ID() const;
+        const std::string& GetTransactionID() const;
         TransactionType GetType() const;
-        const std::string& GetCustomer_ID() const;
-        const std::string& GetRecipient_ID() const;
-        const std::string& GetAccount_ID() const;
+        const std::string& GetCustomerID() const;
+        const std::string& GetRecipientID() const;
+        const std::string& GetAccountID() const;
         double GetAmount() const;
         const std::string& GetCurrency() const;
         Timestamp GetTimestamp() const;
         const Location& GetLocation() const;
         const std::string& GetIP_Address() const;
         const Device& GetDevice() const;
-        const std::string& GetMerchant_ID() const;
+        const std::string& GetMerchantID() const;
         const PaymentType& GetPayment_Method() const;
         TransactionStatus GetStatus() const;
         Timestamp GetCreated_At() const;

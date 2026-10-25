@@ -3,30 +3,30 @@
 
 Transaction::Transaction() {}
 
-Transaction::Transaction(const std::string& transaction_id,
+Transaction::Transaction(const std::string& transactionid,
                          TransactionType type,
-                         const std::string& customer_id,
-                         const std::string& recipient_id,
-                         const std::string& account_id,
+                         const std::string& customerid,
+                         const std::string& recipientid,
+                         const std::string& accountid,
                          double amount,
                          const std::string& currency,
                          Timestamp timestamp,
                          const Location& location,
                          const std::string& ip_address,
                          const Device& device,
-                         const std::string& merchant_id,
+                         const std::string& merchantid,
                          const PaymentType& payment_method)
-    : transaction_id(transaction_id),
+    : transactionid(transactionid),
       type(type),
-      customer_id(customer_id),
-      recipient_id(recipient_id),
-      account_id(account_id),
+      customerid(customerid),
+      recipientid(recipientid),
+      accountid(accountid),
       currency(currency),
       timestamp(timestamp),
       location(location),
       ip_address(ip_address),
       device(device),
-      merchant_id(merchant_id),
+      merchantid(merchantid),
       payment_method(payment_method),
       status(TransactionStatus::PENDING),
       created_at(std::chrono::system_clock::now()),
@@ -66,18 +66,18 @@ void Transaction::SetDevice(const Device& device) {
 
 // ==================== Getters ====================
 
-const std::string& Transaction::GetTransaction_ID() const { return transaction_id; }
+const std::string& Transaction::GetTransactionID() const { return transactionid; }
 TransactionType Transaction::GetType() const { return type; }
-const std::string& Transaction::GetCustomer_ID() const { return customer_id; }
-const std::string& Transaction::GetRecipient_ID() const { return recipient_id; }
-const std::string& Transaction::GetAccount_ID() const { return account_id; }
+const std::string& Transaction::GetCustomerID() const { return customerid; }
+const std::string& Transaction::GetRecipientID() const { return recipientid; }
+const std::string& Transaction::GetAccountID() const { return accountid; }
 double Transaction::GetAmount() const { return amount; }
 const std::string& Transaction::GetCurrency() const { return currency; }
 Timestamp Transaction::GetTimestamp() const { return timestamp; }
 const Location& Transaction::GetLocation() const { return location; }
 const std::string& Transaction::GetIP_Address() const { return ip_address; }
 const Device& Transaction::GetDevice() const { return device; }
-const std::string& Transaction::GetMerchant_ID() const { return merchant_id; }
+const std::string& Transaction::GetMerchantID() const { return merchantid; }
 const PaymentType& Transaction::GetPayment_Method() const { return payment_method; }
 TransactionStatus Transaction::GetStatus() const { return status; }
 Timestamp Transaction::GetCreated_At() const { return created_at; }
@@ -153,12 +153,12 @@ bool Transaction::isHighValue(double threshold) const {
 }
 
 std::string Transaction::getSummary() const {
-    return "Transaction[ID: " + transaction_id
+    return "Transaction[ID: " + transactionid
         + ", Type: " + std::string(toString(type))
-        + ", Customer ID: " + customer_id
-        + ", Recipient ID: " + recipient_id
+        + ", Customer ID: " + customerid
+        + ", Recipient ID: " + recipientid
         + ", Amount: " + std::to_string(amount) + " " + currency
         + ", Status: " + std::string(toString(status))
-        + ", Merchant ID: " + merchant_id
+        + ", Merchant ID: " + merchantid
         + "]";
 }
