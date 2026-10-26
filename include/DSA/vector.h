@@ -16,7 +16,7 @@ class Vector
     public:
         Vector() : data(nullptr), size_(0), capacity_(0){}
         Vector(int initSize) : size_(initSize), capacity_(initSize){
-            this->data = new T[this->capacity];
+            this->data = new T[this->capacity_];
             for(int i = 0; i < this->size_; i++){
                 this->data[i] = T();
             }

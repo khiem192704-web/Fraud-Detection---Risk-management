@@ -115,13 +115,13 @@ public:
     }
     T& operator[](int index){
         if(index<0||index>=count){
-            throw std::out_of_range("Deque is empty");
+            throw std::out_of_range("Index out of range");
         }
         return data[(frontIndex+index)%capacity];
     }
     const T& operator[](int index) const{
         if(index<0||index>=count){
-            throw std::out_of_range("Deque is empty");
+            throw std::out_of_range("Index out of range");
         }
         return data[(frontIndex+index)%capacity];
     }

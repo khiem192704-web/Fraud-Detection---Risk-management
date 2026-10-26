@@ -4,7 +4,7 @@
 #include"vector.h"
 
 template<typename T>
-class Priorityqueue{
+class PriorityQueue{
     private:
         Vector<T> heap;
         void swap(T& a, T& b)  {
@@ -39,7 +39,7 @@ class Priorityqueue{
             }
         }
     public:
-        Priorityqueue():heap(){};
+        PriorityQueue():heap(){};
 
         bool empty() const  {
             return heap.empty();

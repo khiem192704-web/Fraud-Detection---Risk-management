@@ -28,27 +28,27 @@ Account::Account(const std::string& account_id,
 
 // Getter
 const std::string& Account::getAccountId() const {
-    return account_id;
+    return this->account_id;
 }
 
 const std::string& Account::getCustomerId() const {
-    return customer_id;
+    return this->customer_id;
 }
 
 double Account::getBalance() const {
-    return balance;
+    return this->balance;
 }
 
 const std::string& Account::getCurrency() const {
-    return currency;
+    return this->currency;
 }
 
 AccountStatus Account::getStatus() const {
-    return status;
+    return this->status;
 }
 
 Timestamp Account::getCreatedAt() const {
-    return created_at;
+    return this->created_at;
 }
 
 // Setter
@@ -62,11 +62,11 @@ void Account::setCurrency(const std::string& currency) {
 
 // Account operations
 bool Account::hasSufficientBalance(double amount) const {
-    return amount >= 0.0 && balance >= amount;
+    return amount >= 0.0 && this->balance >= amount;
 }
 
 void Account::deposit(double amount) {
-    if (status != AccountStatus::ACTIVE) {
+    if (this->status != AccountStatus::ACTIVE) {
         return;
     }
 
@@ -74,47 +74,47 @@ void Account::deposit(double amount) {
         return;
     }
 
-    balance += amount;
+    this->balance += amount;
 }
 
 bool Account::withdraw(double amount) {
-    if (status != AccountStatus::ACTIVE) {
+    if (this->status != AccountStatus::ACTIVE) {
         return false;
     }
 
-    if (amount <= 0.0 || amount > balance) {
+    if (amount <= 0.0 || amount > this->balance) {
         return false;
     }
 
-    balance -= amount;
+    this->balance -= amount;
     return true;
 }
 
 // Account status
 void Account::freeze() {
-    status = AccountStatus::FROZEN;
+    this->status = AccountStatus::FROZEN;
 }
 
 void Account::unfreeze() {
-    if (status == AccountStatus::FROZEN) {
-        status = AccountStatus::ACTIVE;
+    if (this->status == AccountStatus::FROZEN) {
+        this->status = AccountStatus::ACTIVE;
     }
 }
 
 void Account::close() {
-    status = AccountStatus::CLOSED;
+    this->status = AccountStatus::CLOSED;
 }
 
 bool Account::isActive() const {
-    return status == AccountStatus::ACTIVE;
+    return this->status == AccountStatus::ACTIVE;
 }
 
 bool Account::isFrozen() const {
-    return status == AccountStatus::FROZEN;
+    return this->status == AccountStatus::FROZEN;
 }
 
 bool Account::isClosed() const {
-    return status == AccountStatus::CLOSED;
+    return this->status == AccountStatus::CLOSED;
 }
 
 // String representation
@@ -122,13 +122,13 @@ std::string Account::toString() const {
     std::ostringstream oss;
 
     oss << "Account{"
-        << "account_id='" << account_id << '\''
-        << ", customer_id='" << customer_id << '\''
-        << ", balance=" << balance
-        << ", currency='" << currency << '\''
+        << "account_id='" << this->account_id << '\''
+        << ", customer_id='" << this->customer_id << '\''
+        << ", balance=" << this->balance
+        << ", currency='" << this->currency << '\''
         << ", status="
-        << (status == AccountStatus::ACTIVE ? "ACTIVE" :
-           (status == AccountStatus::FROZEN ? "FROZEN" : "CLOSED"))
+        << (this->status == AccountStatus::ACTIVE ? "ACTIVE" :
+           (this->status == AccountStatus::FROZEN ? "FROZEN" : "CLOSED"))
         << '}';
 
     return oss.str();
