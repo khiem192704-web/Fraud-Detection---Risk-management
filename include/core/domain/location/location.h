@@ -25,5 +25,5 @@ class Location {
 
         bool isValid() const;
         double distanceTo(const Location&) const;
-        std::string summary() const;
+        std::string toString() const;
 };
