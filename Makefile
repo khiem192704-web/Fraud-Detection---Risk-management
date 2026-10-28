@@ -1,17 +1,28 @@
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra -O2 -Iinclude
 
-SRCS_CORE = src/common/Types.cpp
-OBJS_CORE = $(SRCS_CORE:.cpp=.o)
+# Core domain & infrastructure sources
+SRCS_CORE = sources/core/common/Types.cpp \
+            sources/core/domain/transaction/transaction.cpp \
+            sources/core/domain/device/device.cpp \
+            sources/core/domain/location/location.cpp \
+            sources/core/domain/alert/FraudAlert.cpp \
+            sources/core/domain/alert/RiskAssessment.cpp \
+            sources/core/domain/account/Customer.cpp
 
-SRCS_APP = src/main.cpp
-SRCS_TEST = tests/main_test.cpp tests/test_architecture.cpp
+# Engine & Rules implementation (them dan vao day khi ban code xong tung rule)
+SRCS_ENGINE = sources/engine/rules/DeviceRiskRule.cpp
+
+# Main application
+SRCS_APP = sources/main.cpp
+
+# Step-by-step test
+SRCS_TEST = tests/test_rules_step_by_step.cpp $(SRCS_ENGINE) $(SRCS_CORE)
 
 BIN_DIR = bin
-BUILD_DIR = build_objs
 
 TARGET_APP = $(BIN_DIR)/epfd_app.exe
-TARGET_TEST = $(BIN_DIR)/epfd_tests.exe
+TARGET_TEST = $(BIN_DIR)/test_rules_step.exe
 
 .PHONY: all clean build test run
 
@@ -25,18 +36,18 @@ $(BIN_DIR):
 $(TARGET_APP): $(SRCS_APP) $(SRCS_CORE) | $(BIN_DIR)
 	$(CXX) $(CXXFLAGS) -o $@ $(SRCS_APP) $(SRCS_CORE)
 
-$(TARGET_TEST): $(SRCS_TEST) $(SRCS_CORE) | $(BIN_DIR)
-	$(CXX) $(CXXFLAGS) -Itests -o $@ $(SRCS_TEST) $(SRCS_CORE)
+$(TARGET_TEST): $(SRCS_TEST) | $(BIN_DIR)
+	$(CXX) $(CXXFLAGS) -o $@ $(SRCS_TEST)
 
 test: $(TARGET_TEST)
 	@echo.
-	@echo Running Tests...
 	@$(TARGET_TEST)
 
 run: $(TARGET_APP)
 	@echo.
-	@echo Running Application...
 	@$(TARGET_APP)
 
 clean:
+	@if exist "$(BIN_DIR)" rmdir /s /q "$(BIN_DIR)"
+
 	@if exist "$(BIN_DIR)" rmdir /s /q "$(BIN_DIR)"
