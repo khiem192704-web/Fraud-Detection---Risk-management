@@ -1,11 +1,8 @@
 #include"core/domain/device/device.h"
 
 Device::Device(){}
-Device::Device(const std::string& device_id, const std::string& ip_address, 
-                const std::string& device_fingerprint, const Location& location, 
-                bool is_virtual, bool is_hacker)
-                    : device_id(device_id), ip_address(ip_address), device_fingerprint(device_fingerprint), 
-                    location(location), is_virtual(is_virtual), is_hacker(is_hacker) {}
+Device::Device(const std::string& device_id, const std::string& ip_address, const std::string& device_fingerprint, const Location& location, bool is_virtual, bool is_hacker)
+    : device_id(device_id), ip_address(ip_address), device_fingerprint(device_fingerprint), location(location), is_virtual(is_virtual), is_hacker(is_hacker) {}
 
 void Device::SetDevice_ID(const std::string& Device_ID){ this->device_id = Device_ID; }
 void Device::SetIP_Address(const std::string& IP_Address){ this->ip_address = IP_Address; }
@@ -22,7 +19,4 @@ bool Device::GetIs_Virtual() const { return is_virtual; }
 bool Device::GetIs_Hacker() const { return is_hacker; }
 
 bool Device::is_Safe() const{ return !is_hacker || !is_virtual; }
-std::string Device::toString() const { 
-    return "Device ID: " + device_id + ", IP Address: " + ip_address 
-    + ", Is Virtual: " + (is_virtual ? "Yes" : "No") + ", Is Hacker: " + (is_hacker ? "Yes" : "No"); 
-}
+std::string Device::summary() const { return "Device ID: " + device_id + ", IP Address: " + ip_address + ", Is Virtual: " + (is_virtual ? "Yes" : "No") + ", Is Hacker: " + (is_hacker ? "Yes" : "No"); }
