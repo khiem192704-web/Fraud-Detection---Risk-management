@@ -58,6 +58,6 @@ double Location::distanceTo(const Location& other) const {
     return R * c; // khoang cach(km)
 }
 
-std::string Location::toString() const {
+std::string Location::summary() const {
     return "City: " + city +"[" + std::to_string(latitude) + ", " + std::to_string(longitude) + "]";
 }

@@ -5,11 +5,8 @@ PaymentMethod::PaymentMethod(const std::string& payment_id, PaymentType type, co
                         const std::string& card_holder_name, int expiry_month, int expiry_year, const std::string& billing_country)
                                 : payment_id(payment_id), type(type), card_bin(""), last4(""), card_holder_name(card_holder_name), 
                                 expiry_month(expiry_month), expiry_year(expiry_year), billing_country(billing_country) {
-    if (type != PaymentType::CARD || raw_or_masked_pan.empty()) {
-        masked_card_number = raw_or_masked_pan;
-        return;
-    }
-    std::string clean_pan;
+
+    std::string clean_pan = "";
     for (char c : raw_or_masked_pan) {
         if ((c >= '0' && c <= '9') || c == '*') clean_pan.push_back(c);
     }

@@ -152,13 +152,13 @@ bool Transaction::isHighValue(double threshold) const {
     return amount >= threshold;
 }
 
-std::string Transaction::toString() const {
+std::string Transaction::getSummary() const {
     return "Transaction[ID: " + transactionid
-        + ", Type: " + std::string(::toString(type))
+        + ", Type: " + std::string(toString(type))
         + ", Customer ID: " + customerid
         + ", Recipient ID: " + recipientid
         + ", Amount: " + std::to_string(amount) + " " + currency
-        + ", Status: " + std::string(::toString(status))
+        + ", Status: " + std::string(toString(status))
         + ", Merchant ID: " + merchantid
         + "]";
 }

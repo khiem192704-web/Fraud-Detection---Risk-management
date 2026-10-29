@@ -66,5 +66,5 @@ class Transaction {
         // --- Business Checks (Kiểm tra nghiệp vụ) ---
         bool isCrossBorder(const std::string&) const;
         bool isHighValue(double) const;
-        std::string toString() const;
+        std::string getSummary() const;
 };
