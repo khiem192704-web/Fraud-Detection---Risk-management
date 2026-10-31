@@ -27,5 +27,5 @@ class Device{
         bool GetIs_Hacker() const;
 
         bool is_Safe() const;
-        std::string summary() const;
+        std::string toString() const;
 };

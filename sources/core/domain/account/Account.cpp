@@ -133,13 +133,3 @@ std::string Account::toString() const {
 
     return oss.str();
 }
-
-std::string Account::summary() const {
-    return toString();
-}
-
-// Operator <<
-std::ostream& operator<<(std::ostream& os, const Account& account) {
-    os << account.toString();
-    return os;
-}
