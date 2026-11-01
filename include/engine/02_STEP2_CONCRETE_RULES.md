@@ -20,6 +20,14 @@
 
 ### 🟢 2.1. `DeviceRiskRule` (Luật Môi Trường Thiết Bị Độc Hại)
 
+#### 📋 Bảng TODO Khai Báo Header (`DeviceRiskRule.h`)
+| STT | Mục cần khai báo | Mô tả & Gợi ý code |
+| :--- | :--- | :--- |
+| **TODO 1** | Điểm rủi ro | `double risk_contribution;` |
+| **TODO 2** | Constructor | `explicit DeviceRiskRule(double contribution = 30.0);` |
+| **TODO 3** | 4 phương thức định danh | `std::string getId() const override;` (trả về `"RULE_004_DEVICE_RISK"`)<br>`std::string getName() const override;` (trả về `"Suspicious Device Environment"`)<br>`FraudRuleCategory getCategory() const override;` (trả về `FraudRuleCategory::SUSPICIOUS_DEVICE`)<br>`double getRiskContribution() const override;` |
+| **TODO 4** | Hàm thẩm định | `bool evaluate(const Transaction& tx, const Customer& customer, FraudAlert& out_alert) override;` |
+
 #### 1. Bản chất
 Kiểm tra xem giao dịch có được thực hiện từ môi trường nghi vấn (máy ảo emulator trên PC của hacker, thiết bị Android đã bị root hoặc iPhone đã jailbreak).
 
@@ -53,6 +61,14 @@ return false;
 
 ### 🟡 2.2. `HighAmountRule` (Luật Số Tiền Đột Biến)
 
+#### 📋 Bảng TODO Khai Báo Header (`HighAmountRule.h`)
+| STT | Mục cần khai báo | Mô tả & Gợi ý code |
+| :--- | :--- | :--- |
+| **TODO 1** | Ngưỡng cấu hình | `double max_amount_threshold;`<br>`double multiplier_threshold;`<br>`double risk_contribution;` |
+| **TODO 2** | Constructor | `explicit HighAmountRule(double max_amount = 5000.0, double multiplier = 5.0, double contribution = 25.0);` |
+| **TODO 3** | 4 phương thức định danh | `std::string getId() const override;` (trả về `"RULE_002_HIGH_AMOUNT"`)<br>`std::string getName() const override;` (trả về `"Unusual High Transaction Amount"`)<br>`FraudRuleCategory getCategory() const override;` (trả về `FraudRuleCategory::UNUSUAL_AMOUNT`)<br>`double getRiskContribution() const override;` |
+| **TODO 4** | Hàm thẩm định | `bool evaluate(const Transaction& tx, const Customer& customer, FraudAlert& out_alert) override;` |
+
 #### 1. Bản chất
 Bắt các giao dịch có số tiền bất thường:
 1. **Ngưỡng trần tuyệt đối**: Giao dịch quá lớn (ví dụ $> 5,000\$$ một lần).
@@ -83,6 +99,16 @@ return false;
 
 ### 🟠 2.3. `BlacklistRule` (Luật Danh Sách Đen — Ứng dụng DSA HashMap)
 
+#### 📋 Bảng TODO Khai Báo Header (`BlacklistRule.h`)
+| STT | Mục cần khai báo | Mô tả & Gợi ý code |
+| :--- | :--- | :--- |
+| **TODO 1** | Điểm rủi ro | `double risk_contribution;` (mặc định 40.0) |
+| **TODO 2** | Bảng băm danh sách đen | `std::unordered_map<std::string, std::string> blacklisted_ips;`<br>`std::unordered_map<std::string, std::string> blacklisted_accounts;` |
+| **TODO 3** | Constructor | `explicit BlacklistRule(double contribution = 40.0);` |
+| **TODO 4** | 4 phương thức định danh | `std::string getId() const override;` (trả về `"RULE_003_BLACKLIST_MATCH"`)<br>`std::string getName() const override;` (trả về `"Blacklisted IP or Account Detection"`)<br>`FraudRuleCategory getCategory() const override;` (trả về `FraudRuleCategory::BLACKLIST_MATCH`)<br>`double getRiskContribution() const override;` |
+| **TODO 5** | Tiện ích quản lý danh sách đen | `void addBlacklistedIP(const std::string& ip, const std::string& reason = "Suspicious IP");`<br>`void addBlacklistedAccount(const std::string& account_id, const std::string& reason = "Stolen account");`<br>`bool isIPBlacklisted(const std::string& ip) const;`<br>`bool isAccountBlacklisted(const std::string& account_id) const;` |
+| **TODO 6** | Hàm thẩm định | `bool evaluate(const Transaction& tx, const Customer& customer, FraudAlert& out_alert) override;` |
+
 #### 1. Bản chất & Giá trị DSA
 - Hệ thống thanh toán có hàng triệu thẻ và IP bị rò rỉ.
 - Nếu lưu danh sách đen trong mảng thường `Vector` hoặc `array`, mỗi lần có giao dịch phải duyệt tuyến tính mất **$O(N)$**.
@@ -93,8 +119,8 @@ return false;
 class BlacklistRule : public IFraudRule {
 private:
     double risk_contribution{40.0};
-    // Có thể dùng std::unordered_map hoặc HashMap tự viết từ include/DSA/
-    // Lưu: Key (IP / AccountID) -> Value (Lý do cấm)
+    std::unordered_map<std::string, std::string> blacklisted_ips;
+    std::unordered_map<std::string, std::string> blacklisted_accounts;
 
 public:
     void addBlacklistedIP(const std::string& ip, const std::string& reason);
@@ -117,6 +143,18 @@ public:
 ---
 
 ### 🔴 2.4. `VelocityRule` (Luật Spam Quẹt Thẻ — Ứng dụng DSA Deque)
+
+#### 📋 Bảng TODO Khai Báo Header (`VelocityRule.h`)
+| STT | Mục cần khai báo | Mô tả & Gợi ý code |
+| :--- | :--- | :--- |
+| **TODO 1** | Cửa sổ trượt Deque | `Deque<Timestamp> sliding_window;` |
+| **TODO 2** | Số giao dịch tối đa | `int max_transactions;` (mặc định 5) |
+| **TODO 3** | Độ dài khung thời gian | `std::chrono::seconds window_duration;` (mặc định 60s) |
+| **TODO 4** | Điểm rủi ro | `double risk_contribution;` (mặc định 30.0) |
+| **TODO 5** | Constructor | `explicit VelocityRule(int max_txs = 5, std::chrono::seconds duration = std::chrono::seconds(60), double contribution = 30.0);` |
+| **TODO 6** | 4 phương thức định danh | `std::string getId() const override;` (trả về `"RULE_001_VELOCITY"`)<br>`std::string getName() const override;` (trả về `"High Transaction Frequency (Velocity)"`)<br>`FraudRuleCategory getCategory() const override;` (trả về `FraudRuleCategory::RAPID_TRANSACTIONS`)<br>`double getRiskContribution() const override;` |
+| **TODO 7** | Hàm thẩm định (Sliding Window) | `bool evaluate(const Transaction& tx, const Customer& customer, FraudAlert& out_alert) override;` |
+| **TODO 8** | Reset cửa sổ trượt | `void reset();` |
 
 #### 1. Bản chất & Bài toán Cửa sổ trượt (Sliding Window)
 Hacker thường dùng script tự động để quét mã thẻ (quẹt 10 lần trong 10 giây). Làm sao để máy tính biết khách hàng đã quẹt bao nhiêu lần trong **60 giây gần nhất**?
@@ -173,4 +211,3 @@ bool VelocityRule::evaluate(const Transaction& tx, const Customer&, FraudAlert& 
 
 > **Hỏi**: *"Tại sao trong `VelocityRule` em lại dùng cấu trúc dữ liệu `Deque` mà không dùng `Vector` hay `Queue` thông thường?"*  
 > **Đáp**: *"Dạ thưa thầy/cô, thuật toán Cửa sổ trượt (Sliding Window) yêu cầu hai thao tác: thêm mốc thời gian mới vào cuối và loại bỏ các mốc thời gian hết hạn ở đầu. Nếu dùng `Vector`, thao tác xóa ở đầu mảng tốn $O(N)$ do phải dồn toàn bộ phần tử về trước. Còn `Queue` thông thường không hỗ trợ kiểm tra linh hoạt kích thước hoặc duyệt phần tử đầu. `Deque` (Double-ended Queue) tự viết cho phép cả thao tác `push_back()` và `pop_front()` đạt độ phức tạp tức thì **$O(1)$**, giúp hệ thống duy trì cửa sổ thời gian cực kỳ nhẹ và tối ưu bộ nhớ."*
-

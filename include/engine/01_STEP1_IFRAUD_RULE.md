@@ -17,7 +17,20 @@ Trong một hệ thống thanh toán lớn, các luật gian lận **luôn luôn
 
 ---
 
-## 📐 2. Phân Tích Cấu Trúc File `IFraudRule.h`
+## 📋 2. Bảng Danh Sách TODO Cần Cài Đặt Trong `IFraudRule.h`
+
+| STT | Nhiệm vụ (TODO) | Mục đích / Yêu cầu | Code mẫu gợi ý |
+| :--- | :--- | :--- | :--- |
+| **TODO 1** | Virtual Destructor | Chống rò rỉ bộ nhớ (memory leak) khi giải phóng lớp con qua con trỏ `IFraudRule*`. | `virtual ~IFraudRule() = default;` |
+| **TODO 2** | Mã định danh luật | Trả về ID duy nhất của luật (vd: `"RULE_004_DEVICE_RISK"`). | `virtual std::string getId() const = 0;` |
+| **TODO 3** | Tên mô tả luật | Trả về tên ngắn gọn mô tả hành vi gian lận. | `virtual std::string getName() const = 0;` |
+| **TODO 4** | Danh mục phân loại | Phân loại theo enum `FraudRuleCategory` trong `Types.h`. | `virtual FraudRuleCategory getCategory() const = 0;` |
+| **TODO 5** | Điểm rủi ro đóng góp | Trả về điểm phạt (thường từ 10.0 -> 40.0 điểm). | `virtual double getRiskContribution() const = 0;` |
+| **TODO 6** | Thẩm định giao dịch | Hàm cốt lõi kiểm tra vi phạm, ghi kết quả vào `out_alert`. | `virtual bool evaluate(const Transaction& tx, const Customer& customer, FraudAlert& out_alert) = 0;` |
+
+---
+
+## 📐 3. Phân Tích Cấu Trúc File `IFraudRule.h`
 
 ```cpp
 #pragma once
