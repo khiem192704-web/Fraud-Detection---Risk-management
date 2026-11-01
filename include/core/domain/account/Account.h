@@ -52,8 +52,4 @@ public:
 
     // String representation
     std::string toString() const;
-    std::string summary() const;
 };
-
-// Operator
-std::ostream& operator<<(std::ostream& os, const Account& account);
