@@ -2,7 +2,7 @@
 #include <unordered_map>
 #include "engine/rules/IFraudRule.h"
 #include <string>
-class BlacklistRule : public IFraudRule {
+class BlacklistRule:public IFraudRule{
 private:
     double risk_contribution;
     std::unordered_map<std::string, std::string> blacklisted_ips;

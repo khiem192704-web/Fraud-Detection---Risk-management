@@ -4,7 +4,6 @@
 #include "core/domain/transaction/Transaction.h"
 #include "core/domain/account/Customer.h"
 #include "core/domain/alert/FraudAlert.h"
-
 class IFraudRule{
 public:
     virtual ~IFraudRule()=default;

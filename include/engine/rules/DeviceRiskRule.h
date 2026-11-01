@@ -1,7 +1,6 @@
 #pragma once
 #include "engine/rules/IFraudRule.h"
-
-class DeviceRiskRule : public IFraudRule {
+class DeviceRiskRule:public IFraudRule{
 private:
     double risk_contribution;
 public:

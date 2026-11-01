@@ -19,41 +19,56 @@
  * - Cập nhật trực tiếp trạng thái vòng đời của Transaction.
  */
 
-// TODO 1: Struct chứa các ngưỡng điểm để phân loại hành động
+// TODO 1: Khai báo struct DecisionPolicy chứa các ngưỡng điểm phân loại hành động nghiệp vụ:
+// - approve_max_score: [0.0, 40.0) -> APPROVE (Duyệt ngay)
+// - challenge_max_score: [40.0, 60.0) -> CHALLENGE_3DS (Yêu cầu OTP)
+// - review_max_score: [60.0, 80.0) -> REVIEW (Điều tra viên duyệt tay)
+// (Điểm >= 80.0 sẽ bị từ chối BLOCK)
+// Gợi ý:
+// struct DecisionPolicy {
+//     double approve_max_score{39.99};
+//     double challenge_max_score{59.99};
+//     double review_max_score{79.99};
+// };
 struct DecisionPolicy {
-    double approve_max_score{39.99};    // [0.0, 40.0)  -> APPROVE (Duyệt ngay)
-    double challenge_max_score{59.99};  // [40.0, 60.0) -> CHALLENGE_3DS (Yêu cầu OTP)
-    double review_max_score{79.99};     // [60.0, 80.0) -> REVIEW (Điều tra viên duyệt tay)
-                                        // >= 80.0      -> BLOCK (Chặn giao dịch)
+
 };
 
 class DecisionEngine {
 private:
-    // TODO 2: Chính sách ra quyết định
-    DecisionPolicy policy;
+    // TODO 2: Khai báo biến thành viên lưu chính sách ra quyết định
+    // Gợi ý: DecisionPolicy policy;
+
 
 public:
-    // TODO 3: Constructor với policy mặc định
-    explicit DecisionEngine(const DecisionPolicy& custom_policy = DecisionPolicy());
+    // TODO 3: Constructor nhận vào policy tùy chỉnh (mặc định DecisionPolicy())
+    // Gợi ý: explicit DecisionEngine(const DecisionPolicy& custom_policy = DecisionPolicy());
+
 
     // TODO 4: Cấu hình và truy xuất Policy
-    void setPolicy(const DecisionPolicy& new_policy);
-    const DecisionPolicy& getPolicy() const;
+    // Gợi ý:
+    // void setPolicy(const DecisionPolicy& new_policy);
+    // const DecisionPolicy& getPolicy() const;
+
 
     // TODO 5: Hàm ra quyết định cốt lõi:
     // - Nhận: Transaction& tx, Customer, RiskAssessment& assessment
     // - Trả về: DecisionAction
-    // - Tác vụ phụ: Gọi tx.approve(), tx.block(), tx.challenge() tương ứng
-    DecisionAction decide(
-        Transaction& tx,
-        const Customer& customer,
-        RiskAssessment& assessment
-    ) const;
+    // - Tác vụ phụ: Gọi tx.approve(), tx.block(), tx.challenge(), tx.sendToReview() tương ứng
+    // Gợi ý:
+    // DecisionAction decide(
+    //     Transaction& tx,
+    //     const Customer& customer,
+    //     RiskAssessment& assessment
+    // ) const;
 
-    // TODO 6: Hàm kiểm tra phủ quyết khẩn cấp:
-    // Nếu khách hàng bị BANNED hoặc có alert CRITICAL -> lập tức trả về true
-    bool checkEmergencyBlock(
-        const Customer& customer,
-        const RiskAssessment& assessment
-    ) const;
+
+    // TODO 6: Hàm kiểm tra cơ chế phủ quyết khẩn cấp (Emergency Override):
+    // - Nếu khách hàng bị BANNED hoặc có alert CRITICAL -> lập tức trả về true
+    // Gợi ý:
+    // bool checkEmergencyBlock(
+    //     const Customer& customer,
+    //     const RiskAssessment& assessment
+    // ) const;
+
 };

@@ -1,10 +1,8 @@
 #pragma once
-
 #include "engine/rules/IFraudRule.h"
 #include "DSA/Deque.h"
 #include <chrono>
-
-class VelocityRule : public IFraudRule {
+class VelocityRule:public IFraudRule{
 private:
     Deque<Timestamp>sliding_window;
     int max_transactions;

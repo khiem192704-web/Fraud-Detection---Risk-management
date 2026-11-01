@@ -22,61 +22,72 @@
  *   điểm rủi ro tổng hợp (0.0 -> 100.0) và xuất RiskAssessment.
  */
 
-// TODO 1: Struct chứa chính sách trọng số và ngưỡng phân tầng rủi ro
+// TODO 1: Khai báo struct RiskPolicy chứa trọng số và ngưỡng phân tầng rủi ro:
+// - Trọng số các thành phần đóng góp (tổng = 1.0): weight_rules (0.50), weight_ml (0.40), weight_profile (0.10)
+// - Ngưỡng phân tầng RiskLevel: threshold_very_low (20.0), threshold_low (40.0), threshold_medium (60.0), threshold_high (80.0)
+// - Phương thức determineRiskLevel(double score) const ánh xạ điểm sang enum RiskLevel
+// Gợi ý:
+// struct RiskPolicy {
+//     double weight_rules{0.50};
+//     double weight_ml{0.40};
+//     double weight_profile{0.10};
+// 
+//     double threshold_very_low{20.0};
+//     double threshold_low{40.0};
+//     double threshold_medium{60.0};
+//     double threshold_high{80.0};
+// 
+//     RiskLevel determineRiskLevel(double score) const {
+//         if (score < threshold_very_low) return RiskLevel::VERY_LOW;
+//         if (score < threshold_low)      return RiskLevel::LOW;
+//         if (score < threshold_medium)   return RiskLevel::MEDIUM;
+//         if (score < threshold_high)     return RiskLevel::HIGH;
+//         return RiskLevel::CRITICAL;
+//     }
+// };
 struct RiskPolicy {
-    // Trọng số các thành phần đóng góp (Tổng = 1.0)
-    double weight_rules{0.50};      // 50% từ vi phạm các luật gian lận
-    double weight_ml{0.40};         // 40% từ mô hình học máy
-    double weight_profile{0.10};    // 10% từ rủi ro nền của hồ sơ khách hàng
 
-    // Ngưỡng phân tầng mức độ rủi ro (RiskLevel)
-    double threshold_very_low{20.0};
-    double threshold_low{40.0};
-    double threshold_medium{60.0};
-    double threshold_high{80.0};
-
-    // Hàm ánh xạ từ điểm số [0.0, 100.0] sang enum RiskLevel
-    RiskLevel determineRiskLevel(double score) const {
-        if (score < threshold_very_low) return RiskLevel::VERY_LOW;
-        if (score < threshold_low)      return RiskLevel::LOW;
-        if (score < threshold_medium)   return RiskLevel::MEDIUM;
-        if (score < threshold_high)     return RiskLevel::HIGH;
-        return RiskLevel::CRITICAL;
-    }
 };
 
 class RiskEngine {
 private:
-    // TODO 2: Danh sách các luật gian lận được quản lý dưới dạng con trỏ lớp cha
-    // Áp dụng Đa hình (Polymorphism): Vector<IFraudRule*> rules;
-    Vector<IFraudRule*> rules;
+    // TODO 2: Danh sách các luật gian lận được quản lý dưới dạng con trỏ lớp cha IFraudRule* (Đa hình Polymorphism)
+    // Gợi ý: Vector<IFraudRule*> rules;
 
-    // TODO 3: Chính sách trọng số rủi ro
-    RiskPolicy policy;
+
+    // TODO 3: Thuộc tính lưu chính sách trọng số rủi ro
+    // Gợi ý: RiskPolicy policy;
+
 
 public:
     // TODO 4: Khởi tạo Constructor nhận vào policy tùy chỉnh (mặc định RiskPolicy())
-    explicit RiskEngine(const RiskPolicy& custom_policy = RiskPolicy());
+    // Gợi ý: explicit RiskEngine(const RiskPolicy& custom_policy = RiskPolicy());
 
-    // TODO 5: Destructor quan trọng: Duyệt qua mảng rules và gọi `delete rules[i]`
-    // để giải phóng bộ nhớ của các đối tượng luật con!
-    ~RiskEngine();
+
+    // TODO 5: Destructor quan trọng: Duyệt qua mảng rules và gọi `delete rules[i]` để giải phóng bộ nhớ đối tượng con
+    // Gợi ý: ~RiskEngine();
+
 
     // TODO 6: Hàm đăng ký thêm một luật mới vào Engine
-    void registerRule(IFraudRule* rule);
+    // Gợi ý: void registerRule(IFraudRule* rule);
 
-    // TODO 7: Lấy số lượng luật hiện có trong Engine
-    int getRuleCount() const;
+
+    // TODO 7: Hàm lấy số lượng luật hiện có trong Engine
+    // Gợi ý: int getRuleCount() const;
+
 
     // TODO 8: Cấu hình và truy xuất Policy
-    void setPolicy(const RiskPolicy& new_policy);
-    const RiskPolicy& getPolicy() const;
+    // Gợi ý:
+    // void setPolicy(const RiskPolicy& new_policy);
+    // const RiskPolicy& getPolicy() const;
 
-    // TODO 9: Hàm thẩm định rủi ro cốt lõi:
-    // Nhận Transaction, Customer, ml_score -> Tính tổng hợp -> Trả về RiskAssessment
-    RiskAssessment assessRisk(
-        const Transaction& tx,
-        const Customer& customer,
-        double ml_score = 0.0
-    );
+
+    // TODO 9: Hàm thẩm định rủi ro cốt lõi (tính điểm tổng hợp và trả về RiskAssessment)
+    // Gợi ý:
+    // RiskAssessment assessRisk(
+    //     const Transaction& tx,
+    //     const Customer& customer,
+    //     double ml_score = 0.0
+    // );
+
 };

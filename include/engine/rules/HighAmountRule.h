@@ -1,8 +1,6 @@
 #pragma once
-
 #include "engine/rules/IFraudRule.h"
-
-class HighAmountRule : public IFraudRule {
+class HighAmountRule:public IFraudRule{
 private:
     double max_amount_threshold;
     double multiplier_threshold;
