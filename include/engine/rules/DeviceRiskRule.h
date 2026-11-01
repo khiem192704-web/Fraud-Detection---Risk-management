@@ -17,28 +17,26 @@ class DeviceRiskRule : public IFraudRule {
 private:
     // TODO 1: Khai báo thuộc tính lưu điểm rủi ro đóng góp khi vi phạm
     // Gợi ý: double risk_contribution;
-    double risk_contribution;
+
 
 public:
-    // TODO 2: Khai báo Constructor với điểm đóng góp mặc định là 30.0
-    // Gợi ý dùng từ khóa explicit: explicit DeviceRiskRule(double contribution = 30.0);
-    explicit DeviceRiskRule(double contribution = 30.0);
+    // TODO 2: Khai báo Constructor với điểm đóng góp mặc định là 30.0 (dùng từ khóa explicit)
+    // Gợi ý: explicit DeviceRiskRule(double contribution = 30.0);
 
-    // TODO 3: Khai báo ghi đè (override) các hàm thuần ảo từ IFraudRule:
-    // - std::string getId() const override;
-    // - std::string getName() const override;
-    // - FraudRuleCategory getCategory() const override;
-    // - double getRiskContribution() const override;
-    std::string getId() const override;
-    std::string getName() const override;
-    FraudRuleCategory getCategory() const override;
-    double getRiskContribution() const override;
 
-    // TODO 4: Khai báo hàm thẩm định giao dịch ghi đè từ IFraudRule:
-    // bool evaluate(const Transaction& tx, const Customer& customer, FraudAlert& out_alert) override;
-    bool evaluate(
-        const Transaction& tx,
-        const Customer& customer,
-        FraudAlert& out_alert
-    ) override;
+    // TODO 3: Khai báo ghi đè (override) 4 phương thức định danh từ IFraudRule:
+    // - getId() -> "RULE_004_DEVICE_RISK"
+    // - getName() -> "Suspicious Device Environment"
+    // - getCategory() -> FraudRuleCategory::SUSPICIOUS_DEVICE
+    // - getRiskContribution()
+    // Gợi ý:
+    // std::string getId() const override;
+    // std::string getName() const override;
+    // FraudRuleCategory getCategory() const override;
+    // double getRiskContribution() const override;
+
+
+    // TODO 4: Khai báo hàm thẩm định giao dịch ghi đè (override) từ IFraudRule:
+    // Gợi ý: bool evaluate(const Transaction& tx, const Customer& customer, FraudAlert& out_alert) override;
+
 };

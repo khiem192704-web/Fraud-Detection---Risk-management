@@ -20,42 +20,48 @@ class VelocityRule : public IFraudRule {
 private:
     // TODO 1: Cửa sổ trượt lưu các mốc thời gian (Timestamp) của các giao dịch gần đây
     // Dùng template Deque tự viết: Deque<Timestamp> sliding_window;
-    Deque<Timestamp> sliding_window;
+    // Gợi ý: Deque<Timestamp> sliding_window;
+
 
     // TODO 2: Thuộc tính ngưỡng số giao dịch tối đa cho phép trong cửa sổ thời gian
-    int max_transactions;
+    // Gợi ý: int max_transactions;
+
 
     // TODO 3: Độ dài khoảng thời gian của cửa sổ trượt (mặc định: 60 giây)
-    std::chrono::seconds window_duration;
+    // Gợi ý: std::chrono::seconds window_duration;
 
-    // TODO 4: Điểm rủi ro đóng góp (mặc định: 30.0)
-    double risk_contribution;
+
+    // TODO 4: Điểm rủi ro đóng góp khi vi phạm luật (mặc định: 30.0)
+    // Gợi ý: double risk_contribution;
+
 
 public:
-    // TODO 5: Constructor khởi tạo các ngưỡng và cấu hình cửa sổ
-    explicit VelocityRule(
-        int max_txs = 5,
-        std::chrono::seconds duration = std::chrono::seconds(60),
-        double contribution = 30.0
-    );
+    // TODO 5: Constructor khởi tạo các ngưỡng và cấu hình cửa sổ trượt
+    // Gợi ý:
+    // explicit VelocityRule(
+    //     int max_txs = 5,
+    //     std::chrono::seconds duration = std::chrono::seconds(60),
+    //     double contribution = 30.0
+    // );
 
-    // TODO 6: Ghi đè các phương thức định danh:
+
+    // TODO 6: Ghi đè (override) 4 phương thức định danh từ IFraudRule:
     // - getId() -> "RULE_001_VELOCITY"
     // - getName() -> "High Transaction Frequency (Velocity)"
     // - getCategory() -> FraudRuleCategory::RAPID_TRANSACTIONS
     // - getRiskContribution()
-    std::string getId() const override;
-    std::string getName() const override;
-    FraudRuleCategory getCategory() const override;
-    double getRiskContribution() const override;
+    // Gợi ý:
+    // std::string getId() const override;
+    // std::string getName() const override;
+    // FraudRuleCategory getCategory() const override;
+    // double getRiskContribution() const override;
 
-    // TODO 7: Khai báo hàm thẩm định giao dịch (Sliding Window Algorithm)
-    bool evaluate(
-        const Transaction& tx,
-        const Customer& customer,
-        FraudAlert& out_alert
-    ) override;
+
+    // TODO 7: Khai báo hàm thẩm định giao dịch (Sliding Window Algorithm) ghi đè từ IFraudRule:
+    // Gợi ý: bool evaluate(const Transaction& tx, const Customer& customer, FraudAlert& out_alert) override;
+
 
     // TODO 8: Hàm reset/làm rỗng cửa sổ trượt (dùng khi bắt đầu phiên test mới)
-    void reset();
+    // Gợi ý: void reset();
+
 };
