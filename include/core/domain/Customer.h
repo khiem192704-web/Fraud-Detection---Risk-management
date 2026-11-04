@@ -2,7 +2,7 @@
 
 #include <string>
 #include <vector>
-#include "core/domain/location/location.h"
+#include "core/domain/location.h"
 #include "core/common/Types.h"
 
 class Customer {

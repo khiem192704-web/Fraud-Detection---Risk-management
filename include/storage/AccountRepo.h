@@ -1,7 +1,7 @@
 #pragma once
 #include<string>
 #include<vector>
-#include"core/domain/account/Account.h"
+#include"core/domain/Account.h"
 #include"IRepository.h"
 
 class AccountRepo : public IRepository<Account> {

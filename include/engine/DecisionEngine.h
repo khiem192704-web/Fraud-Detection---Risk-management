@@ -1,9 +1,9 @@
 #pragma once
 
 #include "core/common/Types.h"
-#include "core/domain/transaction/Transaction.h"
-#include "core/domain/account/Customer.h"
-#include "core/domain/alert/RiskAssessment.h"
+#include "core/domain/Transaction.h"
+#include "core/domain/Customer.h"
+#include "core/domain/RiskAssessment.h"
 
 /**
  * ============================================================================
