@@ -64,11 +64,11 @@ bool Customer::isKycVerified() const {
     return is_kyc_verified;
 }
 
-const Vector<std::string>& Customer::getLinkedAccountIds() const {
+const std::vector<std::string>& Customer::getLinkedAccountIds() const {
     return linked_account_ids;
 }
 
-const Vector<std::string>& Customer::getTrustedDeviceIds() const {
+const std::vector<std::string>& Customer::getTrustedDeviceIds() const {
     return trusted_device_ids;
 }
 

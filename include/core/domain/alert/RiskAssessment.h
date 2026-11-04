@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include "dsa/vector.h"
+#include <vector>
 #include "FraudAlert.h"
 #include <chrono>
 #include "core/common/Types.h"
@@ -14,14 +14,14 @@ class RiskAssessment {
         double combined_score{0.0};
         RiskLevel risk_level{RiskLevel::VERY_LOW};
         DecisionAction decision{DecisionAction::APPROVE};
-        Vector<FraudAlert> alerts;
-        Vector<std::string> reasons;
+        std::vector<FraudAlert> alerts;
+        std::vector<std::string> reasons;
         Timestamp evaluated_at{std::chrono::system_clock::now()};
 
     public:
         RiskAssessment(){};
         RiskAssessment(const std::string&, const std::string&, double, double, double, RiskLevel, DecisionAction, 
-                    const Vector<FraudAlert>&, const Vector<std::string>&, Timestamp);
+                    const std::vector<FraudAlert>&, const std::vector<std::string>&, Timestamp);
 
         // --- Getters ---
         const std::string& getAssessmentId() const;
@@ -31,8 +31,8 @@ class RiskAssessment {
         double getCombinedScore() const;
         RiskLevel getRiskLevel() const;
         DecisionAction getDecision() const;
-        const Vector<FraudAlert>& getAlerts() const;
-        const Vector<std::string>& getReasons() const;
+        const std::vector<FraudAlert>& getAlerts() const;
+        const std::vector<std::string>& getReasons() const;
         Timestamp getEvaluatedAt() const;
 
         // --- Domain Actions ---

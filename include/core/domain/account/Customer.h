@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "dsa/vector.h"
+#include <vector>
 #include "core/domain/location/location.h"
 #include "core/common/Types.h"
 
@@ -17,8 +17,8 @@ private:
     double baseline_risk_score{10.0};
     bool is_kyc_verified{false};// KYC: Know your customer ->use for identify infor of user  
 
-    Vector<std::string> linked_account_ids;
-    Vector<std::string> trusted_device_ids;
+    std::vector<std::string> linked_account_ids;
+    std::vector<std::string> trusted_device_ids;
 
 public:
     // Constructor
@@ -43,8 +43,8 @@ public:
     double getBaselineRiskScore() const;
     bool isKycVerified() const;
 
-    const Vector<std::string>& getLinkedAccountIds() const;
-    const Vector<std::string>& getTrustedDeviceIds() const;
+    const std::vector<std::string>& getLinkedAccountIds() const;
+    const std::vector<std::string>& getTrustedDeviceIds() const;
 
     // Setter
     void setFullName(const std::string& name);

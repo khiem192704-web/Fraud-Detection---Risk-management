@@ -1,7 +1,7 @@
 #include"core/domain/alert/RiskAssessment.h"
 
 RiskAssessment::RiskAssessment(const std::string& assessment_id, const std::string& transaction_id, double rule_score, double ml_score, double combined_score,
-                               RiskLevel risk_level, DecisionAction decision, const Vector<FraudAlert>& alerts, const Vector<std::string>& reasons, Timestamp evaluated_at):
+                               RiskLevel risk_level, DecisionAction decision, const std::vector<FraudAlert>& alerts, const std::vector<std::string>& reasons, Timestamp evaluated_at):
         assessment_id(assessment_id), transaction_id(transaction_id), rule_score(rule_score), ml_score(ml_score), combined_score(combined_score),
         risk_level(risk_level), decision(decision), alerts(alerts), reasons(reasons), evaluated_at(evaluated_at) {}
 
@@ -34,11 +34,11 @@ DecisionAction RiskAssessment::getDecision() const {
     return decision;
 }
 
-const Vector<FraudAlert>& RiskAssessment::getAlerts() const {
+const std::vector<FraudAlert>& RiskAssessment::getAlerts() const {
     return alerts;
 }
 
-const Vector<std::string>& RiskAssessment::getReasons() const {
+const std::vector<std::string>& RiskAssessment::getReasons() const {
     return reasons;
 }
 

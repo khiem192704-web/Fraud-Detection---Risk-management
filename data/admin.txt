@@ -1,0 +1,3 @@
+# EPFD-RAS Admin Credentials
+# Format: username|password|fullName|department
+admin|admin123|Super Administrator|Fraud Risk Operations

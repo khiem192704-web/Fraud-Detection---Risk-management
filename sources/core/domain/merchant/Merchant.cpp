@@ -160,7 +160,7 @@ std::string Merchant::toString() const {
         << ", name='" << name << '\''
         << ", mcc='" << mcc << '\''
         << ", category=" << ::toString(category)
-        << ", location=" << location.summary()
+        << ", location=" << location.toString()
         << ", status=" << ::toString(status)
         << ", risk_tier=" << ::toString(risk_tier)
         << ", baseline_risk_score=" << baseline_risk_score
