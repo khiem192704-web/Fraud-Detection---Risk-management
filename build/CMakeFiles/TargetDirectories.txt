@@ -1,0 +1,6 @@
+D:/Fraud-Detection---Risk-management/build/CMakeFiles/epfd_core.dir
+D:/Fraud-Detection---Risk-management/build/CMakeFiles/epfd_app.dir
+D:/Fraud-Detection---Risk-management/build/CMakeFiles/epfd_tests.dir
+D:/Fraud-Detection---Risk-management/build/CMakeFiles/test.dir
+D:/Fraud-Detection---Risk-management/build/CMakeFiles/edit_cache.dir
+D:/Fraud-Detection---Risk-management/build/CMakeFiles/rebuild_cache.dir
