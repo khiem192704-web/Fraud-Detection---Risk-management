@@ -1,4 +1,4 @@
-#include"core/domain/alert/FraudAlert.h"
+#include"core/domain/FraudAlert.h"
 
 FraudAlert::FraudAlert(){};
 FraudAlert::FraudAlert(const std::string& alert_id, const std::string& transaction_id,

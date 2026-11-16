@@ -1,4 +1,4 @@
-#include "core/domain/account/Account.h"
+#include "core/domain/Account.h"
 #include <sstream>
 
 // Constructor mặc định
@@ -16,6 +16,7 @@ Account::Account(const std::string& account_id,
                  const std::string& customer_id,
                  double balance,
                  const std::string& currency,
+                 AccountStatus status,
                  Timestamp created_at)
     : account_id(account_id),
       customer_id(customer_id),

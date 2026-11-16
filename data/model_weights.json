@@ -1,0 +1,17 @@
+{
+    "description": "Calibrated Logistic Regression Weights for EPFD-RAS",
+    "features": [
+        "amount",
+        "velocity_count",
+        "geo_distance_km",
+        "is_device_risk"
+    ],
+    "weights": [
+        0.0018,
+        1.42,
+        0.0035,
+        2.15
+    ],
+    "bias": -3.2,
+    "optimal_threshold": 0.5
+}

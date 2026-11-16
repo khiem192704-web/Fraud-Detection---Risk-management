@@ -6,20 +6,17 @@ class Location {
     private:
         std::string country;
         std::string city;
-        std::string postal_code;
         double latitude{0.0}; // vĩ độ
         double longitude{0.0}; // kinh độ
     public:
         Location();
-        Location(const std::string& country, const std::string& city, const std::string& postal_code, double latitude, double longitude);
+        Location(const std::string& country, const std::string& city, double latitude, double longitude);
         void setCountry(const std::string&);
         void setCity(const std::string&);
-        void setPostalCode(const std::string&);
         void setCoordinates(double, double);
 
         const std::string& getCountry() const;
         const std::string& getCity() const;
-        const std::string& getPostalCode() const;
         double getLatitude() const;
         double getLongitude() const;
 
