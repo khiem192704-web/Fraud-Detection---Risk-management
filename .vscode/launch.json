@@ -1,0 +1,18 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Chạy Giao Diện (Qt6 GUI)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/../EPFD-RAS-Final/build_gui/epfd_gui.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/../EPFD-RAS-Final/build_gui",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:/Qt/Tools/mingw1310_64/bin/gdb.exe"
+        }
+    ]
+}

@@ -1,8 +1,8 @@
-#include"core/domain/location/location.h"
+#include"core/domain/location.h"
 #include<stdexcept>
 
 Location::Location(){};
-Location::Location(const std::string& country, const std::string& city, const std::string& postal_code, double latitude, double longitude): country(country), city(city), postal_code(postal_code), latitude(latitude), longitude(longitude) {}
+Location::Location(const std::string& country, const std::string& city, double latitude, double longitude): country(country), city(city), latitude(latitude), longitude(longitude) {}
 
 void Location::setCountry(const std::string& country) {
     this->country = country;
@@ -10,10 +10,6 @@ void Location::setCountry(const std::string& country) {
 
 void Location::setCity(const std::string& city) {
     this->city = city;
-}
-
-void Location::setPostalCode(const std::string& postal_code) {
-    this->postal_code = postal_code;
 }
 
 void Location::setCoordinates(double latitude, double longitude) {
@@ -29,7 +25,6 @@ void Location::setCoordinates(double latitude, double longitude) {
 
 const std::string& Location::getCountry() const { return country; }
 const std::string& Location::getCity() const{return city;}
-const std::string& Location::getPostalCode() const{return postal_code;}
 double Location::getLatitude() const{return latitude;}
 double Location::getLongitude() const{return longitude;}
 

@@ -1,4 +1,4 @@
-#include "core/domain/account/Customer.h"
+#include "core/domain/Customer.h"
 
 // ==================== Constructor ====================
 

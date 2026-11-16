@@ -9,7 +9,7 @@ class AccountRepo : public IRepository<Account> {
         std::vector<Account> accounts;
         std::string file_path;
     public:
-        explicit AccountRepo(std::string file_path = "");
+        explicit AccountRepo(std::string file_path = "data/accounts.txt");
         virtual ~AccountRepo() = default;
 
         bool add(const Account& entity) override;
@@ -19,7 +19,8 @@ class AccountRepo : public IRepository<Account> {
         bool remove(const std::string& id) override;
 
         std::vector<Account*> findByCustomerId(const std::string& customer_id);
-        
+        bool freezeAccount(const std::string& accountId);
+        bool unfreezeAccount(const std::string& accountId);
         bool loadFromFile(const std::string&);
         bool saveToFile(const std::string&) const;
         int count() const;

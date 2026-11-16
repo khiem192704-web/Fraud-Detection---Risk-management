@@ -1,4 +1,4 @@
-#include "core/domain/transaction/Transaction.h"
+#include "core/domain/Transaction.h"
 #include <stdexcept>
 
 Transaction::Transaction() {}

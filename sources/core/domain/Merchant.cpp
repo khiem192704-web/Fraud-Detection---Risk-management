@@ -1,4 +1,4 @@
-#include "core/domain/merchant/Merchant.h"
+#include "core/domain/Merchant.h"
 
 #include <sstream>
 

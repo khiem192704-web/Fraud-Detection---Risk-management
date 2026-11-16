@@ -1,4 +1,4 @@
-#include"core/domain/alert/RiskAssessment.h"
+#include"core/domain/RiskAssessment.h"
 
 RiskAssessment::RiskAssessment(const std::string& assessment_id, const std::string& transaction_id, double rule_score, double ml_score, double combined_score,
                                RiskLevel risk_level, DecisionAction decision, const std::vector<FraudAlert>& alerts, const std::vector<std::string>& reasons, Timestamp evaluated_at):

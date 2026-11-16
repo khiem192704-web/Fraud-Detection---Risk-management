@@ -22,6 +22,7 @@ public:
             const std::string& customer_id,
             double balance = 0.0,
             const std::string& currency = "USD",
+            AccountStatus status = AccountStatus::ACTIVE,
             Timestamp created_at = std::chrono::system_clock::now());
 
     // Getter

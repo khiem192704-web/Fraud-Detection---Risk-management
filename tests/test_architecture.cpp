@@ -1,6 +1,6 @@
 #include "test_framework.hpp"
-#include "epfd/common/Types.hpp"
-#include "epfd/common/Constants.hpp"
+#include "common/Types.hpp"
+#include "common/Constants.hpp"
 
 EPFD_TEST(ArchitectureSuite, CommonTypesStringConversion) {
     using namespace epfd;
