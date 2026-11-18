@@ -40,6 +40,7 @@ DeviceRisk HighAmountRule             BlacklistRule            VelocityRule
 | **03** | [03_STEP3_NATIVE_ML_PREDICTOR.md](file:///d:/Fraud-Detection---Risk-management/include/engine/03_STEP3_NATIVE_ML_PREDICTOR.md) | `NativeMLPredictor.h` | Mô hình Lai (Hybrid), Hàm Sigmoid |
 | **04** | [04_STEP4_RISK_ENGINE.md](file:///d:/Fraud-Detection---Risk-management/include/engine/04_STEP4_RISK_ENGINE.md) | `RiskEngine.h` & `.cpp` | Tổng hợp rủi ro, Explainable Score |
 | **05** | [05_STEP5_DECISION_ENGINE.md](file:///d:/Fraud-Detection---Risk-management/include/engine/05_STEP5_DECISION_ENGINE.md) | `DecisionEngine.h` & `.cpp`| Chính sách quyết định, Emergency Override |
+| **06** | [06_STEP6_ML_MODEL_JSON.md](file:///d:/Fraud-Detection---Risk-management/include/engine/06_STEP6_ML_MODEL_JSON.md) | `model_weights.json` & `train_model.py` | Cầu nối Python ML $\to$ C++ JSON Weights |
 
 ---
 
