@@ -1,34 +1,19 @@
 #include "engine/DecisionEngine.h"
-
-// ============================================================================
-// [BƯỚC 5] HIỆN THỰC LỚP DECISIONENGINE (ĐỘNG CƠ RA QUYẾT ĐỊNH NGHIỆP VỤ)
-// Hướng dẫn chi tiết: include/engine/05_STEP5_DECISION_ENGINE.md
-// ============================================================================
-
 DecisionEngine::DecisionEngine(const DecisionPolicy& custom_policy) {
     // TODO 1: Gán chính sách quyết định vào biến thành viên policy
     // Gợi ý:
-    // this->policy = custom_policy;
-
-
+    this->policy = custom_policy;
 }
-
 void DecisionEngine::setPolicy(const DecisionPolicy& new_policy) {
     // TODO 2: Cập nhật chính sách quyết định mới
     // Gợi ý:
-    // this->policy = new_policy;
-
-
+    this->policy = new_policy;
 }
-
 const DecisionPolicy& DecisionEngine::getPolicy() const {
     // TODO 3: Trả về tham chiếu hằng đến chính sách hiện tại
     // Gợi ý:
-    // return policy;
-
-
+    return policy;
 }
-
 bool DecisionEngine::checkEmergencyBlock(
     const Customer& customer,
     const RiskAssessment& assessment
@@ -44,18 +29,16 @@ bool DecisionEngine::checkEmergencyBlock(
     // 3. Nếu không có điều kiện khẩn cấp: return false;
     //
     // Gợi ý:
-    // if (customer.getRiskTier() == CustomerRiskTier::BANNED) {
-    //     return true;
-    // }
-    // const auto& alerts = assessment.getAlerts();
-    // for (size_t i = 0; i < alerts.size(); ++i) {
-    //     if (alerts[i].isCritical()) {
-    //         return true;
-    //     }
-    // }
-    // return false;
-
-
+    if (customer.getRiskTier() == CustomerRiskTier::BANNED) {
+        return true;
+    }
+    const auto& alerts = assessment.getAlerts();
+    for (size_t i = 0; i < alerts.size(); ++i) {
+        if (alerts[i].isCritical()) {
+            return true;
+        }
+    }
+    return false;
 }
 
 DecisionAction DecisionEngine::decide(
@@ -85,24 +68,22 @@ DecisionAction DecisionEngine::decide(
     //       return DecisionAction::BLOCK;
     //
     // Gợi ý:
-    // if (checkEmergencyBlock(customer, assessment)) {
-    //     tx.reject();
-    //     return DecisionAction::BLOCK;
-    // }
-    // double score = assessment.getCombinedScore();
-    // if (score <= policy.approve_max_score) {
-    //     tx.approve();
-    //     return DecisionAction::APPROVE;
-    // } else if (score <= policy.challenge_max_score) {
-    //     tx.challenge();
-    //     return DecisionAction::CHALLENGE_3DS;
-    // } else if (score <= policy.review_max_score) {
-    //     tx.sendToReview();
-    //     return DecisionAction::REVIEW;
-    // } else {
-    //     tx.reject();
-    //     return DecisionAction::BLOCK;
-    // }
-
-
+    if (checkEmergencyBlock(customer, assessment)) {
+        tx.reject();
+        return DecisionAction::BLOCK;
+    }
+    double score = assessment.getCombinedScore();
+    if (score <= policy.approve_max_score) {
+        tx.approve();
+        return DecisionAction::APPROVE;
+    } else if (score <= policy.challenge_max_score) {
+        tx.challenge();
+        return DecisionAction::CHALLENGE_3DS;
+    } else if (score <= policy.review_max_score) {
+        tx.sendToReview();
+        return DecisionAction::REVIEW;
+    } else {
+        tx.reject();
+        return DecisionAction::BLOCK;
+    }
 }

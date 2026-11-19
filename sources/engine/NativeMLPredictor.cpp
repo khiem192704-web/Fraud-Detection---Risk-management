@@ -1,13 +1,6 @@
 #include "engine/NativeMLPredictor.h"
 #include <cmath>
 #include <fstream>
-
-// ============================================================================
-// [BƯỚC 3] HIỆN THỰC LỚP NATIVEMLPREDICTOR (SUY LUẬN HỌC MÁY NỘI VI)
-// Hướng dẫn chi tiết: include/engine/03_STEP3_NATIVE_ML_PREDICTOR.md
-// Hướng dẫn nạp JSON: include/engine/06_STEP6_ML_MODEL_JSON.md
-// ============================================================================
-
 NativeMLPredictor::NativeMLPredictor() {
     // TODO 1: Khởi tạo mô hình Logistic Regression với bộ trọng số mặc định đã tiền huấn luyện:
     // - bias w0 = -2.8
@@ -16,28 +9,22 @@ NativeMLPredictor::NativeMLPredictor() {
     // - w3 = 2.10  (Rủi ro thiết bị: 0 hoặc 1)
     //
     // Gợi ý:
-    // bias = -2.8;
-    // weights.push_back(0.002);
-    // weights.push_back(1.45);
-    // weights.push_back(2.10);
-    // feature_names.push_back("amount");
-    // feature_names.push_back("velocity");
-    // feature_names.push_back("device_risk");
-    // ready = true;
-
-
+    bias = -2.8;
+    weights.push_back(0.002);
+    weights.push_back(1.45);
+    weights.push_back(2.10);
+    feature_names.push_back("amount");
+    feature_names.push_back("velocity");
+    feature_names.push_back("device_risk");
+    ready = true;
 }
-
 NativeMLPredictor::NativeMLPredictor(double bias, const Vector<double>& weights) {
     // TODO 2: Khởi tạo với bias và danh sách weights truyền vào từ bên ngoài
     // Gợi ý:
-    // this->bias = bias;
-    // this->weights = weights;
-    // this->ready = true;
-
-
+    this->bias = bias;
+    this->weights = weights;
+    this->ready = true;
 }
-
 bool NativeMLPredictor::loadModel(const std::string& filepath) {
     // TODO 3: Nạp trọng số mô hình từ file cấu hình JSON (vd: data/model_weights.json):
     // 1. Mở file bằng std::ifstream file(filepath);
@@ -49,42 +36,40 @@ bool NativeMLPredictor::loadModel(const std::string& filepath) {
     // 5. Đặt ready = true; và return true;
     //
     // Gợi ý:
-    // std::ifstream file(filepath);
-    // if (!file.is_open()) {
-    //     return false;
-    // }
-    // std::string line;
-    // bool in_weights = false;
-    // Vector<double> new_weights;
-    // while (std::getline(file, line)) {
-    //     if (line.find("\"bias\":") != std::string::npos) {
-    //         size_t pos = line.find(':');
-    //         this->bias = std::stod(line.substr(pos + 1));
-    //     }
-    //     if (line.find("\"weights\":") != std::string::npos) {
-    //         in_weights = true;
-    //         continue;
-    //     }
-    //     if (in_weights) {
-    //         if (line.find(']') != std::string::npos) {
-    //             in_weights = false;
-    //         } else {
-    //             try {
-    //                 size_t start = line.find_first_of("-0123456789.");
-    //                 if (start != std::string::npos) {
-    //                     new_weights.push_back(std::stod(line.substr(start)));
-    //                 }
-    //             } catch (...) {}
-    //         }
-    //     }
-    // }
-    // if (!new_weights.empty()) {
-    //     this->weights = new_weights;
-    // }
-    // this->ready = true;
-    // return true;
-
-
+    std::ifstream file(filepath);
+    if (!file.is_open()) {
+        return false;
+    }
+    std::string line;
+    bool in_weights = false;
+    Vector<double> new_weights;
+    while (std::getline(file, line)) {
+        if (line.find("\"bias\":") != std::string::npos) {
+            size_t pos = line.find(':');
+            this->bias = std::stod(line.substr(pos + 1));
+        }
+        if (line.find("\"weights\":") != std::string::npos) {
+            in_weights = true;
+            continue;
+        }
+        if (in_weights) {
+            if (line.find(']') != std::string::npos) {
+                in_weights = false;
+            } else {
+                try {
+                    size_t start = line.find_first_of("-0123456789.");
+                    if (start != std::string::npos) {
+                        new_weights.push_back(std::stod(line.substr(start)));
+                    }
+                } catch (...) {}
+            }
+        }
+    }
+    if (!new_weights.empty()) {
+        this->weights = new_weights;
+    }
+    this->ready = true;
+    return true;
 }
 
 double NativeMLPredictor::predictProbability(const Vector<double>& features) const {
@@ -95,18 +80,18 @@ double NativeMLPredictor::predictProbability(const Vector<double>& features) con
     // 4. Giới hạn xác suất trong đoạn [0.0, 1.0] và trả về P
     //
     // Gợi ý:
-    // if (!ready || features.empty()) {
-    //     return 0.15;
-    // }
-    // double z = bias;
-    // int n = (features.size() < weights.size()) ? features.size() : weights.size();
-    // for (int i = 0; i < n; ++i) {
-    //     z += weights[i] * features[i];
-    // }
-    // double prob = 1.0 / (1.0 + std::exp(-z));
-    // if (prob < 0.0) prob = 0.0;
-    // if (prob > 1.0) prob = 1.0;
-    // return prob;
+    if (!ready || features.empty()) {
+        return 0.15;
+    }
+    double z = bias;
+    int n = (features.size() < weights.size()) ? features.size() : weights.size();
+    for (int i = 0; i < n; ++i) {
+        z += weights[i] * features[i];
+    }
+    double prob = 1.0 / (1.0 + std::exp(-z));
+    if (prob < 0.0) prob = 0.0;
+    if (prob > 1.0) prob = 1.0;
+    return prob;
 
 
 }
@@ -114,7 +99,7 @@ double NativeMLPredictor::predictProbability(const Vector<double>& features) con
 double NativeMLPredictor::predictScore(const Vector<double>& features) const {
     // TODO 5: Quy đổi xác suất gian lận [0.0, 1.0] sang thang điểm rủi ro [0.0, 100.0]
     // Gợi ý:
-    // return predictProbability(features) * 100.0;
+    return predictProbability(features) * 100.0;
 
 
 }
@@ -122,7 +107,7 @@ double NativeMLPredictor::predictScore(const Vector<double>& features) const {
 bool NativeMLPredictor::isReady() const {
     // TODO 6: Kiểm tra mô hình đã sẵn sàng suy luận hay chưa
     // Gợi ý:
-    // return ready;
+    return ready;
 
 
 }
@@ -130,7 +115,7 @@ bool NativeMLPredictor::isReady() const {
 void NativeMLPredictor::setReady(bool state) {
     // TODO 7: Cập nhật cờ trạng thái sẵn sàng của mô hình
     // Gợi ý:
-    // this->ready = state;
+    this->ready = state;
 
 
 }
@@ -138,7 +123,7 @@ void NativeMLPredictor::setReady(bool state) {
 const std::string& NativeMLPredictor::getModelName() const {
     // TODO 8: Trả về tên định danh mô hình
     // Gợi ý:
-    // return model_name;
+    return model_name;
 
 
 }
@@ -146,7 +131,7 @@ const std::string& NativeMLPredictor::getModelName() const {
 const std::string& NativeMLPredictor::getModelVersion() const {
     // TODO 9: Trả về phiên bản mô hình
     // Gợi ý:
-    // return model_version;
+    return model_version;
 
 
 }
