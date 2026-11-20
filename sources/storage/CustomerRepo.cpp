@@ -1,6 +1,6 @@
-#include"include/storage/CustomerRepo.h"
+#include"storage/CustomerRepo.h"
 
-CustomerRepo::CustomerRepo(std::string file_path = "") : file_path(file_path) {}
+CustomerRepo::CustomerRepo(std::string file_path) : file_path(file_path) {}
 
 bool CustomerRepo::add(const Customer& customer){
     if(this->findById(customer.getCustomerId()) != nullptr) {
@@ -56,12 +56,12 @@ bool CustomerRepo::loadFromFile(const std::string& filePath){
             std::getline(iss, city, '|') &&
             std::getline(iss, country, '|') &&
             std::getline(iss, latStr, '|') &&
-            std::getline(iss, latStr, '|')) {
+            std::getline(iss, lonStr, '|')) {
 
             double lat = 0.0, lon = 0.0;
             try {
                 lat = std::stod(latStr);
-                lon = std::stod(latStr);
+                lon = std::stod(lonStr);
             } catch (...) {}
 
             Location loc(country, city, lat, lon);

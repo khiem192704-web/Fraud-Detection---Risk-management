@@ -40,6 +40,6 @@ class FraudAlert {
 
         // --- Summary & Inspection ---
         bool isCritical() const;               // Kiểm tra nhanh cảnh báo có ở mức nghiêm trọng hay không
-        std::string getSummary() const;        // Đồng bộ thống nhất với getSummary() của Transaction và RiskAssessment
+        std::string toString() const;        
 };
 

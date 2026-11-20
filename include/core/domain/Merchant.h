@@ -79,6 +79,3 @@ public:
     // String representation
     std::string toString() const;
 };
-
-// Operator overload
-std::ostream& operator<<(std::ostream& os, const Merchant& merchant);

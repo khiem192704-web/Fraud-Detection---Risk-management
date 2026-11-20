@@ -21,7 +21,7 @@ const Location& Device::GetLocation() const { return location; }
 bool Device::GetIs_Virtual() const { return is_virtual; }
 bool Device::GetIs_Hacker() const { return is_hacker; }
 
-bool Device::is_Safe() const{ return !is_hacker || !is_virtual; }
+bool Device::is_Safe() const{ return !is_hacker && !is_virtual; }
 std::string Device::toString() const { 
     return "Device ID: " + device_id + ", IP Address: " + ip_address 
     + ", Is Virtual: " + (is_virtual ? "Yes" : "No") + ", Is Hacker: " + (is_hacker ? "Yes" : "No"); 

@@ -1,7 +1,8 @@
 # KẾ HOẠCH PHÁT TRIỂN & PHÂN CÔNG ĐỒ ÁN PBL 2 (HẠN 2 TUẦN)
-> **Đề tài**: Hệ Thống Phát Hiện Gian Lận & Quản Trị Rủi Ro Thanh Toán Điện Tử (EPFD-RAS)  
-> **Môn học**: PBL 2 — Đồ Án Cơ Sở Lập Trình (Khoa CNTT - Trường ĐH Bách Khoa, ĐH Đà Nẵng)  
-> **Thời gian thực hiện**: 14 Ngày (2 Tuần)  
+
+> **Đề tài**: Hệ Thống Phát Hiện Gian Lận & Quản Trị Rủi Ro Thanh Toán Điện Tử (EPFD-RAS)
+> **Môn học**: PBL 2 — Đồ Án Cơ Sở Lập Trình (Khoa CNTT - Trường ĐH Bách Khoa, ĐH Đà Nẵng)
+> **Thời gian thực hiện**: 14 Ngày (2 Tuần)
 > **Nhóm thực hiện**: 2 Thành viên (Hoàng & Khiêm)
 
 ---
@@ -19,11 +20,11 @@
 
 ## 👥 2. PHÂN CÔNG TRÁCH NHIỆM RÕ RÀNG
 
-| Hạng mục | Thành viên 1: Phụ trách C++ Core & DSA | Thành viên 2: Phụ trách Python ML & Dữ liệu |
-| :--- | :--- | :--- |
-| **Vai trò chính** | Xây dựng khung xương sống hệ thống, thuật toán và logic nghiệp vụ. | Xử lý dữ liệu, huấn luyện mô hình học máy và xuất chỉ số đánh giá. |
-| **Nhiệm vụ Tuần 1** | - Sửa lỗi biên dịch, hoàn thiện Domain Models (`Account`, `Transaction`,...).<br>- Hoàn thiện DSA tự viết (`Vector`, `Deque`, `PriorityQueue`).<br>- Xây dựng `IFraudRule` và 4 luật gian lận (Strategy Pattern).<br>- Xây dựng `RiskEngine` (tính điểm $0-100$) và `DecisionEngine`. | - Cài đặt môi trường Python (`pandas`, `scikit-learn`, `matplotlib`).<br>- Viết script `generate_data.py` tạo 5,000 giao dịch giả lập (.csv).<br>- Trích xuất đặc trưng (Feature Engineering: amount, velocity, geo-distance).<br>- Huấn luyện mô hình Logistic Regression / Random Forest. |
-| **Nhiệm vụ Tuần 2** | - Xây dựng `TransactionService` khép kín.<br>- Nhúng class `NativeMLPredictor` đọc trọng số từ Python.<br>- Dựng giao diện Console trực quan (có màu sắc, menu kịch bản demo).<br>- Soạn nội dung Chương 3 (DSA) và Chương 4 (OOP) trong Báo cáo. | - Vẽ biểu đồ đánh giá: ROC Curve, Confusion Matrix, Feature Importance.<br>- Xuất file trọng số `model_weights.json` gửi cho C++.<br>- Soạn nội dung Chương 1 (Tổng quan) và Chương 4 (Phần ML) trong Báo cáo.<br>- Thiết kế Slide PowerPoint (15-18 trang) cho buổi bảo vệ. |
+| Hạng mục                   | Thành viên 1: Phụ trách C++ Core & DSA                                                                                                                                                                                                                                                                       | Thành viên 2: Phụ trách Python ML & Dữ liệu                                                                                                                                                                                                                                                           |
+| :--------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Vai trò chính**    | Xây dựng khung xương sống hệ thống, thuật toán và logic nghiệp vụ.                                                                                                                                                                                                                                   | Xử lý dữ liệu, huấn luyện mô hình học máy và xuất chỉ số đánh giá.                                                                                                                                                                                                                         |
+| **Nhiệm vụ Tuần 1** | - Sửa lỗi biên dịch, hoàn thiện Domain Models (`Account`, `Transaction`,...).- Hoàn thiện DSA tự viết (`Vector`, `Deque`, `PriorityQueue`).- Xây dựng `IFraudRule` và 4 luật gian lận (Strategy Pattern).- Xây dựng `RiskEngine` (tính điểm $0-100$) và `DecisionEngine`. | - Cài đặt môi trường Python (`pandas`, `scikit-learn`, `matplotlib`).- Viết script `generate_data.py` tạo 5,000 giao dịch giả lập (.csv).- Trích xuất đặc trưng (Feature Engineering: amount, velocity, geo-distance).- Huấn luyện mô hình Logistic Regression / Random Forest. |
+| **Nhiệm vụ Tuần 2** | - Xây dựng `TransactionService` khép kín.- Nhúng class `NativeMLPredictor` đọc trọng số từ Python.- Dựng giao diện Console trực quan (có màu sắc, menu kịch bản demo).- Soạn nội dung Chương 3 (DSA) và Chương 4 (OOP) trong Báo cáo.                                             | - Vẽ biểu đồ đánh giá: ROC Curve, Confusion Matrix, Feature Importance.- Xuất file trọng số `model_weights.json` gửi cho C++.- Soạn nội dung Chương 1 (Tổng quan) và Chương 4 (Phần ML) trong Báo cáo.- Thiết kế Slide PowerPoint (15-18 trang) cho buổi bảo vệ.               |
 
 ---
 
@@ -103,12 +104,12 @@ Electronic-Payment-Fraud-Detection---Risk-management (1)/
 
 ### 🧩 4. CÁCH GẮN CẤU TRÚC DỮ LIỆU (DSA) VÀO BÀI TOÁN
 
-| Cấu trúc dữ liệu tự viết | Vị trí ứng dụng trong hệ thống | Độ phức tạp thuật toán | Giá trị bảo vệ trước hội đồng |
-| :--- | :--- | :---: | :--- |
-| **`Vector<T>`** | Lưu trữ danh sách giao dịch lịch sử và danh sách các cảnh báo vi phạm. | Truy xuất $O(1)$, thêm cuối amortized $O(1)$. | Quản lý cấp phát bộ nhớ động an toàn, tự động mở rộng dung lượng (grow/shrink). |
-| **`Deque<Timestamp>`** | **`VelocityRule`**: Kiểm tra tần suất quẹt thẻ dồn dập (Sliding Time Window). | Thêm cuối $O(1)$, xóa đầu $O(1)$. | Tránh quét lại toàn bộ lịch sử tốn $O(N)$. Luôn duy trì kích thước bằng đúng số giao dịch trong 60 giây. |
-| **`PriorityQueue<FraudAlert>`** | Hàng đợi ưu tiên lọc ra các giao dịch nghi vấn có điểm rủi ro cao nhất cho điều tra viên. | Thêm $O(\log K)$, lấy max/min $O(1)$. | Thay vì sắp xếp lại toàn bộ danh sách tốn $O(N \log N)$, Heap duy trì Top-K chỉ tốn $O(N \log K)$. |
-| **`HashMap<Key, Value>`** | Tra cứu danh sách đen (Blacklisted Card / Blacklisted IP). | Tra cứu trung bình $O(1)$. | Đạt tốc độ kiểm tra tức thì, nhanh hơn gấp hàng chục lần so với tìm kiếm tuyến tính $O(N)$. |
+| Cấu trúc dữ liệu tự viết          | Vị trí ứng dụng trong hệ thống                                                                       |             Độ phức tạp thuật toán             | Giá trị bảo vệ trước hội đồng                                                                                        |
+| :-------------------------------------- | :--------------------------------------------------------------------------------------------------------- | :--------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------- |
+| **`Vector<T>`**                 | Lưu trữ danh sách giao dịch lịch sử và danh sách các cảnh báo vi phạm.                         | Truy xuất $O(1)$, thêm cuối amortized $O(1)$. | Quản lý cấp phát bộ nhớ động an toàn, tự động mở rộng dung lượng (grow/shrink).                               |
+| **`Deque<Timestamp>`**          | **`VelocityRule`**: Kiểm tra tần suất quẹt thẻ dồn dập (Sliding Time Window).               |      Thêm cuối $O(1)$, xóa đầu $O(1)$.      | Tránh quét lại toàn bộ lịch sử tốn $O(N)$. Luôn duy trì kích thước bằng đúng số giao dịch trong 60 giây. |
+| **`PriorityQueue<FraudAlert>`** | Hàng đợi ưu tiên lọc ra các giao dịch nghi vấn có điểm rủi ro cao nhất cho điều tra viên. |     Thêm $O(\log K)$, lấy max/min $O(1)$.     | Thay vì sắp xếp lại toàn bộ danh sách tốn $O(N \log N)$, Heap duy trì Top-K chỉ tốn $O(N \log K)$.             |
+| **`HashMap<Key, Value>`**       | Tra cứu danh sách đen (Blacklisted Card / Blacklisted IP).                                              |            Tra cứu trung bình $O(1)$.            | Đạt tốc độ kiểm tra tức thì, nhanh hơn gấp hàng chục lần so với tìm kiếm tuyến tính $O(N)$.               |
 
 ---
 
@@ -188,6 +189,7 @@ Ngày 13 - 14: LÀM SLIDE & TẬP LUYỆN BẢO VỆ
 ### 🎤 7. KỊCH BẢN DEMO GHI ĐIỂM KHI ĐỨNG TRƯỚC GIẢNG VIÊN
 
 Chuẩn bị sẵn 3 kịch bản chạy thử nghiệm trên màn hình Console:
+
 1. **Kịch bản 1 (Khách hàng bình thường)**:
    - Alice mua hàng tạp hóa $45 tại siêu thị quen thuộc.
    - Kết quả: Điểm rủi ro $2.5/100 \rightarrow$ **APPROVE** (Trừ $45 vào tài khoản).
@@ -199,4 +201,5 @@ Chuẩn bị sẵn 3 kịch bản chạy thử nghiệm trên màn hình Console
    - Kết quả: Điểm rủi ro $55/100 \rightarrow$ **REVIEW / OTP** $\rightarrow$ Tự động đẩy vào `PriorityQueue` để chờ rà soát.
 
 ---
+
 *Kế hoạch này giúp hai bạn hoàn toàn làm chủ đồ án, tự tin trả lời mọi câu hỏi của hội đồng và đạt điểm số cao nhất.*

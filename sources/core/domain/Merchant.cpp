@@ -169,10 +169,3 @@ std::string Merchant::toString() const {
 
     return oss.str();
 }
-
-// ==================== Operator ====================
-
-std::ostream& operator<<(std::ostream& os, const Merchant& merchant) {
-    os << merchant.toString();
-    return os;
-}

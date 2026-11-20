@@ -48,9 +48,9 @@ Timestamp FraudAlert::getTriggeredAt() const {
 
 // --- Summary & Inspection ---
 bool FraudAlert::isCritical() const {
-    return severity == RiskLevel::HIGH;
+    return severity == RiskLevel::CRITICAL;
 }
-std::string FraudAlert::getSummary() const {
+std::string FraudAlert::toString() const {
     return "Alert ID: " + alert_id + ", Transaction ID: " + transaction_id + ", Rule ID: " + rule_id +
            ", Rule Name: " + rule_name + ", Category: " + std::to_string(static_cast<int>(category)) +
            ", Score Contribution: " + std::to_string(score_contribution) + ", Reason: " + reason +

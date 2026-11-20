@@ -72,7 +72,7 @@ bool RiskAssessment::isBlocked() const {
     return decision == DecisionAction::BLOCK;
 }
 
-std::string RiskAssessment::getSummary() const {
+std::string RiskAssessment::toString() const {
     return "Assessment ID: " + assessment_id + ", Transaction ID: " + transaction_id + ", Rule Score: " + std::to_string(rule_score) +
            ", ML Score: " + std::to_string(ml_score) + ", Combined Score: " + std::to_string(combined_score) +
            ", Risk Level: " + std::to_string(static_cast<int>(risk_level)) +

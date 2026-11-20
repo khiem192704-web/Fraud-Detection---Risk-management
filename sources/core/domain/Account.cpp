@@ -22,7 +22,7 @@ Account::Account(const std::string& account_id,
       customer_id(customer_id),
       balance(balance >= 0.0 ? balance : 0.0),
       currency(currency),
-      status(AccountStatus::ACTIVE),
+      status(status),
       created_at(created_at) {
 }
 

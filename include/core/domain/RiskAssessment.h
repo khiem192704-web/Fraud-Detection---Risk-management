@@ -45,6 +45,6 @@ class RiskAssessment {
         bool isChallenge() const;   
         bool isBlocked() const;
 
-        std::string getSummary() const;     // Đồng bộ tên hàm tóm tắt dữ liệu
+        std::string toString() const;     // Đồng bộ tên hàm tóm tắt dữ liệu
 };
 
