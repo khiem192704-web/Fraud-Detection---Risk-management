@@ -3,15 +3,21 @@ CXXFLAGS = -std=c++17 -Wall -Wextra -O2 -Iinclude
 
 # Core domain & infrastructure sources
 SRCS_CORE = sources/core/common/Types.cpp \
-            sources/core/domain/transaction/transaction.cpp \
-            sources/core/domain/device/device.cpp \
-            sources/core/domain/location/location.cpp \
-            sources/core/domain/alert/FraudAlert.cpp \
-            sources/core/domain/alert/RiskAssessment.cpp \
-            sources/core/domain/account/Customer.cpp
+            sources/core/domain/transaction.cpp \
+            sources/core/domain/device.cpp \
+            sources/core/domain/location.cpp \
+            sources/core/domain/FraudAlert.cpp \
+            sources/core/domain/RiskAssessment.cpp \
+            sources/core/domain/Customer.cpp
 
-# Engine & Rules implementation (them dan vao day khi ban code xong tung rule)
-SRCS_ENGINE = sources/engine/rules/DeviceRiskRule.cpp
+# Engine & Rules implementation
+SRCS_ENGINE = sources/engine/rules/DeviceRiskRule.cpp \
+              sources/engine/rules/HighAmountRule.cpp \
+              sources/engine/rules/BlacklistRule.cpp \
+              sources/engine/rules/VelocityRule.cpp \
+              sources/engine/NativeMLPredictor.cpp \
+              sources/engine/RiskEngine.cpp \
+              sources/engine/DecisionEngine.cpp
 
 # Main application
 SRCS_APP = sources/main.cpp
