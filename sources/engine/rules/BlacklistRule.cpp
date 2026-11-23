@@ -1,4 +1,27 @@
 #include "engine/rules/BlacklistRule.h"
+#include <fstream>
+#include <sstream>
+
+void BlacklistRule::loadBlacklistFromFile(const std::string& filepath) {
+    std::ifstream ifs(filepath);
+    if (!ifs.is_open()) return;
+    std::string line;
+    while (std::getline(ifs, line)) {
+        if (line.empty() || line[0] == '#') continue;
+        if (line.rfind("IP:", 0) == 0) {
+            addBlacklistedIP(line.substr(3));
+        } else if (line.rfind("CARD:", 0) == 0) {
+            addBlacklistedAccount(line.substr(5));
+        }
+    }
+}
+
+void BlacklistRule::appendBlacklistToFile(const std::string& type, const std::string& value, const std::string& filepath) {
+    std::ofstream ofs(filepath, std::ios::app);
+    if (ofs.is_open()) {
+        ofs << type << ":" << value << "\n";
+    }
+}
 
 BlacklistRule::BlacklistRule(double contribution) {
     // TODO 1: Gán giá trị contribution vào biến thành viên risk_contribution
@@ -72,13 +95,13 @@ bool BlacklistRule::evaluate(
         );
         return true;
     }
-    if (isAccountBlacklisted(tx.GetAccountID())) {
+    if (isAccountBlacklisted(tx.GetAccountID()) || (!tx.getRawCardNumber().empty() && isAccountBlacklisted(tx.getRawCardNumber()))) {
         out_alert = FraudAlert(
             "ALT_" + tx.GetTransactionID() + "_BLK_ACC",
             tx.GetTransactionID(),
             getId(),
             getName(),
-            "Tài khoản nằm trong danh sách đen (Blacklist): " + tx.GetAccountID(),
+            "Tài khoản hoặc Thẻ nằm trong danh sách đen (Blacklist)",
             getCategory(),
             getRiskContribution(),
             RiskLevel::CRITICAL

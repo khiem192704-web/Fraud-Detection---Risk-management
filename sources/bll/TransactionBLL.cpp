@@ -13,7 +13,9 @@ TransactionBLL::TransactionBLL() {
     risk_engine.registerRule(new HighAmountRule(3000.0, 3.0, 25.0));
     risk_engine.registerRule(new VelocityRule(5, std::chrono::seconds(60), 30.0));
     risk_engine.registerRule(new DeviceRiskRule(30.0));
-    risk_engine.registerRule(new BlacklistRule(50.0));
+    auto* blRule = new BlacklistRule(50.0);
+    blRule->loadBlacklistFromFile("data/blacklist.txt");
+    risk_engine.registerRule(blRule);
 }
 
 void TransactionBLL::addRule(IFraudRule* rule) {

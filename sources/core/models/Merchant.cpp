@@ -20,6 +20,25 @@ Merchant::Merchant(
     const std::string& merchant_id,
     const std::string& name,
     const std::string& mcc,
+    double baseline_risk,
+    bool blacklisted,
+    bool /*whitelisted*/
+)
+    : merchant_id(merchant_id),
+      name(name),
+      mcc(mcc),
+      category(MerchantCategory::RETAIL),
+      location(),
+      status(MerchantStatus::ACTIVE),
+      risk_tier(blacklisted ? MerchantRiskTier::BLACKLISTED : MerchantRiskTier::STANDARD),
+      baseline_risk_score(baseline_risk),
+      created_at(std::chrono::system_clock::now()) {
+}
+
+Merchant::Merchant(
+    const std::string& merchant_id,
+    const std::string& name,
+    const std::string& mcc,
     MerchantCategory category,
     const Location& location,
     double baseline_risk_score,
@@ -142,6 +161,25 @@ bool Merchant::isSuspended() const {
 
 bool Merchant::isBlacklisted() const {
     return risk_tier == MerchantRiskTier::BLACKLISTED;
+}
+
+bool Merchant::isWhitelisted() const {
+    return risk_tier == MerchantRiskTier::TRUSTED;
+}
+
+bool Merchant::isHighRiskMcc() const {
+    return (mcc == "7995" || mcc == "6051" || mcc == "5967" || mcc == "7273");
+}
+
+std::string Merchant::getCategoryDescription() const {
+    if (mcc == "5411") return "Siêu thị / Bách hóa thực phẩm (Grocery/Supermarket)";
+    if (mcc == "5812") return "Nhà hàng / Dịch vụ ăn uống (Dining/Restaurant)";
+    if (mcc == "5311") return "Sàn thương mại điện tử / Bán lẻ (E-Commerce)";
+    if (mcc == "5732") return "Cửa hàng Điện máy / Thiết bị điện tử (Electronics)";
+    if (mcc == "7995") return "Sòng bạc / Cá cược trực tuyến (Casino/Betting)";
+    if (mcc == "6051") return "Mua bán Tiền ảo / Ngoại hối (Crypto/Quasi-Cash)";
+    if (mcc == "5967") return "Bán hàng qua điện thoại (Direct Marketing)";
+    return "Cửa hàng kinh doanh tổng hợp";
 }
 
 bool Merchant::isHighRisk() const {

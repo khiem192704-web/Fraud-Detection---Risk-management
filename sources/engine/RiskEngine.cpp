@@ -1,4 +1,5 @@
 #include "engine/RiskEngine.h"
+#include "engine/rules/BlacklistRule.h"
 
 RiskEngine::RiskEngine(const RiskPolicy& custom_policy) {
     this->policy = custom_policy;
@@ -51,6 +52,7 @@ RiskAssessment RiskEngine::assessRisk(
     double raw_rule_score = 0.0;
 
     for (size_t i = 0; i < rules.size(); ++i) {
+        if (!rules[i] || !rules[i]->isEnabled()) continue;
         FraudAlert alert;
         if (rules[i]->evaluate(tx, customer, alert)) {
             alerts.push_back(alert);
@@ -84,4 +86,12 @@ RiskAssessment RiskEngine::assessRisk(
         reasons,
         now
     );
+}
+
+BlacklistRule* RiskEngine::getBlacklistRule() {
+    for (size_t i = 0; i < rules.size(); ++i) {
+        auto* bl = dynamic_cast<BlacklistRule*>(rules[i]);
+        if (bl) return bl;
+    }
+    return nullptr;
 }

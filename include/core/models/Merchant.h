@@ -29,13 +29,16 @@ public:
     Merchant(
         const std::string& merchant_id,
         const std::string& name,
-        const std::string& mcc,/*
-        Ví dụ phổ biến:
-        5411: Siêu thị, cửa hàng bách hóa 
-        5812: Nhà hàng, quán ăn 
-        7995: Cờ bạc, cá cược trực tuyến 
-        4829: Chuyển tiền, lệnh chuyển tiền 
-        */
+        const std::string& mcc,
+        double baseline_risk = 10.0,
+        bool blacklisted = false,
+        bool whitelisted = false
+    );
+
+    Merchant(
+        const std::string& merchant_id,
+        const std::string& name,
+        const std::string& mcc,
         MerchantCategory category,
         const Location& location,
         double baseline_risk_score = 10.0,
@@ -48,6 +51,11 @@ public:
     const std::string& getMerchantId() const;
     const std::string& getName() const;
     const std::string& getMcc() const;
+    double getBaselineRisk() const { return baseline_risk_score; }
+    bool isBlacklisted() const;
+    bool isWhitelisted() const;
+    bool isHighRiskMcc() const;
+    std::string getCategoryDescription() const;
 
     MerchantCategory getCategory() const;
     const Location& getLocation() const;
@@ -73,7 +81,6 @@ public:
     // State checking
     bool isActive() const;
     bool isSuspended() const;
-    bool isBlacklisted() const;
     bool isHighRisk() const;
 
     // String representation

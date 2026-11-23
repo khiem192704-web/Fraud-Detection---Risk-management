@@ -27,3 +27,5 @@ public:
     bool saveToDisk(const std::string& path = "data/admin.txt") const;
     void setAdminCredentials(const std::string&, const std::string&, const std::string&);
 };
+
+using AuthService = Auth;

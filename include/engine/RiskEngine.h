@@ -29,6 +29,8 @@ struct RiskPolicy {
     }
 };
 
+class BlacklistRule;
+
 class RiskEngine {
 private:
     std::vector<IFraudRule*> rules;
@@ -44,6 +46,10 @@ public:
     int getRuleCount() const;
     void setPolicy(const RiskPolicy& new_policy);
     const RiskPolicy& getPolicy() const;
+
+    const std::vector<IFraudRule*>& getRules() const { return rules; }
+    std::vector<IFraudRule*>& getRules() { return rules; }
+    BlacklistRule* getBlacklistRule();
 
     NativeMLPredictor& getMLPredictor() { return ml_predictor; }
     FeatureExtractor& getFeatureExtractor() { return feature_extractor; }

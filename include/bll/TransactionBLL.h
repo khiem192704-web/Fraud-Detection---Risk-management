@@ -41,6 +41,9 @@ public:
     // Đăng ký một luật gian lận mới vào hệ thống
     void addRule(IFraudRule* rule);
 
+    RiskEngine& getRiskEngine() { return risk_engine; }
+    const RiskEngine& getRiskEngine() const { return risk_engine; }
+
     // Hàng đợi rà soát rủi ro ưu tiên (PriorityQueue)
     const PriorityQueue<RiskAssessment>& getReviewQueue() const { return review_queue; }
     PriorityQueue<RiskAssessment>& getReviewQueue() { return review_queue; }

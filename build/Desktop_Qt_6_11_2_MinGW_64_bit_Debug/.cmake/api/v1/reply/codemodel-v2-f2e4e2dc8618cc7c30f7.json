@@ -1,0 +1,105 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "epfd_ras",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "epfd_app::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-epfd_app-Debug-55a2a6da66161176b5d8.json",
+					"name" : "epfd_app",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "epfd_core::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-epfd_core-Debug-cd7b4791164b34bdf8c5.json",
+					"name" : "epfd_core",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "epfd_gui::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-epfd_gui-Debug-4387b392e0f190bad4b8.json",
+					"name" : "epfd_gui",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "epfd_gui_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-epfd_gui_autogen-Debug-a5c1a657c836584110dd.json",
+					"name" : "epfd_gui_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "epfd_gui_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-epfd_gui_autogen_timestamp_deps-Debug-d0f92ecd2f66ea2ed50d.json",
+					"name" : "epfd_gui_autogen_timestamp_deps",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "epfd_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-epfd_tests-Debug-923aba0a1b4dd0a283fc.json",
+					"name" : "epfd_tests",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "D:/study/courses in university/ki 3/PBL 2/Electronic-Payment-Fraud-Detection---Risk-management (1)/build/Desktop_Qt_6_11_2_MinGW_64_bit_Debug",
+		"source" : "D:/study/courses in university/ki 3/PBL 2/Electronic-Payment-Fraud-Detection---Risk-management (1)"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

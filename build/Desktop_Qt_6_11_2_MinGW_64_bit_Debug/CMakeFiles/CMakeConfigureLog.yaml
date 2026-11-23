@@ -349,3 +349,97 @@ events:
       Running the CXX compiler's linker: "../src/gcc-13.1.0/configure --host=x86_64-w64-mingw32 --build=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --prefix=/mingw64 --with-sysroot=/c/buildroot/x86_64-1310-posix-seh-msvcrt-rt_v11-rev1/mingw64 --enable-host-shared --disable-multilib --enable-languages=c,c++,fortran,lto --enable-libstdcxx-time=yes --enable-threads=posix --enable-libgomp --enable-libatomic --enable-lto --enable-graphite --enable-checking=release --enable-fully-dynamic-string --enable-version-specific-runtime-libs --enable-libstdcxx-filesystem-ts=yes --disable-libssp --disable-libstdcxx-pch --disable-libstdcxx-debug --enable-bootstrap --disable-rpath --disable-win32-registry --disable-nls --disable-werror --disable-symvers --with-gnu-as --with-gnu-ld --with-arch=nocona --with-tune=core2 --with-libiconv --with-system-zlib --with-gmp=/c/buildroot/prerequisites/x86_64-w64-mingw32-static --with-mpfr=/c/buildroot/prerequisites/x86_64-w64-mingw32-static --with-mpc=/c/buildroot/prerequisites/x86_64-w64-mingw32-static --with-isl=/c/buildroot/prerequisites/x86_64-w64-mingw32-static --with-pkgversion='x86_64-posix-seh-rev1, Built by MinGW-Builds project' --with-bugurl=https:/github.com/niXman/mingw-builds CFLAGS='-O2 -pipe -fno-ident -I/c/buildroot/x86_64-1310-posix-seh-msvcrt-rt_v11-rev1/mingw64/opt/include -I/c/buildroot/prerequisites/x86_64-zlib-static/include -I/c/buildroot/prerequisites/x86_64-w64-mingw32-static/include' CXXFLAGS='-O2 -pipe -fno-ident -I/c/buildroot/x86_64-1310-posix-seh-msvcrt-rt_v11-rev1/mingw64/opt/include -I/c/buildroot/prerequisites/x86_64-zlib-static/include -I/c/buildroot/prerequisites/x86_64-w64-mingw32-static/include' CPPFLAGS=' -I/c/buildroot/x86_64-1310-posix-seh-msvcrt-rt_v11-rev1/mingw64/opt/include -I/c/buildroot/prerequisites/x86_64-zlib-static/include -I/c/buildroot/prerequisites/x86_64-w64-mingw32-static/include' LDFLAGS='-pipe -fno-ident -L/c/buildroot/x86_64-1310-posix-seh-msvcrt-rt_v11-rev1/mingw64/opt/lib -L/c/buildroot/prerequisites/x86_64-zlib-static/lib -L/c/buildroot/prerequisites/x86_64-w64-mingw32-static/lib ' LD_FOR_TARGET=/c/buildroot/x86_64-1310-posix-seh-msvcrt-rt_v11-rev1/mingw64/bin/ld.exe" "--version"
       
 ...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/LOQ/Qt/Tools/CMake_64/share/cmake-3.30/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "D:/LOQ/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CheckCXXSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "D:/LOQ/Qt/Tools/CMake_64/share/cmake-3.30/Modules/FindThreads.cmake:99 (CHECK_CXX_SOURCE_COMPILES)"
+      - "D:/LOQ/Qt/Tools/CMake_64/share/cmake-3.30/Modules/FindThreads.cmake:163 (_threads_check_libc)"
+      - "build/Desktop_Qt_6_11_2_MinGW_64_bit_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake:283 (find_package)"
+      - "D:/LOQ/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
+      - "C:/QT/6.11.2/mingw_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake:36 (find_dependency)"
+      - "C:/QT/6.11.2/mingw_64/lib/cmake/Qt6/Qt6Dependencies.cmake:38 (_qt_internal_find_third_party_dependencies)"
+      - "C:/QT/6.11.2/mingw_64/lib/cmake/Qt6/Qt6Config.cmake:196 (include)"
+      - "build/Desktop_Qt_6_11_2_MinGW_64_bit_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake:254 (find_package)"
+      - "CMakeLists.txt:35 (find_package)"
+    directories:
+      source: "D:/study/courses in university/ki 3/PBL 2/Electronic-Payment-Fraud-Detection---Risk-management (1)/build/Desktop_Qt_6_11_2_MinGW_64_bit_Debug/CMakeFiles/CMakeScratch/TryCompile-m3rsg9"
+      binary: "D:/study/courses in university/ki 3/PBL 2/Electronic-Payment-Fraud-Detection---Risk-management (1)/build/Desktop_Qt_6_11_2_MinGW_64_bit_Debug/CMakeFiles/CMakeScratch/TryCompile-m3rsg9"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "C:/QT/6.11.2/mingw_64/lib/cmake/Qt6;C:/QT/6.11.2/mingw_64/lib/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;C:/QT/6.11.2/mingw_64/lib/cmake/Qt6/3rdparty/kwin"
+    buildResult:
+      variable: "CMAKE_HAVE_LIBC_PTHREAD"
+      cached: true
+      stdout: |
+        Change Dir: 'D:/study/courses in university/ki 3/PBL 2/Electronic-Payment-Fraud-Detection---Risk-management (1)/build/Desktop_Qt_6_11_2_MinGW_64_bit_Debug/CMakeFiles/CMakeScratch/TryCompile-m3rsg9'
+        
+        Run Build Command(s): D:/LOQ/Qt/Tools/CMake_64/bin/cmake.exe -E env VERBOSE=1 C:/QT/Tools/mingw1310_64/bin/mingw32-make.exe -f Makefile cmTC_32c5a/fast
+        C:/QT/Tools/mingw1310_64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_32c5a.dir\\build.make CMakeFiles/cmTC_32c5a.dir/build
+        mingw32-make.exe[1]: Entering directory 'D:/study/courses in university/ki 3/PBL 2/Electronic-Payment-Fraud-Detection---Risk-management (1)/build/Desktop_Qt_6_11_2_MinGW_64_bit_Debug/CMakeFiles/CMakeScratch/TryCompile-m3rsg9'
+        Building CXX object CMakeFiles/cmTC_32c5a.dir/src.cxx.obj
+        C:\\Qt\\Tools\\mingw1310_64\\bin\\g++.exe -DCMAKE_HAVE_LIBC_PTHREAD  -std=c++17 -o CMakeFiles\\cmTC_32c5a.dir\\src.cxx.obj -c "D:\\study\\courses in university\\ki 3\\PBL 2\\Electronic-Payment-Fraud-Detection---Risk-management (1)\\build\\Desktop_Qt_6_11_2_MinGW_64_bit_Debug\\CMakeFiles\\CMakeScratch\\TryCompile-m3rsg9\\src.cxx"
+        Linking CXX executable cmTC_32c5a.exe
+        D:\\LOQ\\Qt\\Tools\\CMake_64\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_32c5a.dir\\link.txt --verbose=1
+        D:\\LOQ\\Qt\\Tools\\CMake_64\\bin\\cmake.exe -E rm -f CMakeFiles\\cmTC_32c5a.dir/objects.a
+        C:\\QT\\Tools\\mingw1310_64\\bin\\ar.exe qc CMakeFiles\\cmTC_32c5a.dir/objects.a @CMakeFiles\\cmTC_32c5a.dir\\objects1.rsp
+        C:\\Qt\\Tools\\mingw1310_64\\bin\\g++.exe -Wl,--whole-archive CMakeFiles\\cmTC_32c5a.dir/objects.a -Wl,--no-whole-archive -o cmTC_32c5a.exe -Wl,--out-implib,libcmTC_32c5a.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\\cmTC_32c5a.dir\\linkLibs.rsp
+        mingw32-make.exe[1]: Leaving directory 'D:/study/courses in university/ki 3/PBL 2/Electronic-Payment-Fraud-Detection---Risk-management (1)/build/Desktop_Qt_6_11_2_MinGW_64_bit_Debug/CMakeFiles/CMakeScratch/TryCompile-m3rsg9'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/LOQ/Qt/Tools/CMake_64/share/cmake-3.30/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "D:/LOQ/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CheckCXXSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "C:/QT/6.11.2/mingw_64/lib/cmake/Qt6/FindWrapAtomic.cmake:36 (check_cxx_source_compiles)"
+      - "build/Desktop_Qt_6_11_2_MinGW_64_bit_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake:283 (find_package)"
+      - "D:/LOQ/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
+      - "C:/QT/6.11.2/mingw_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake:36 (find_dependency)"
+      - "C:/QT/6.11.2/mingw_64/lib/cmake/Qt6Core/Qt6CoreDependencies.cmake:37 (_qt_internal_find_third_party_dependencies)"
+      - "C:/QT/6.11.2/mingw_64/lib/cmake/Qt6Core/Qt6CoreConfig.cmake:42 (include)"
+      - "build/Desktop_Qt_6_11_2_MinGW_64_bit_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake:254 (find_package)"
+      - "D:/LOQ/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
+      - "C:/QT/6.11.2/mingw_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake:142 (find_dependency)"
+      - "C:/QT/6.11.2/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsDependencies.cmake:51 (_qt_internal_find_qt_dependencies)"
+      - "C:/QT/6.11.2/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake:40 (include)"
+      - "build/Desktop_Qt_6_11_2_MinGW_64_bit_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake:254 (find_package)"
+      - "C:/QT/6.11.2/mingw_64/lib/cmake/Qt6/Qt6Config.cmake:257 (find_package)"
+      - "build/Desktop_Qt_6_11_2_MinGW_64_bit_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake:254 (find_package)"
+      - "CMakeLists.txt:35 (find_package)"
+    checks:
+      - "Performing Test HAVE_STDATOMIC"
+    directories:
+      source: "D:/study/courses in university/ki 3/PBL 2/Electronic-Payment-Fraud-Detection---Risk-management (1)/build/Desktop_Qt_6_11_2_MinGW_64_bit_Debug/CMakeFiles/CMakeScratch/TryCompile-tui1oq"
+      binary: "D:/study/courses in university/ki 3/PBL 2/Electronic-Payment-Fraud-Detection---Risk-management (1)/build/Desktop_Qt_6_11_2_MinGW_64_bit_Debug/CMakeFiles/CMakeScratch/TryCompile-tui1oq"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "C:/QT/6.11.2/mingw_64/lib/cmake/Qt6;C:/QT/6.11.2/mingw_64/lib/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;C:/QT/6.11.2/mingw_64/lib/cmake/Qt6/3rdparty/kwin"
+    buildResult:
+      variable: "HAVE_STDATOMIC"
+      cached: true
+      stdout: |
+        Change Dir: 'D:/study/courses in university/ki 3/PBL 2/Electronic-Payment-Fraud-Detection---Risk-management (1)/build/Desktop_Qt_6_11_2_MinGW_64_bit_Debug/CMakeFiles/CMakeScratch/TryCompile-tui1oq'
+        
+        Run Build Command(s): D:/LOQ/Qt/Tools/CMake_64/bin/cmake.exe -E env VERBOSE=1 C:/QT/Tools/mingw1310_64/bin/mingw32-make.exe -f Makefile cmTC_e48b5/fast
+        C:/QT/Tools/mingw1310_64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_e48b5.dir\\build.make CMakeFiles/cmTC_e48b5.dir/build
+        mingw32-make.exe[1]: Entering directory 'D:/study/courses in university/ki 3/PBL 2/Electronic-Payment-Fraud-Detection---Risk-management (1)/build/Desktop_Qt_6_11_2_MinGW_64_bit_Debug/CMakeFiles/CMakeScratch/TryCompile-tui1oq'
+        Building CXX object CMakeFiles/cmTC_e48b5.dir/src.cxx.obj
+        C:\\Qt\\Tools\\mingw1310_64\\bin\\g++.exe -DHAVE_STDATOMIC  -std=c++17 -o CMakeFiles\\cmTC_e48b5.dir\\src.cxx.obj -c "D:\\study\\courses in university\\ki 3\\PBL 2\\Electronic-Payment-Fraud-Detection---Risk-management (1)\\build\\Desktop_Qt_6_11_2_MinGW_64_bit_Debug\\CMakeFiles\\CMakeScratch\\TryCompile-tui1oq\\src.cxx"
+        Linking CXX executable cmTC_e48b5.exe
+        D:\\LOQ\\Qt\\Tools\\CMake_64\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_e48b5.dir\\link.txt --verbose=1
+        D:\\LOQ\\Qt\\Tools\\CMake_64\\bin\\cmake.exe -E rm -f CMakeFiles\\cmTC_e48b5.dir/objects.a
+        C:\\QT\\Tools\\mingw1310_64\\bin\\ar.exe qc CMakeFiles\\cmTC_e48b5.dir/objects.a @CMakeFiles\\cmTC_e48b5.dir\\objects1.rsp
+        C:\\Qt\\Tools\\mingw1310_64\\bin\\g++.exe -Wl,--whole-archive CMakeFiles\\cmTC_e48b5.dir/objects.a -Wl,--no-whole-archive -o cmTC_e48b5.exe -Wl,--out-implib,libcmTC_e48b5.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\\cmTC_e48b5.dir\\linkLibs.rsp
+        mingw32-make.exe[1]: Leaving directory 'D:/study/courses in university/ki 3/PBL 2/Electronic-Payment-Fraud-Detection---Risk-management (1)/build/Desktop_Qt_6_11_2_MinGW_64_bit_Debug/CMakeFiles/CMakeScratch/TryCompile-tui1oq'
+        
+      exitCode: 0
+...

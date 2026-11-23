@@ -27,6 +27,10 @@ public:
     // Thao tác đọc/ghi file
     bool loadFromFile(const std::string& filePath = "");
     bool saveToFile(const std::string& filePath = "") const;
+    bool loadFromDisk(const std::string& filePath = "") { return loadFromFile(filePath); }
+    bool syncToDisk(const std::string& filePath = "") const { return saveToFile(filePath); }
     int count() const;
     void clear();
 };
+
+using CustomerRepository = CustomerDAL;

@@ -4,6 +4,7 @@
 #include "core/common/Types.h"
 #include "core/models/Location.h"
 #include "core/models/Device.h"
+#include "core/models/Merchant.h"
 
 class Transaction {
     private:
@@ -19,6 +20,7 @@ class Transaction {
         std::string ip_address;
         Device device;
         std::string raw_card_number;
+        Merchant merchant{"M_DEFAULT", "Default Retailer", "5411", 5.0};
         std::string merchantid;
         PaymentType payment_method;
         TransactionStatus status{TransactionStatus::PENDING};
@@ -31,7 +33,9 @@ class Transaction {
             const std::string&, Timestamp, const Location&, const std::string&, const Device&, const std::string&, const PaymentType&);
         Transaction(const std::string& txId, TransactionType type, const std::string& customerId,
                     const std::string& accountId, double amount, const std::string& currency,
-                    const Location& loc, const Device& dev, const std::string& cardNum = "");
+                    const Location& loc, const Device& dev, const std::string& cardNum = "",
+                    const Merchant& mer = Merchant("M_DEFAULT", "Default Retailer", "5411", 5.0),
+                    Timestamp time = std::chrono::system_clock::now());
 
         // Setters / State updates
         void SetStatus(TransactionStatus);
@@ -69,6 +73,8 @@ class Transaction {
         Timestamp getTimestamp() const { return timestamp; }
         const Location& getLocation() const { return location; }
         const Device& getDevice() const { return device; }
+        const Merchant& getMerchant() const { return merchant; }
+        void setMerchant(const Merchant& m) { merchant = m; }
         TransactionStatus getStatus() const { return status; }
         const std::string& getRawCardNumber() const { return raw_card_number; }
 

@@ -28,5 +28,8 @@ class Device{
         bool GetIs_Hacker() const;
 
         bool is_Safe() const;
+        bool isHighRisk() const { return is_virtual || is_hacker; }
+        const std::string& getDeviceId() const { return device_id; }
+        const std::string& getIpAddress() const { return ip_address; }
         std::string toString() const;
 };
