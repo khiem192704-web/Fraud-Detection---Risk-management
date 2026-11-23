@@ -38,12 +38,18 @@ class RiskAssessment {
         // --- Domain Actions ---
         void addAlert(const FraudAlert&);
         void addReason(const std::string&);
+        void setDecision(DecisionAction d) { decision = d; }
 
         // --- Decision Checks ---
         bool isApproved() const;
         bool isReview() const;       
         bool isChallenge() const;   
         bool isBlocked() const;
+
+        // Toán tử so sánh cho PriorityQueue (ưu tiên rủi ro cao hơn)
+        bool operator<(const RiskAssessment& other) const {
+            return combined_score < other.combined_score;
+        }
 
         std::string toString() const;     // Đồng bộ tên hàm tóm tắt dữ liệu
 };

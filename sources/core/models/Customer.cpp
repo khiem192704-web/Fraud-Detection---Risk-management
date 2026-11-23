@@ -30,6 +30,25 @@ Customer::Customer(
       is_kyc_verified(false) {
 }
 
+Customer::Customer(
+    const std::string& id,
+    const std::string& name,
+    const std::string& mail,
+    const std::string& phone,
+    const Location& location,
+    CustomerRiskTier tier,
+    bool isKyc
+)
+    : customer_id(id),
+      fullname(name),
+      email(mail),
+      phone_number(phone),
+      home_location(location),
+      risk_tier(tier),
+      baseline_risk_score(tier == CustomerRiskTier::TRUSTED ? 5.0 : (tier == CustomerRiskTier::SUSPICIOUS ? 40.0 : 10.0)),
+      is_kyc_verified(isKyc) {
+}
+
 // ==================== Getter ====================
 
 const std::string& Customer::getCustomerId() const {

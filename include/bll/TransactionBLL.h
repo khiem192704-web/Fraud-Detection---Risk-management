@@ -6,6 +6,7 @@
 #include "core/models/Customer.h"
 #include "core/models/Account.h"
 #include "core/models/RiskAssessment.h"
+#include "dsa/priorityqueue.h"
 #include "engine/RiskEngine.h"
 #include "engine/DecisionEngine.h"
 #include "dal/AccountDAL.h"
@@ -26,15 +27,24 @@ private:
     AccountDAL account_dal;
     CustomerDAL customer_dal;
     std::vector<Transaction> transaction_history;
+    PriorityQueue<RiskAssessment> review_queue;
 
 public:
     TransactionBLL();
 
-    // Xử lý một giao dịch hoàn chỉnh từ đầu đến cuối
+    // Xử lý một giao dịch với thông tin tài khoản và khách hàng truyền trực tiếp
+    TransactionResult processTransaction(Transaction& tx, Account& acc, const Customer& cust);
+
+    // Xử lý một giao dịch hoàn chỉnh qua tra cứu tầng DAL
     TransactionResult processTransaction(Transaction& tx);
 
     // Đăng ký một luật gian lận mới vào hệ thống
     void addRule(IFraudRule* rule);
+
+    // Hàng đợi rà soát rủi ro ưu tiên (PriorityQueue)
+    const PriorityQueue<RiskAssessment>& getReviewQueue() const { return review_queue; }
+    PriorityQueue<RiskAssessment>& getReviewQueue() { return review_queue; }
+    int getReviewQueueSize() const { return review_queue.size(); }
 
     // Truy cập các đối tượng tầng DAL
     AccountDAL& getAccountDAL() { return account_dal; }

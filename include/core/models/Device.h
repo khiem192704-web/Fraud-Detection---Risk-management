@@ -11,6 +11,7 @@ class Device{
     public:
         Device();
         Device(const std::string& device_id, const std::string& ip_address, const std::string& device_fingerprint, const Location& location, bool is_virtual = false, bool is_hacker = false);
+        Device(const std::string& device_id, const std::string& ip_address, bool is_virtual = false, bool is_hacker = false);
 
         void SetDevice_ID(const std::string&);
         void SetIP_Address(const std::string&);

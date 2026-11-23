@@ -72,6 +72,15 @@ std::string_view toString(CustomerRiskTier tier) {
     }
 }
 
+std::string_view toString(AccountStatus status) {
+    switch (status) {
+        case AccountStatus::ACTIVE: return "ACTIVE";
+        case AccountStatus::FROZEN: return "FROZEN";
+        case AccountStatus::CLOSED: return "CLOSED";
+        default:                    return "UNKNOWN";
+    }
+}
+
 std::string_view toString(FraudRuleCategory category) {
     switch (category) {
         case FraudRuleCategory::RAPID_TRANSACTIONS:  return "RAPID_TRANSACTIONS";
@@ -145,6 +154,10 @@ std::ostream& operator<<(std::ostream& os, DecisionAction action) {
 
 std::ostream& operator<<(std::ostream& os, CustomerRiskTier tier) {
     return os << toString(tier);
+}
+
+std::ostream& operator<<(std::ostream& os, AccountStatus status) {
+    return os << toString(status);
 }
 
 std::ostream& operator<<(std::ostream& os, FraudRuleCategory category) {

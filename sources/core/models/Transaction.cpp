@@ -34,6 +34,34 @@ Transaction::Transaction(const std::string& transactionid,
     SetAmount(amount);
 }
 
+Transaction::Transaction(const std::string& txId,
+                         TransactionType type,
+                         const std::string& customerId,
+                         const std::string& accountId,
+                         double amount,
+                         const std::string& currency,
+                         const Location& loc,
+                         const Device& dev,
+                         const std::string& cardNum)
+    : transactionid(txId),
+      type(type),
+      customerid(customerId),
+      recipientid("M_DEFAULT"),
+      accountid(accountId),
+      currency(currency),
+      timestamp(std::chrono::system_clock::now()),
+      location(loc),
+      ip_address(dev.GetIP_Address()),
+      device(dev),
+      raw_card_number(cardNum),
+      merchantid("M_DEFAULT"),
+      payment_method(PaymentType::CARD),
+      status(TransactionStatus::PENDING),
+      created_at(std::chrono::system_clock::now()),
+      updated_at(std::chrono::system_clock::now()) {
+    SetAmount(amount);
+}
+
 // ==================== Setters / State updates ====================
 
 void Transaction::SetStatus(TransactionStatus status) {

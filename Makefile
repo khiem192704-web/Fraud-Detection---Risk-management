@@ -31,8 +31,11 @@ SRCS_DAL = sources/dal/AccountDAL.cpp \
 SRCS_BLL = sources/bll/Auth.cpp \
            sources/bll/TransactionBLL.cpp
 
+# UI Layer
+SRCS_UI = sources/ui/ConsoleUI.cpp
+
 # Main application
-SRCS_APP = sources/main.cpp $(SRCS_ENGINE) $(SRCS_BLL) $(SRCS_DAL) $(SRCS_CORE)
+SRCS_APP = sources/main.cpp $(SRCS_UI) $(SRCS_ENGINE) $(SRCS_BLL) $(SRCS_DAL) $(SRCS_CORE)
 
 # Step-by-step test
 SRCS_TEST = tests/test_rules_step_by_step.cpp $(SRCS_ENGINE) $(SRCS_BLL) $(SRCS_DAL) $(SRCS_CORE)

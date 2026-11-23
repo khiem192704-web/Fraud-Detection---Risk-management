@@ -117,6 +117,9 @@ std::ostream& operator<<(std::ostream& os, DecisionAction action);
 std::string_view toString(CustomerRiskTier tier);
 std::ostream& operator<<(std::ostream& os, CustomerRiskTier tier);
 
+std::string_view toString(AccountStatus status);
+std::ostream& operator<<(std::ostream& os, AccountStatus status);
+
 std::string_view toString(FraudRuleCategory category);
 std::ostream& operator<<(std::ostream& os, FraudRuleCategory category);
 

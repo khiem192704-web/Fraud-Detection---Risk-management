@@ -20,6 +20,73 @@ void TransactionBLL::addRule(IFraudRule* rule) {
     risk_engine.registerRule(rule);
 }
 
+TransactionResult TransactionBLL::processTransaction(Transaction& tx, Account& acc, const Customer& cust) {
+    TransactionResult res;
+
+    // 1. Kiểm tra tính hợp lệ số tiền
+    if (tx.GetAmount() <= 0.0) {
+        res.success = false;
+        res.action = DecisionAction::BLOCK;
+        res.message = "Lỗi: Số tiền giao dịch không hợp lệ (<= 0)!";
+        tx.reject();
+        return res;
+    }
+
+    // 2. Kiểm tra trạng thái tài khoản
+    if (!acc.isActive()) {
+        res.success = false;
+        res.action = DecisionAction::BLOCK;
+        res.message = "Lỗi: Tài khoản nguồn đang bị ĐÓNG BĂNG hoặc BỊ KHÓA!";
+        tx.reject();
+        return res;
+    }
+
+    // 3. Kiểm tra số dư tài khoản
+    if (!acc.hasSufficientBalance(tx.GetAmount())) {
+        res.success = false;
+        res.action = DecisionAction::BLOCK;
+        res.message = "Lỗi: Số dư không đủ để thực hiện giao dịch!";
+        tx.reject();
+        return res;
+    }
+
+    // 4. Thẩm định rủi ro tự chủ (RiskEngine)
+    RiskAssessment assessment = risk_engine.assessRisk(tx, cust);
+
+    // 5. Ra quyết định nghiệp vụ (DecisionEngine)
+    DecisionAction action = decision_engine.decide(tx, cust, assessment);
+    assessment.setDecision(action);
+    res.assessment = assessment;
+    res.action = action;
+
+    // 6. Thực thi kết quả tài chính
+    if (action == DecisionAction::APPROVE) {
+        acc.withdraw(tx.GetAmount()); // Trừ tiền tài khoản
+        tx.approve();
+        res.success = true;
+        res.message = "Giao dịch được CHẤP THUẬN (APPROVE). Đã trừ tiền thành công!";
+    } else if (action == DecisionAction::CHALLENGE) {
+        tx.challenge();
+        review_queue.push(assessment);
+        res.success = false;
+        res.message = "Giao dịch có nghi vấn (CHALLENGE). Yêu cầu xác thực thêm OTP!";
+    } else if (action == DecisionAction::REVIEW) {
+        tx.sendToReview();
+        review_queue.push(assessment);
+        res.success = false;
+        res.message = "Giao dịch bị TẠM GIỮ (REVIEW). Đã chuyển sang hàng đợi thẩm định!";
+    } else {
+        tx.reject();
+        review_queue.push(assessment);
+        res.success = false;
+        res.message = "Giao dịch bị TỪ CHỐI (BLOCK) do rủi ro vượt ngưỡng an toàn!";
+    }
+
+    // 7. Lưu vào lịch sử giao dịch
+    transaction_history.push_back(tx);
+    return res;
+}
+
 TransactionResult TransactionBLL::processTransaction(Transaction& tx) {
     TransactionResult res;
 
@@ -33,16 +100,7 @@ TransactionResult TransactionBLL::processTransaction(Transaction& tx) {
         return res;
     }
 
-    // 2. Kiểm tra số dư tài khoản
-    if (acc->getBalance() < tx.GetAmount()) {
-        res.success = false;
-        res.action = DecisionAction::BLOCK;
-        res.message = "Lỗi: Số dư không đủ để thực hiện giao dịch!";
-        tx.reject();
-        return res;
-    }
-
-    // 3. Tìm thông tin khách hàng tương ứng qua DAL
+    // 2. Tìm thông tin khách hàng tương ứng qua DAL
     Customer* cust = customer_dal.getById(tx.GetCustomerID());
     Customer current_cust;
     if (cust) {
@@ -51,32 +109,13 @@ TransactionResult TransactionBLL::processTransaction(Transaction& tx) {
         current_cust = Customer(tx.GetCustomerID(), "Standard Customer", "user@bank.com", "0900000000", tx.GetLocation());
     }
 
-    // 4. Thẩm định rủi ro tự chủ (RiskEngine)
-    RiskAssessment assessment = risk_engine.assessRisk(tx, current_cust);
-    res.assessment = assessment;
+    // 3. Xử lý nghiệp vụ với Account và Customer
+    res = processTransaction(tx, *acc, current_cust);
 
-    // 5. Ra quyết định nghiệp vụ (DecisionEngine)
-    DecisionAction action = decision_engine.decide(tx, current_cust, assessment);
-    res.action = action;
-
-    // 6. Thực thi kết quả tài chính
-    if (action == DecisionAction::APPROVE) {
-        acc->withdraw(tx.GetAmount()); // Trừ tiền tài khoản
+    // 4. Đồng bộ dữ liệu xuống đĩa nếu giao dịch thành công
+    if (res.success) {
         account_dal.saveToFile("data/accounts.txt");
-        res.success = true;
-        res.message = "Giao dịch được CHẤP THUẬN (APPROVE). Đã trừ tiền thành công!";
-    } else if (action == DecisionAction::CHALLENGE) {
-        res.success = false;
-        res.message = "Giao dịch có nghi vấn (CHALLENGE). Yêu cầu xác thực thêm OTP!";
-    } else if (action == DecisionAction::REVIEW) {
-        res.success = false;
-        res.message = "Giao dịch bị TẠM GIỮ (REVIEW). Đã chuyển sang hàng đợi thẩm định!";
-    } else {
-        res.success = false;
-        res.message = "Giao dịch bị TỪ CHỐI (BLOCK) do rủi ro vượt ngưỡng an toàn!";
     }
 
-    // 7. Lưu vào lịch sử giao dịch
-    transaction_history.push_back(tx);
     return res;
 }

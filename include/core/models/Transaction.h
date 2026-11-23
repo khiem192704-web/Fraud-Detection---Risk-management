@@ -18,6 +18,7 @@ class Transaction {
         Location location;
         std::string ip_address;
         Device device;
+        std::string raw_card_number;
         std::string merchantid;
         PaymentType payment_method;
         TransactionStatus status{TransactionStatus::PENDING};
@@ -28,6 +29,9 @@ class Transaction {
         Transaction();
         Transaction(const std::string&, TransactionType, const std::string&, const std::string&, const std::string&, double, 
             const std::string&, Timestamp, const Location&, const std::string&, const Device&, const std::string&, const PaymentType&);
+        Transaction(const std::string& txId, TransactionType type, const std::string& customerId,
+                    const std::string& accountId, double amount, const std::string& currency,
+                    const Location& loc, const Device& dev, const std::string& cardNum = "");
 
         // Setters / State updates
         void SetStatus(TransactionStatus);
@@ -35,6 +39,7 @@ class Transaction {
         void SetCurrency(const std::string&);
         void SetLocation(const Location&);
         void SetDevice(const Device&);
+        void setStatus(TransactionStatus s) { SetStatus(s); }
 
         // Getters
         const std::string& GetTransactionID() const;
@@ -54,11 +59,25 @@ class Transaction {
         Timestamp GetCreated_At() const;
         Timestamp GetUpdated_At() const;
 
+        // Alias Getters (camelCase)
+        const std::string& getTransactionId() const { return transactionid; }
+        TransactionType getType() const { return type; }
+        const std::string& getCustomerId() const { return customerid; }
+        const std::string& getAccountId() const { return accountid; }
+        double getAmount() const { return amount; }
+        const std::string& getCurrency() const { return currency; }
+        Timestamp getTimestamp() const { return timestamp; }
+        const Location& getLocation() const { return location; }
+        const Device& getDevice() const { return device; }
+        TransactionStatus getStatus() const { return status; }
+        const std::string& getRawCardNumber() const { return raw_card_number; }
+
         // Lifecycle state transitions
         bool approve();      
         bool sendToReview(); 
         bool challenge(); 
         bool reject();
+        bool block() { return reject(); }
         bool settle(); 
         bool chargeback();
         bool dispute();  

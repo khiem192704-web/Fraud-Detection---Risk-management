@@ -7,6 +7,10 @@ Device::Device(const std::string& device_id, const std::string& ip_address,
                     : device_id(device_id), ip_address(ip_address), device_fingerprint(device_fingerprint), 
                     location(location), is_virtual(is_virtual), is_hacker(is_hacker) {}
 
+Device::Device(const std::string& device_id, const std::string& ip_address, bool is_virtual, bool is_hacker)
+    : device_id(device_id), ip_address(ip_address), device_fingerprint("FP_" + device_id),
+      location(Location()), is_virtual(is_virtual), is_hacker(is_hacker) {}
+
 void Device::SetDevice_ID(const std::string& Device_ID){ this->device_id = Device_ID; }
 void Device::SetIP_Address(const std::string& IP_Address){ this->ip_address = IP_Address; }
 void Device::SetDevice_Fingerprint(const std::string& Device_Fingerprint){ this->device_fingerprint = Device_Fingerprint; }

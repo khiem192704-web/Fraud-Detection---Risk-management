@@ -32,6 +32,16 @@ public:
         const Location& location
     );
 
+    Customer(
+        const std::string& id,
+        const std::string& name,
+        const std::string& mail,
+        const std::string& phone,
+        const Location& location,
+        CustomerRiskTier tier,
+        bool isKyc = false
+    );
+
     // Getter
     const std::string& getCustomerId() const;
     const std::string& getFullName() const;
