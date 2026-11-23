@@ -1,8 +1,5 @@
 #include "engine/rules/BlacklistRule.h"
-#include <unordered_map>
-// Bảng băm nội bộ lưu danh sách đen (Key: IP/AccountID -> Value: Lý do cấm)
-static std::unordered_map<std::string, std::string> blacklisted_ips;
-static std::unordered_map<std::string, std::string> blacklisted_accounts;
+
 BlacklistRule::BlacklistRule(double contribution) {
     // TODO 1: Gán giá trị contribution vào biến thành viên risk_contribution
     // Gợi ý:
