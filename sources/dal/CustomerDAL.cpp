@@ -1,27 +1,32 @@
-#include"storage/CustomerRepo.h"
+#include "dal/CustomerDAL.h"
+#include <fstream>
+#include <sstream>
 
-CustomerRepo::CustomerRepo(std::string file_path) : file_path(file_path) {}
+CustomerDAL::CustomerDAL(std::string file_path) : file_path(file_path) {}
 
-bool CustomerRepo::add(const Customer& customer){
-    if(this->findById(customer.getCustomerId()) != nullptr) {
-        return false; // Customer with the same ID already exists
+bool CustomerDAL::insert(const Customer& customer) {
+    if (this->getById(customer.getCustomerId()) != nullptr) {
+        return false; // Khách hàng với ID này đã tồn tại
     }
     this->customers.push_back(customer);
     return true;
 }
-Customer* CustomerRepo::findById(const std::string& id){
-    for (int i = 0; i < this->customers.size(); ++i) {
+
+Customer* CustomerDAL::getById(const std::string& id) {
+    for (size_t i = 0; i < this->customers.size(); ++i) {
         if (this->customers[i].getCustomerId() == id) {
             return &this->customers[i];
         }
     }
     return nullptr;
 }
-const std::vector<Customer>& CustomerRepo::getAll() const{
+
+const std::vector<Customer>& CustomerDAL::getAll() const {
     return this->customers;
 }
-bool CustomerRepo::update(const Customer& otherCustomer){
-    for (int i = 0; i < this->customers.size(); ++i) {
+
+bool CustomerDAL::update(const Customer& otherCustomer) {
+    for (size_t i = 0; i < this->customers.size(); ++i) {
         if (this->customers[i].getCustomerId() == otherCustomer.getCustomerId()) {
             this->customers[i] = otherCustomer;
             return true;
@@ -29,8 +34,9 @@ bool CustomerRepo::update(const Customer& otherCustomer){
     }
     return false;
 }
-bool CustomerRepo::remove(const std::string& id){
-    for (int i = 0; i < this->customers.size(); ++i) {
+
+bool CustomerDAL::deleteById(const std::string& id) {
+    for (size_t i = 0; i < this->customers.size(); ++i) {
         if (this->customers[i].getCustomerId() == id) {
             this->customers.erase(this->customers.begin() + i);
             return true;
@@ -39,13 +45,14 @@ bool CustomerRepo::remove(const std::string& id){
     return false;
 }
 
-bool CustomerRepo::loadFromFile(const std::string& filePath){
+bool CustomerDAL::loadFromFile(const std::string& filePath) {
     std::string path = filePath.empty() ? this->file_path : filePath;
     std::ifstream ifile(path);
     if (!ifile.is_open()) return false;
     this->customers.clear();
     std::string line;
-    while(std::getline(ifile, line)) {
+    while (std::getline(ifile, line)) {
+        if (line.empty() || line[0] == '#') continue;
         std::istringstream iss(line);
         std::string id, name, email, phone, country, city, latStr, lonStr;
         std::string tierStr, baselineRiskStr, kycStr, linkedAccsStr, trustedDevsStr;
@@ -100,12 +107,14 @@ bool CustomerRepo::loadFromFile(const std::string& filePath){
             this->customers.push_back(cust);
         }
     }
+    return true;
 }
-bool CustomerRepo::saveToFile(const std::string& filePath) const{
+
+bool CustomerDAL::saveToFile(const std::string& filePath) const {
     std::string path = filePath.empty() ? this->file_path : filePath;
     std::ofstream ofile(path);
     if (!ofile.is_open()) return false;
-    for(const auto& customer : this->customers) {
+    for (const auto& customer : this->customers) {
         ofile << customer.getCustomerId() << '|'
               << customer.getFullName() << '|'
               << customer.getEmail() << '|'
@@ -132,12 +141,13 @@ bool CustomerRepo::saveToFile(const std::string& filePath) const{
         }
         ofile << '\n';
     }
+    return true;
 }
 
-int CustomerRepo::count() const{
-    return this->customers.size();
+int CustomerDAL::count() const {
+    return static_cast<int>(this->customers.size());
 }
 
-void CustomerRepo::clear(){ 
+void CustomerDAL::clear() {
     this->customers.clear();
 }

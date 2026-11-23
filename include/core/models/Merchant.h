@@ -4,7 +4,7 @@
 #include <chrono>
 #include <ostream>
 #include "core/common/Types.h"
-#include "core/domain/Location.h"
+#include "core/models/Location.h"
 
 class Merchant {
 private:

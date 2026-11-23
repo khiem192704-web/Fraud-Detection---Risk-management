@@ -1,4 +1,4 @@
-#include"core/domain/Location.h"
+#include"core/models/Location.h"
 #include<stdexcept>
 
 Location::Location(){};

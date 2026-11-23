@@ -1,4 +1,4 @@
-#include "core/domain/Customer.h"
+#include "core/models/Customer.h"
 
 // ==================== Constructor ====================
 
@@ -113,7 +113,7 @@ void Customer::addTrustedDevice(const std::string& device_id) {
 }
 
 bool Customer::isDeviceTrusted(const std::string& device_id) const {
-    for (int i = 0; i < trusted_device_ids.size(); ++i) {
+    for (size_t i = 0; i < trusted_device_ids.size(); ++i) {
         if (trusted_device_ids[i] == device_id) {
             return true;
         }

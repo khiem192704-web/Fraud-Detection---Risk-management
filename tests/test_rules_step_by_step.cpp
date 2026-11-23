@@ -2,9 +2,9 @@
 #include <string>
 #include "engine/rules/IFraudRule.h"
 #include "engine/rules/DeviceRiskRule.h"
-#include "core/domain/Transaction.h"
-#include "core/domain/Customer.h"
-#include "core/domain/FraudAlert.h"
+#include "core/models/Transaction.h"
+#include "core/models/Customer.h"
+#include "core/models/FraudAlert.h"
 
 // Màu sắc ANSI cho console
 #define COLOR_RESET   "\033[0m"

@@ -55,7 +55,7 @@ std::string_view toString(DecisionAction action) {
     switch (action) {
         case DecisionAction::APPROVE:       return "APPROVE";
         case DecisionAction::REVIEW:        return "REVIEW";
-        case DecisionAction::CHALLENGE_3DS: return "CHALLENGE_3DS";
+        case DecisionAction::CHALLENGE:     return "CHALLENGE";
         case DecisionAction::BLOCK:         return "BLOCK";
         default:                            return "UNKNOWN";
     }

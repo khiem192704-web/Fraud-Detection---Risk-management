@@ -1,9 +1,9 @@
 #pragma once
 #include <string>
 #include "core/common/Types.h"
-#include "core/domain/Transaction.h"
-#include "core/domain/Customer.h"
-#include "core/domain/FraudAlert.h"
+#include "core/models/Transaction.h"
+#include "core/models/Customer.h"
+#include "core/models/FraudAlert.h"
 class IFraudRule{
 public:
     virtual ~IFraudRule()=default;

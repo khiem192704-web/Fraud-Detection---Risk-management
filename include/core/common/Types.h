@@ -78,7 +78,7 @@ enum class RiskLevel {
 enum class DecisionAction {
     APPROVE,
     REVIEW,
-    CHALLENGE_3DS,
+    CHALLENGE,
     BLOCK
 };
 

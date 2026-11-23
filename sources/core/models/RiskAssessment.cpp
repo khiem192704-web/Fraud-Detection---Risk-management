@@ -1,4 +1,4 @@
-#include"core/domain/RiskAssessment.h"
+#include"core/models/RiskAssessment.h"
 
 RiskAssessment::RiskAssessment(const std::string& assessment_id, const std::string& transaction_id, double rule_score, double ml_score, double combined_score,
                                RiskLevel risk_level, DecisionAction decision, const std::vector<FraudAlert>& alerts, const std::vector<std::string>& reasons, Timestamp evaluated_at):
@@ -65,7 +65,7 @@ bool RiskAssessment::isReview() const {
 }
 
 bool RiskAssessment::isChallenge() const {
-    return decision == DecisionAction::CHALLENGE_3DS;
+    return decision == DecisionAction::CHALLENGE;
 }
 
 bool RiskAssessment::isBlocked() const {

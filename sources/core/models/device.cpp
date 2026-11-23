@@ -1,4 +1,4 @@
-#include"core/domain/Device.h"
+#include"core/models/Device.h"
 
 Device::Device(){}
 Device::Device(const std::string& device_id, const std::string& ip_address, 

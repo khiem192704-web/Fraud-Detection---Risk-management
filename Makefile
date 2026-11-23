@@ -3,15 +3,15 @@ CXXFLAGS = -std=c++17 -Wall -Wextra -O2 -Iinclude
 
 # Core domain & infrastructure sources (Đã sửa đường dẫn đúng thực tế)
 SRCS_CORE = sources/core/common/Types.cpp \
-            sources/core/domain/transaction.cpp \
-            sources/core/domain/device.cpp \
-            sources/core/domain/location.cpp \
-            sources/core/domain/FraudAlert.cpp \
-            sources/core/domain/RiskAssessment.cpp \
-            sources/core/domain/Customer.cpp \
-            sources/core/domain/Account.cpp \
-            sources/core/domain/Merchant.cpp \
-            sources/core/domain/PaymentMethod.cpp
+            sources/core/models/transaction.cpp \
+            sources/core/models/device.cpp \
+            sources/core/models/location.cpp \
+            sources/core/models/FraudAlert.cpp \
+            sources/core/models/RiskAssessment.cpp \
+            sources/core/models/Customer.cpp \
+            sources/core/models/Account.cpp \
+            sources/core/models/Merchant.cpp \
+            sources/core/models/PaymentMethod.cpp
 
 # Engine & Rules implementation
 SRCS_ENGINE = sources/engine/rules/DeviceRiskRule.cpp \
@@ -23,16 +23,19 @@ SRCS_ENGINE = sources/engine/rules/DeviceRiskRule.cpp \
               sources/engine/RiskEngine.cpp \
               sources/engine/DecisionEngine.cpp
 
-# Storage & Services
-SRCS_STORAGE = sources/storage/AccountRepo.cpp \
-               sources/storage/CustomerRepo.cpp \
-               sources/services/Auth.cpp
+# DAL (Data Access Layer)
+SRCS_DAL = sources/dal/AccountDAL.cpp \
+           sources/dal/CustomerDAL.cpp
+
+# BLL (Business Logic Layer)
+SRCS_BLL = sources/bll/Auth.cpp \
+           sources/bll/TransactionBLL.cpp
 
 # Main application
-SRCS_APP = sources/main.cpp $(SRCS_ENGINE) $(SRCS_STORAGE) $(SRCS_CORE)
+SRCS_APP = sources/main.cpp $(SRCS_ENGINE) $(SRCS_BLL) $(SRCS_DAL) $(SRCS_CORE)
 
 # Step-by-step test
-SRCS_TEST = tests/test_rules_step_by_step.cpp $(SRCS_ENGINE) $(SRCS_STORAGE) $(SRCS_CORE)
+SRCS_TEST = tests/test_rules_step_by_step.cpp $(SRCS_ENGINE) $(SRCS_BLL) $(SRCS_DAL) $(SRCS_CORE)
 
 BIN_DIR = bin
 

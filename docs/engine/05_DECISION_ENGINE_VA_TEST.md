@@ -1,6 +1,6 @@
 # 🏁 Bước 5: Động Cơ Ra Quyết Định & Kiểm Thử Toàn Diện (Decision Engine & End-to-End Test)
 
-> **Mục tiêu**: Hoàn thiện mắt xích cuối cùng của Engine: `DecisionEngine` chuyển đổi điểm rủi ro từ `RiskAssessment` thành hành động thực tế (`APPROVE`, `REVIEW`, `CHALLENGE_3DS`, `BLOCK`), cập nhật trạng thái `Transaction`, đồng thời sửa hệ thống build (`Makefile` / `CMakeLists.txt`) và viết kịch bản demo mẫu trên `main.cpp`.  
+> **Mục tiêu**: Hoàn thiện mắt xích cuối cùng của Engine: `DecisionEngine` chuyển đổi điểm rủi ro từ `RiskAssessment` thành hành động thực tế (`APPROVE`, `REVIEW`, `CHALLENGE`, `BLOCK`), cập nhật trạng thái `Transaction`, đồng thời sửa hệ thống build (`Makefile` / `CMakeLists.txt`) và viết kịch bản demo mẫu trên `main.cpp`.  
 > **Thư mục làm việc**: `include/core/decision/`, `sources/core/decision/`, `CMakeLists.txt`, `Makefile`, và `sources/main.cpp`.
 
 ---
@@ -18,7 +18,7 @@
 struct DecisionPolicy {
     // Ngưỡng điểm để đưa ra hành động tương ứng
     double approve_max_score{39.99};    // [0, 40)   -> APPROVE
-    double challenge_max_score{59.99};  // [40, 60)  -> CHALLENGE_3DS (OTP)
+    double challenge_max_score{59.99};  // [40, 60)  -> CHALLENGE (OTP)
     double review_max_score{79.99};     // [60, 80)  -> REVIEW (Điều tra viên)
                                         // >= 80.0   -> BLOCK
 };
@@ -95,7 +95,7 @@ DecisionAction DecisionEngine::decide(
         if (score <= policy.approve_max_score) {
             action = DecisionAction::APPROVE;
         } else if (score <= policy.challenge_max_score) {
-            action = DecisionAction::CHALLENGE_3DS; // Yêu cầu xác thực OTP / 3D-Secure
+            action = DecisionAction::CHALLENGE; // Yêu cầu xác thực OTP / 3D-Secure
         } else if (score <= policy.review_max_score) {
             action = DecisionAction::REVIEW;        // Đẩy vào hàng đợi điều tra viên
         } else {
@@ -108,7 +108,7 @@ DecisionAction DecisionEngine::decide(
         case DecisionAction::APPROVE:
             tx.approve();
             break;
-        case DecisionAction::CHALLENGE_3DS:
+        case DecisionAction::CHALLENGE:
             tx.challenge();
             break;
         case DecisionAction::REVIEW:

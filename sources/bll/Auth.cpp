@@ -1,4 +1,4 @@
-#include "include/services/Auth.h"
+#include "bll/Auth.h"
 #include <fstream>
 #include <sstream>
 #include <chrono>
@@ -55,23 +55,25 @@ std::string Auth::getSessionUsername() const {
 
 bool Auth::loadFromDisk(const std::string& path) {
     std::ifstream file(path);
-    if (!file.is_open()) {
-        saveToDisk(path);
-        return false;
-    }
+    if (!file.is_open()) return false;
 
     std::string line;
     while (std::getline(file, line)) {
-        line = trim(line);
         if (line.empty() || line[0] == '#') continue;
-
         std::stringstream ss(line);
-        std::string u, p, fn, dept;
-        if (std::getline(ss, u, '|') && std::getline(ss, p, '|')) {
+        std::string u, p, f, r, d, l;
+        if (std::getline(ss, u, '|') &&
+            std::getline(ss, p, '|') &&
+            std::getline(ss, f, '|') &&
+            std::getline(ss, r, '|') &&
+            std::getline(ss, d, '|')) {
+            std::getline(ss, l, '|');
             admin_user.username = trim(u);
             admin_user.password = trim(p);
-            if (std::getline(ss, fn, '|')) admin_user.fullName = trim(fn);
-            if (std::getline(ss, dept, '|')) admin_user.department = trim(dept);
+            admin_user.fullName = trim(f);
+            admin_user.role = trim(r);
+            admin_user.department = trim(d);
+            admin_user.lastLogin = trim(l);
             return true;
         }
     }
@@ -82,19 +84,18 @@ bool Auth::saveToDisk(const std::string& path) const {
     std::ofstream file(path);
     if (!file.is_open()) return false;
 
-    file << "# EPFD-RAS Admin Credentials\n";
-    file << "# Format: username|pa ssword|fullName|department\n";
+    file << "# username|password|full_name|role|department|last_login\n";
     file << admin_user.username << "|"
          << admin_user.password << "|"
          << admin_user.fullName << "|"
-         << admin_user.department << "\n";
+         << admin_user.role << "|"
+         << admin_user.department << "|"
+         << admin_user.lastLogin << "\n";
     return true;
 }
 
-void Auth::setAdminCredentials(const std::string& username, const std::string& password,
-                                     const std::string& fullName) {
-    admin_user.username = trim(username);
-    admin_user.password = trim(password);
-    admin_user.fullName = trim(fullName);
-    saveToDisk("data/admin.txt");
+void Auth::setAdminCredentials(const std::string& u, const std::string& p, const std::string& f) {
+    admin_user.username = trim(u);
+    admin_user.password = trim(p);
+    admin_user.fullName = trim(f);
 }
