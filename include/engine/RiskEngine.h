@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include "DSA/vector.h"
+#include <vector>
 #include "engine/rules/IFraudRule.h"
 #include "core/common/Types.h"
 #include "core/domain/Transaction.h"
@@ -29,7 +29,7 @@ struct RiskPolicy{
 class RiskEngine {
 private:
     // TODO 2: Danh sách các luật gian lận được quản lý dưới dạng con trỏ lớp cha IFraudRule* (Đa hình Polymorphism)
-    Vector<IFraudRule*>rules;
+    std::vector<IFraudRule*>rules;
     // TODO 3: Thuộc tính lưu chính sách trọng số rủi ro
     RiskPolicy policy;
 public:

@@ -2,8 +2,8 @@
 #include <string>
 #include <chrono>
 #include "core/common/Types.h"
-#include "core/domain/location.h"
-#include "core/domain/device.h"
+#include "core/domain/Location.h"
+#include "core/domain/Device.h"
 
 class Transaction {
     private:
