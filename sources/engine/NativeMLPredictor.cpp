@@ -18,7 +18,7 @@ NativeMLPredictor::NativeMLPredictor() {
     feature_names.push_back("device_risk");
     ready = true;
 }
-NativeMLPredictor::NativeMLPredictor(double bias, const Vector<double>& weights) {
+NativeMLPredictor::NativeMLPredictor(double bias, const std::vector<double>& weights) {
     // TODO 2: Khởi tạo với bias và danh sách weights truyền vào từ bên ngoài
     // Gợi ý:
     this->bias = bias;
@@ -42,7 +42,7 @@ bool NativeMLPredictor::loadModel(const std::string& filepath) {
     }
     std::string line;
     bool in_weights = false;
-    Vector<double> new_weights;
+    std::vector<double> new_weights;
     while (std::getline(file, line)) {
         if (line.find("\"bias\":") != std::string::npos) {
             size_t pos = line.find(':');
@@ -72,7 +72,7 @@ bool NativeMLPredictor::loadModel(const std::string& filepath) {
     return true;
 }
 
-double NativeMLPredictor::predictProbability(const Vector<double>& features) const {
+double NativeMLPredictor::predictProbability(const std::vector<double>& features) const {
     // TODO 4: Tính toán xác suất gian lận P(fraud) bằng công thức Sigmoid:
     // 1. Kiểm tra trạng thái: nếu !ready hoặc features rỗng, trả về xác suất an toàn mặc định (vd: 0.15)
     // 2. Tính tổng tổ hợp tuyến tính z = bias + sum(w_i * x_i)
@@ -96,7 +96,7 @@ double NativeMLPredictor::predictProbability(const Vector<double>& features) con
 
 }
 
-double NativeMLPredictor::predictScore(const Vector<double>& features) const {
+double NativeMLPredictor::predictScore(const std::vector<double>& features) const {
     // TODO 5: Quy đổi xác suất gian lận [0.0, 1.0] sang thang điểm rủi ro [0.0, 100.0]
     // Gợi ý:
     return predictProbability(features) * 100.0;

@@ -35,7 +35,7 @@
                        ▼  RiskAssessment
     ┌──────────────────────────────────────┐
     │  BƯỚC 5: DecisionEngine              │  (Phân luồng hành động: APPROVE,
-    │  (decision/DecisionEngine)           │   REVIEW, CHALLENGE_3DS, BLOCK)
+    │  (decision/DecisionEngine)           │   REVIEW, CHALLENGE, BLOCK)
     └──────────────────┬───────────────────┘
                        │
                        ▼
@@ -104,7 +104,7 @@ Hiện thực các hàm của `RiskAssessment.h`:
 - State check:
   - `isApproved()`: `decision == DecisionAction::APPROVE`.
   - `isUnderReview()`: `decision == DecisionAction::REVIEW`.
-  - `isChallengeRequired()`: `decision == DecisionAction::CHALLENGE_3DS`.
+  - `isChallengeRequired()`: `decision == DecisionAction::CHALLENGE`.
   - `isBlocked()`: `decision == DecisionAction::BLOCK`.
 - `getSummary()`: In điểm tổng hợp `combined_score`, mức độ rủi ro, và danh sách vi phạm.
 

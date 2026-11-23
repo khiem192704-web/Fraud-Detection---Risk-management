@@ -59,7 +59,7 @@ DecisionAction DecisionEngine::decide(
     //       return DecisionAction::APPROVE;
     //   - Nếu score <= policy.challenge_max_score:
     //       tx.challenge();
-    //       return DecisionAction::CHALLENGE_3DS;
+    //       return DecisionAction::CHALLENGE;
     //   - Nếu score <= policy.review_max_score:
     //       tx.sendToReview();
     //       return DecisionAction::REVIEW;
@@ -78,7 +78,7 @@ DecisionAction DecisionEngine::decide(
         return DecisionAction::APPROVE;
     } else if (score <= policy.challenge_max_score) {
         tx.challenge();
-        return DecisionAction::CHALLENGE_3DS;
+        return DecisionAction::CHALLENGE;
     } else if (score <= policy.review_max_score) {
         tx.sendToReview();
         return DecisionAction::REVIEW;

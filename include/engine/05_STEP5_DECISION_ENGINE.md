@@ -15,7 +15,7 @@ Nếu `RiskEngine` là **"Bác sĩ chẩn đoán"** (kết luận bệnh nhân c
 Nhiệm vụ của `DecisionEngine`:
 1. Đọc điểm số `combined_score` từ `RiskAssessment`.
 2. Kiểm tra các **Luật phủ quyết khẩn cấp (Emergency Override)**.
-3. Ra quyết định `DecisionAction` (`APPROVE`, `CHALLENGE_3DS`, `REVIEW`, `BLOCK`).
+3. Ra quyết định `DecisionAction` (`APPROVE`, `CHALLENGE`, `REVIEW`, `BLOCK`).
 4. **Cập nhật trực tiếp trạng thái của `Transaction`** (`tx.approve()`, `tx.block()`,...).
 
 ---
@@ -26,7 +26,7 @@ Nhiệm vụ của `DecisionEngine`:
 struct DecisionPolicy {
     // Ngưỡng điểm để phân loại hành động
     double approve_max_score{39.99};    // [0.0, 40.0)  -> APPROVE (Giao dịch an toàn, duyệt ngay)
-    double challenge_max_score{59.99};  // [40.0, 60.0) -> CHALLENGE_3DS (Nghi vấn nhẹ, bắt nhập OTP)
+    double challenge_max_score{59.99};  // [40.0, 60.0) -> CHALLENGE (Nghi vấn nhẹ, bắt nhập OTP)
     double review_max_score{79.99};     // [60.0, 80.0) -> REVIEW (Rủi ro cao, chuyển điều tra viên duyệt)
                                         // >= 80.0      -> BLOCK (Nguy hiểm cực độ, từ chối giao dịch)
 };
@@ -88,7 +88,7 @@ DecisionAction DecisionEngine::decide(
         tx.approve(); // Chuyển trạng thái sang APPROVED
     } 
     else if (score <= policy.challenge_max_score) {
-        action = DecisionAction::CHALLENGE_3DS;
+        action = DecisionAction::CHALLENGE;
         tx.challenge(); // Chuyển trạng thái sang VERIFY_OTP
     } 
     else if (score <= policy.review_max_score) {

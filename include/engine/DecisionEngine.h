@@ -1,8 +1,8 @@
 #pragma once
 #include "core/common/Types.h"
-#include "core/domain/Transaction.h"
-#include "core/domain/Customer.h"
-#include "core/domain/RiskAssessment.h"
+#include "core/models/Transaction.h"
+#include "core/models/Customer.h"
+#include "core/models/RiskAssessment.h"
 // (Điểm >= 80.0 sẽ bị từ chối BLOCK)
 struct DecisionPolicy{
     double approve_max_score{39.99};//approve
