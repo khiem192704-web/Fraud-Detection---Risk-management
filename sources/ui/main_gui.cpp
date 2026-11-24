@@ -1,11 +1,18 @@
 #include <QApplication>
+#include <QFont>
 #include "ui/LoginDialog.h"
 #include "ui/MainWindow.h"
 #include "bll/Auth.h"
 
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
-    app.setApplicationName("EPFD-RAS GUI");
+    app.setApplicationName("PBL2");
+
+    // Thiết lập Font chữ tiêu chuẩn hiện đại Segoe UI với khử răng cưa mượt mà
+    QFont appFont("Segoe UI", 10);
+    appFont.setStyleHint(QFont::SansSerif);
+    appFont.setStyleStrategy(QFont::PreferAntialias);
+    app.setFont(appFont);
 
     AuthService authService;
     authService.loadFromDisk("data/admin.txt");

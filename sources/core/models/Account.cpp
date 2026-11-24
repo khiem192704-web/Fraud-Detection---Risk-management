@@ -61,6 +61,10 @@ void Account::setCurrency(const std::string& currency) {
     this->currency = currency;
 }
 
+void Account::setBalance(double balance) {
+    this->balance = balance >= 0.0 ? balance : 0.0;
+}
+
 // Account operations
 bool Account::hasSufficientBalance(double amount) const {
     return amount >= 0.0 && this->balance >= amount;

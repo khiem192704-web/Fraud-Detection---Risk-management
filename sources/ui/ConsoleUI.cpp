@@ -37,7 +37,7 @@ void ConsoleUI::printInfo(const std::string& msg) {
 void ConsoleUI::printBanner() {
     std::cout << Color::CYAN << Color::BOLD;
     std::cout << "================================================================================\n";
-    std::cout << "       EPFD-RAS: Electronic Payment Fraud Detection & Risk Management          \n";
+    std::cout << "         PBL2: Electronic Payment Fraud Detection & Risk Management            \n";
     std::cout << "             High-Performance C++ Core & Calibrated ML Hybrid Engine            \n";
     std::cout << "                   PBL 2 - Khoa CNTT - Truong DH Bach Khoa Da Nang              \n";
     std::cout << "================================================================================\n";
@@ -184,9 +184,9 @@ void ConsoleUI::runAdminManagement(TransactionBLL& bll) {
     auth.loadFromDisk("data/admin.txt");
 
     std::string user, pass;
-    std::cout << "Ten dang nhap Admin (Demo: admin): ";
+    std::cout << "Ten dang nhap Admin: ";
     std::cin >> user;
-    std::cout << "Mat khau (Demo: admin123): ";
+    std::cout << "Mat khau: ";
     std::cin >> pass;
 
     if (!auth.login(user, pass)) {

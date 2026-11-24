@@ -4,15 +4,16 @@
 #include <QGridLayout>
 #include <QMessageBox>
 #include <QApplication>
+#include "ui/I18n.h"
 
 LoginDialog::LoginDialog(AuthService* authService, QWidget *parent)
     : QDialog(parent), authService_(authService) {
-    setWindowTitle(QString::fromUtf8("EPFD-RAS: Đăng Nhập Quản Trị Viên (Admin Portal)"));
-    setFixedSize(480, 420);
+    setFixedSize(500, 530);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
 
     setupUi();
     applyStyles();
+    retranslateUi();
 
     // Kết nối Enter phím tắt
     connect(txtPassword_, &QLineEdit::returnPressed, this, &LoginDialog::handleLogin);
@@ -21,52 +22,78 @@ LoginDialog::LoginDialog(AuthService* authService, QWidget *parent)
 
 void LoginDialog::setupUi() {
     auto *mainLayout = new QVBoxLayout(this);
-    mainLayout->setContentsMargins(28, 24, 28, 24);
-    mainLayout->setSpacing(16);
+    mainLayout->setContentsMargins(28, 20, 28, 20);
+    mainLayout->setSpacing(14);
+
+    // Hàng nút chuyển đổi ngôn ngữ ở góc trên
+    auto *topBarLayout = new QHBoxLayout();
+    topBarLayout->setContentsMargins(0, 0, 0, 0);
+    topBarLayout->addStretch();
+
+    btnLang_ = new QPushButton(this);
+    btnLang_->setObjectName("btnLang");
+    btnLang_->setCursor(Qt::PointingHandCursor);
+    connect(btnLang_, &QPushButton::clicked, this, &LoginDialog::handleToggleLanguage);
+    topBarLayout->addWidget(btnLang_);
+    mainLayout->addLayout(topBarLayout);
 
     // 1. BANNER HEADER
     auto *headerWidget = new QWidget();
     headerWidget->setObjectName("loginHeader");
     auto *headerLayout = new QVBoxLayout(headerWidget);
-    headerLayout->setContentsMargins(0, 0, 0, 8);
-    headerLayout->setSpacing(6);
+    headerLayout->setContentsMargins(0, 0, 0, 4);
+    headerLayout->setSpacing(4);
 
-    auto *lblIcon = new QLabel(QString::fromUtf8("🛡️ EPFD-RAS SECURITY GATEWAY"));
+    auto *lblIcon = new QLabel("🛡️ PBL2 SECURITY GATEWAY");
     lblIcon->setObjectName("headerIcon");
     lblIcon->setAlignment(Qt::AlignCenter);
 
-    auto *lblSub = new QLabel(QString::fromUtf8("Cổng Đăng Nhập Quản Trị Viên (Admin Portal)"));
-    lblSub->setObjectName("headerSub");
-    lblSub->setAlignment(Qt::AlignCenter);
+    lblSub_ = new QLabel();
+    lblSub_->setObjectName("headerSub");
+    lblSub_->setAlignment(Qt::AlignCenter);
 
     headerLayout->addWidget(lblIcon);
-    headerLayout->addWidget(lblSub);
+    headerLayout->addWidget(lblSub_);
     mainLayout->addWidget(headerWidget);
+
+    // THẺ MÔ TẢ MỤC ĐÍCH HỆ THỐNG
+    auto *introCard = new QWidget();
+    introCard->setObjectName("loginIntroCard");
+    auto *introLay = new QVBoxLayout(introCard);
+    introLay->setContentsMargins(14, 10, 14, 10);
+    introLay->setSpacing(4);
+
+    lblIntroTitle_ = new QLabel();
+    lblIntroTitle_->setObjectName("introTitle");
+    lblIntroDesc_ = new QLabel();
+    lblIntroDesc_->setObjectName("introDesc");
+    lblIntroDesc_->setWordWrap(true);
+
+    introLay->addWidget(lblIntroTitle_);
+    introLay->addWidget(lblIntroDesc_);
+    mainLayout->addWidget(introCard);
 
     // 2. FORM INPUTS
     auto *formLayout = new QVBoxLayout();
     formLayout->setSpacing(10);
 
-    auto *lblUser = new QLabel(QString::fromUtf8("Tài khoản Quản trị (Admin Username):"));
-    lblUser->setObjectName("formLabel");
+    lblUser_ = new QLabel();
+    lblUser_->setObjectName("formLabel");
     txtUsername_ = new QLineEdit();
-    txtUsername_->setPlaceholderText(QString::fromUtf8("Nhập username (vd: admin)..."));
-    txtUsername_->setText("admin"); // Điền sẵn cho tiện lợi
 
-    auto *lblPass = new QLabel(QString::fromUtf8("Mật khẩu (Password):"));
-    lblPass->setObjectName("formLabel");
+    lblPass_ = new QLabel();
+    lblPass_->setObjectName("formLabel");
     txtPassword_ = new QLineEdit();
     txtPassword_->setEchoMode(QLineEdit::Password);
-    txtPassword_->setPlaceholderText(QString::fromUtf8("Nhập mật khẩu..."));
 
     lblError_ = new QLabel();
     lblError_->setObjectName("errorLabel");
     lblError_->setAlignment(Qt::AlignCenter);
     lblError_->hide();
 
-    formLayout->addWidget(lblUser);
+    formLayout->addWidget(lblUser_);
     formLayout->addWidget(txtUsername_);
-    formLayout->addWidget(lblPass);
+    formLayout->addWidget(lblPass_);
     formLayout->addWidget(txtPassword_);
     formLayout->addWidget(lblError_);
 
@@ -76,7 +103,7 @@ void LoginDialog::setupUi() {
     auto *btnLayout = new QVBoxLayout();
     btnLayout->setSpacing(8);
 
-    btnLogin_ = new QPushButton(QString::fromUtf8("ĐĂNG NHẬP HỆ THỐNG"));
+    btnLogin_ = new QPushButton();
     btnLogin_->setObjectName("btnLogin");
     btnLogin_->setCursor(Qt::PointingHandCursor);
     connect(btnLogin_, &QPushButton::clicked, this, &LoginDialog::handleLogin);
@@ -84,40 +111,59 @@ void LoginDialog::setupUi() {
     auto *subBtnLayout = new QHBoxLayout();
     subBtnLayout->setSpacing(10);
 
-    btnFillDemo_ = new QPushButton(QString::fromUtf8("⚡ Điền Sẵn Admin"));
-    btnFillDemo_->setObjectName("btnDemo");
-    btnFillDemo_->setCursor(Qt::PointingHandCursor);
-    connect(btnFillDemo_, &QPushButton::clicked, this, &LoginDialog::handleFillDemo);
-
-    btnCancel_ = new QPushButton(QString::fromUtf8("Thoát"));
+    btnCancel_ = new QPushButton();
     btnCancel_->setObjectName("btnCancel");
     btnCancel_->setCursor(Qt::PointingHandCursor);
     connect(btnCancel_, &QPushButton::clicked, this, &QDialog::reject);
 
-    subBtnLayout->addWidget(btnFillDemo_);
     subBtnLayout->addWidget(btnCancel_);
 
     btnLayout->addWidget(btnLogin_);
     btnLayout->addLayout(subBtnLayout);
 
     mainLayout->addLayout(btnLayout);
-
-    // Chú thích phụ
-    auto *lblNote = new QLabel(QString::fromUtf8("Hệ thống chỉ yêu cầu 1 quyền Admin duy nhất để quản trị rủi ro & dữ liệu phụ."));
-    lblNote->setStyleSheet("color: #94A3B8; font-size: 11px; font-style: italic;");
-    lblNote->setAlignment(Qt::AlignCenter);
-    mainLayout->addWidget(lblNote);
 }
 
 void LoginDialog::applyStyles() {
     setStyleSheet(R"(
+        * {
+            font-family: "Segoe UI", "Segoe UI Variable Text", "Inter", -apple-system, BlinkMacSystemFont, "Roboto", sans-serif;
+        }
         QDialog {
             background-color: #0F172A;
         }
+        #btnLang {
+            background-color: #1E293B;
+            color: #38BDF8;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 12px;
+            border: 1px solid #334155;
+        }
+        #btnLang:hover {
+            background-color: #334155;
+            color: #7DD3FC;
+        }
+        #loginIntroCard {
+            background-color: #131F3F;
+            border: 1px solid #1E2D5A;
+            border-radius: 8px;
+        }
+        #introTitle {
+            color: #38BDF8;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        #introDesc {
+            color: #94A3B8;
+            font-size: 12px;
+            line-height: 1.45;
+        }
         #headerIcon {
             color: #38BDF8;
-            font-size: 18px;
-            font-weight: bold;
+            font-size: 20px;
+            font-weight: 800;
             letter-spacing: 0.5px;
         }
         #headerSub {
@@ -159,19 +205,6 @@ void LoginDialog::applyStyles() {
         #btnLogin:hover {
             background-color: #0369A1;
         }
-        #btnDemo {
-            background-color: #334155;
-            color: #38BDF8;
-            font-size: 12px;
-            font-weight: bold;
-            padding: 8px;
-            border-radius: 6px;
-            border: 1px solid #475569;
-        }
-        #btnDemo:hover {
-            background-color: #475569;
-            color: #7DD3FC;
-        }
         #btnCancel {
             background-color: #334155;
             color: #CBD5E1;
@@ -187,12 +220,80 @@ void LoginDialog::applyStyles() {
     )");
 }
 
+void LoginDialog::retranslateUi() {
+    auto& i18n = I18n::instance();
+
+    setWindowTitle(i18n.t(
+        QString::fromUtf8("PBL2: Đăng Nhập Quản Trị"),
+        "PBL2: Administrator Sign In"
+    ));
+
+    lblSub_->setText(i18n.t(
+        QString::fromUtf8("Cổng Đăng Nhập Quản Trị Viên"),
+        "Administrator Portal Gateway"
+    ));
+
+    lblIntroTitle_->setText(i18n.t(
+        QString::fromUtf8("🎯 Vai trò của Hệ thống:"),
+        "🎯 System Role & Mission:"
+    ));
+
+    lblIntroDesc_->setText(i18n.t(
+        QString::fromUtf8("Giám sát và đánh giá rủi ro giao dịch thanh toán điện tử thời gian thực. Tự động phát hiện quẹt thẻ dồn dập trong 60 giây, tra cứu danh sách đen và dùng Học máy dự báo gian lận."),
+        "Real-time electronic payment fraud detection and risk scoring. Detects 60s velocity bursts, looks up blacklists, and utilizes machine learning to prevent unauthorized card transactions."
+    ));
+
+    lblUser_->setText(i18n.t(
+        QString::fromUtf8("Tài khoản Quản trị:"),
+        "Admin Username:"
+    ));
+
+    txtUsername_->setPlaceholderText(i18n.t(
+        QString::fromUtf8("Nhập username..."),
+        "Enter username..."
+    ));
+
+    lblPass_->setText(i18n.t(
+        QString::fromUtf8("Mật khẩu:"),
+        "Password:"
+    ));
+
+    txtPassword_->setPlaceholderText(i18n.t(
+        QString::fromUtf8("Nhập mật khẩu..."),
+        "Enter password..."
+    ));
+
+    btnLogin_->setText(i18n.t(
+        QString::fromUtf8("ĐĂNG NHẬP HỆ THỐNG"),
+        "SIGN IN TO SYSTEM"
+    ));
+
+    btnCancel_->setText(i18n.t(
+        QString::fromUtf8("Thoát"),
+        "Exit"
+    ));
+
+    btnLang_->setText(i18n.t(
+        QString::fromUtf8("🌐 Ngôn ngữ: Tiếng Việt"),
+        "🌐 Language: English"
+    ));
+}
+
+void LoginDialog::handleToggleLanguage() {
+    I18n::instance().toggle();
+    retranslateUi();
+}
+
 void LoginDialog::handleLogin() {
     std::string user = txtUsername_->text().trimmed().toStdString();
     std::string pass = txtPassword_->text().trimmed().toStdString();
 
+    auto& i18n = I18n::instance();
     if (user.empty() || pass.empty()) {
-        lblError_->setText(QString::fromUtf8("Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu!"));
+        lblError_->setText(i18n.t(
+            QString::fromUtf8("Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu!"),
+            "Please enter both username and password!"
+        ));
         lblError_->show();
         return;
     }
@@ -201,13 +302,10 @@ void LoginDialog::handleLogin() {
         lblError_->hide();
         accept(); // Đăng nhập thành công -> chuyển sang MainWindow
     } else {
-        lblError_->setText(QString::fromUtf8("Sai tài khoản hoặc mật khẩu! Vui lòng thử lại."));
+        lblError_->setText(i18n.t(
+            QString::fromUtf8("Sai tài khoản hoặc mật khẩu! Vui lòng thử lại."),
+            "Invalid username or password! Please try again."
+        ));
         lblError_->show();
     }
-}
-
-void LoginDialog::handleFillDemo() {
-    txtUsername_->setText("admin");
-    txtPassword_->setText("admin123");
-    lblError_->hide();
 }

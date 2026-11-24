@@ -2,15 +2,28 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Chạy Giao Diện (Qt6 GUI)",
+            "name": "Chạy Giao Diện (Qt6 GUI) - F5",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/../EPFD-RAS-Final/build_gui/epfd_gui.exe",
+            "program": "${workspaceFolder}/build_gui/epfd_gui.exe",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}/../EPFD-RAS-Final/build_gui",
+            "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:/Qt/Tools/mingw1310_64/bin/gdb.exe"
+        },
+        {
+            "name": "Chạy Console (Terminal ANSI)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build_gui/epfd_app.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": true,
             "MIMode": "gdb",
             "miDebuggerPath": "C:/Qt/Tools/mingw1310_64/bin/gdb.exe"
         }

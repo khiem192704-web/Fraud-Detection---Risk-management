@@ -1,7 +1,7 @@
 @echo off
 setlocal
 echo ========================================================
-echo   EPFD-RAS: BIEN DICH VA KHOI CHAY GIAO DIEN QT GUI
+echo   PBL2: BIEN DICH VA KHOI CHAY GIAO DIEN QT GUI
 echo ========================================================
 
 set "PATH=C:\QT\6.11.2\mingw_64\bin;C:\QT\Tools\mingw1310_64\bin;C:\Program Files\CMake\bin;%PATH%"

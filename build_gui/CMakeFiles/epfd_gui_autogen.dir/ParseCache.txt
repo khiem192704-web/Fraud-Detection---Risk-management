@@ -474,9 +474,11 @@ D:/study/courses in university/ki 3/PBL 2/Electronic-Payment-Fraud-Detection---R
  mdp:D:/study/courses in university/ki 3/PBL 2/Electronic-Payment-Fraud-Detection---Risk-management (1)/include/engine/RiskEngine.h
  mdp:D:/study/courses in university/ki 3/PBL 2/Electronic-Payment-Fraud-Detection---Risk-management (1)/include/engine/rules/IFraudRule.h
  mdp:D:/study/courses in university/ki 3/PBL 2/Electronic-Payment-Fraud-Detection---Risk-management (1)/include/ui/CustomWidgets.h
+ mdp:D:/study/courses in university/ki 3/PBL 2/Electronic-Payment-Fraud-Detection---Risk-management (1)/include/ui/I18n.h
  mdp:D:/study/courses in university/ki 3/PBL 2/Electronic-Payment-Fraud-Detection---Risk-management (1)/include/ui/MainWindow.h
 D:/study/courses in university/ki 3/PBL 2/Electronic-Payment-Fraud-Detection---Risk-management (1)/include/ui/LoginDialog.h
  mmc:Q_OBJECT
+ mdp:C:/QT/6.11.2/mingw_64/include/QtCore/QString
  mdp:C:/QT/6.11.2/mingw_64/include/QtCore/q17memory.h
  mdp:C:/QT/6.11.2/mingw_64/include/QtCore/q20bit.h
  mdp:C:/QT/6.11.2/mingw_64/include/QtCore/q20functional.h
@@ -869,6 +871,7 @@ D:/study/courses in university/ki 3/PBL 2/Electronic-Payment-Fraud-Detection---R
  mdp:D:/LOQ/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h
  mdp:D:/study/courses in university/ki 3/PBL 2/Electronic-Payment-Fraud-Detection---Risk-management (1)/build_gui/epfd_gui_autogen/moc_predefs.h
  mdp:D:/study/courses in university/ki 3/PBL 2/Electronic-Payment-Fraud-Detection---Risk-management (1)/include/bll/Auth.h
+ mdp:D:/study/courses in university/ki 3/PBL 2/Electronic-Payment-Fraud-Detection---Risk-management (1)/include/ui/I18n.h
  mdp:D:/study/courses in university/ki 3/PBL 2/Electronic-Payment-Fraud-Detection---Risk-management (1)/include/ui/LoginDialog.h
 D:/study/courses in university/ki 3/PBL 2/Electronic-Payment-Fraud-Detection---Risk-management (1)/sources/ui/main_gui.cpp
 D:/study/courses in university/ki 3/PBL 2/Electronic-Payment-Fraud-Detection---Risk-management (1)/sources/ui/LoginDialog.cpp

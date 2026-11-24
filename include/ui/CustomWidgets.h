@@ -5,6 +5,7 @@
 #include <QPainterPath>
 #include <vector>
 #include <QString>
+#include "ui/I18n.h"
 
 /**
  * @brief Widget vẽ biểu đồ đường tia (Sparkline) nhỏ gọn bên trong các thẻ KPI
@@ -34,6 +35,7 @@ protected:
         if (data_.size() < 2) return;
         QPainter p(this);
         p.setRenderHint(QPainter::Antialiasing);
+        p.setRenderHint(QPainter::TextAntialiasing);
 
         double minV = data_[0], maxV = data_[0];
         for (double v : data_) {
@@ -102,6 +104,7 @@ protected:
     void paintEvent(QPaintEvent* /*event*/) override {
         QPainter p(this);
         p.setRenderHint(QPainter::Antialiasing);
+        p.setRenderHint(QPainter::TextAntialiasing);
 
         int leftMargin = 32;
         int bottomMargin = 26;
@@ -221,6 +224,7 @@ protected:
     void paintEvent(QPaintEvent* /*event*/) override {
         QPainter p(this);
         p.setRenderHint(QPainter::Antialiasing);
+        p.setRenderHint(QPainter::TextAntialiasing);
 
         int total = approved_ + review_ + blocked_;
         if (total == 0) total = 1;
@@ -261,18 +265,20 @@ protected:
         p.drawEllipse(innerRect);
 
         // Chữ ở tâm vòng tròn
-        QFont fontVal("Segoe UI", 12, QFont::Bold);
+        QFont fontVal("Segoe UI", 14, QFont::Bold);
         p.setFont(fontVal);
         p.setPen(QColor("#FFFFFF"));
-        QRectF textValRect(inX, inY + innerSide * 0.22, innerSide, 24);
+        QRectF textValRect(inX, inY + innerSide * 0.20, innerSide, 26);
         p.drawText(textValRect, Qt::AlignCenter, QString::number(total));
 
-        QFont fontSub("Segoe UI", 8);
+        QFont fontSub("Segoe UI", 9, QFont::DemiBold);
         p.setFont(fontSub);
         p.setPen(QColor("#94A3B8"));
-        QRectF textSubRect(inX, inY + innerSide * 0.48, innerSide, 16);
-        p.drawText(textSubRect, Qt::AlignCenter, QString::fromUtf8("Tổng giao dịch"));
-        QRectF textDemoRect(inX, inY + innerSide * 0.65, innerSide, 14);
-        p.drawText(textDemoRect, Qt::AlignCenter, QString::fromUtf8("(demo)"));
+        QRectF textSubRect(inX, inY + innerSide * 0.48, innerSide, 18);
+        p.drawText(textSubRect, Qt::AlignCenter, I18n::instance().t(QString::fromUtf8("Tổng giao dịch"), "Total Txns"));
+        QFont fontDemo("Segoe UI", 8);
+        p.setFont(fontDemo);
+        QRectF textDemoRect(inX, inY + innerSide * 0.67, innerSide, 14);
+        p.drawText(textDemoRect, Qt::AlignCenter, "(demo)");
     }
 };

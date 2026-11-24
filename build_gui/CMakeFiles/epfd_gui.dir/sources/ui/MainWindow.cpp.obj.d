@@ -438,13 +438,14 @@ CMakeFiles/epfd_gui.dir/sources/ui/MainWindow.cpp.obj: \
  C:/QT/6.11.2/mingw_64/include/QtWidgets/qlayoutitem.h \
  C:/QT/6.11.2/mingw_64/include/QtWidgets/qgridlayout.h \
  C:/QT/6.11.2/mingw_64/include/QtWidgets/QHBoxLayout \
+ D:/study/courses\ in\ university/ki\ 3/PBL\ 2/Electronic-Payment-Fraud-Detection---Risk-management\ (1)/include/ui/I18n.h \
+ C:/QT/6.11.2/mingw_64/include/QtCore/QString \
  D:/study/courses\ in\ university/ki\ 3/PBL\ 2/Electronic-Payment-Fraud-Detection---Risk-management\ (1)/include/ui/CustomWidgets.h \
  C:/QT/6.11.2/mingw_64/include/QtWidgets/QWidget \
  C:/QT/6.11.2/mingw_64/include/QtGui/QPainter \
  C:/QT/6.11.2/mingw_64/include/QtGui/qpainter.h \
  C:/QT/6.11.2/mingw_64/include/QtGui/QPainterPath \
  C:/QT/6.11.2/mingw_64/include/QtGui/qpainterpath.h \
- C:/QT/6.11.2/mingw_64/include/QtCore/QString \
  D:/study/courses\ in\ university/ki\ 3/PBL\ 2/Electronic-Payment-Fraud-Detection---Risk-management\ (1)/include/bll/TransactionBLL.h \
  D:/study/courses\ in\ university/ki\ 3/PBL\ 2/Electronic-Payment-Fraud-Detection---Risk-management\ (1)/include/core/models/Transaction.h \
  D:/study/courses\ in\ university/ki\ 3/PBL\ 2/Electronic-Payment-Fraud-Detection---Risk-management\ (1)/include/core/common/Types.h \

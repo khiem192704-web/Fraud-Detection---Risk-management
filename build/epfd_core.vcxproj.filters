@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\study\courses in university\ki 3\PBL 2\Electronic-Payment-Fraud-Detection---Risk-management (1)\sources\bll\Auth.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\study\courses in university\ki 3\PBL 2\Electronic-Payment-Fraud-Detection---Risk-management (1)\sources\bll\TransactionBLL.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\study\courses in university\ki 3\PBL 2\Electronic-Payment-Fraud-Detection---Risk-management (1)\sources\core\common\Types.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\study\courses in university\ki 3\PBL 2\Electronic-Payment-Fraud-Detection---Risk-management (1)\sources\core\models\Account.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\study\courses in university\ki 3\PBL 2\Electronic-Payment-Fraud-Detection---Risk-management (1)\sources\core\models\Customer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\study\courses in university\ki 3\PBL 2\Electronic-Payment-Fraud-Detection---Risk-management (1)\sources\core\models\FraudAlert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\study\courses in university\ki 3\PBL 2\Electronic-Payment-Fraud-Detection---Risk-management (1)\sources\core\models\Merchant.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\study\courses in university\ki 3\PBL 2\Electronic-Payment-Fraud-Detection---Risk-management (1)\sources\core\models\PaymentMethod.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\study\courses in university\ki 3\PBL 2\Electronic-Payment-Fraud-Detection---Risk-management (1)\sources\core\models\RiskAssessment.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\study\courses in university\ki 3\PBL 2\Electronic-Payment-Fraud-Detection---Risk-management (1)\sources\core\models\Transaction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\study\courses in university\ki 3\PBL 2\Electronic-Payment-Fraud-Detection---Risk-management (1)\sources\core\models\device.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\study\courses in university\ki 3\PBL 2\Electronic-Payment-Fraud-Detection---Risk-management (1)\sources\core\models\location.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\study\courses in university\ki 3\PBL 2\Electronic-Payment-Fraud-Detection---Risk-management (1)\sources\dal\AccountDAL.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\study\courses in university\ki 3\PBL 2\Electronic-Payment-Fraud-Detection---Risk-management (1)\sources\dal\CustomerDAL.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\study\courses in university\ki 3\PBL 2\Electronic-Payment-Fraud-Detection---Risk-management (1)\sources\dal\TransactionDAL.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\study\courses in university\ki 3\PBL 2\Electronic-Payment-Fraud-Detection---Risk-management (1)\sources\engine\DecisionEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\study\courses in university\ki 3\PBL 2\Electronic-Payment-Fraud-Detection---Risk-management (1)\sources\engine\FeatureExtractor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\study\courses in university\ki 3\PBL 2\Electronic-Payment-Fraud-Detection---Risk-management (1)\sources\engine\NativeMLPredictor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\study\courses in university\ki 3\PBL 2\Electronic-Payment-Fraud-Detection---Risk-management (1)\sources\engine\RiskEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\study\courses in university\ki 3\PBL 2\Electronic-Payment-Fraud-Detection---Risk-management (1)\sources\engine\rules\BlacklistRule.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\study\courses in university\ki 3\PBL 2\Electronic-Payment-Fraud-Detection---Risk-management (1)\sources\engine\rules\DeviceRiskRule.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\study\courses in university\ki 3\PBL 2\Electronic-Payment-Fraud-Detection---Risk-management (1)\sources\engine\rules\HighAmountRule.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\study\courses in university\ki 3\PBL 2\Electronic-Payment-Fraud-Detection---Risk-management (1)\sources\engine\rules\VelocityRule.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\study\courses in university\ki 3\PBL 2\Electronic-Payment-Fraud-Detection---Risk-management (1)\sources\ui\ConsoleUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\study\courses in university\ki 3\PBL 2\Electronic-Payment-Fraud-Detection---Risk-management (1)\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{969214E9-963D-3A74-9610-920234A07B6F}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

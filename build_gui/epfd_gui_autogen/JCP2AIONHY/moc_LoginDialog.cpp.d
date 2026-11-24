@@ -1,5 +1,6 @@
 D:/study/courses\ in\ university/ki\ 3/PBL\ 2/Electronic-Payment-Fraud-Detection---Risk-management\ (1)/build_gui/epfd_gui_autogen/JCP2AIONHY/moc_LoginDialog.cpp: D:/study/courses\ in\ university/ki\ 3/PBL\ 2/Electronic-Payment-Fraud-Detection---Risk-management\ (1)/include/ui/LoginDialog.h \
   D:/study/courses\ in\ university/ki\ 3/PBL\ 2/Electronic-Payment-Fraud-Detection---Risk-management\ (1)/build_gui/epfd_gui_autogen/moc_predefs.h \
+  C:/QT/6.11.2/mingw_64/include/QtCore/QString \
   C:/QT/6.11.2/mingw_64/include/QtCore/q17memory.h \
   C:/QT/6.11.2/mingw_64/include/QtCore/q20bit.h \
   C:/QT/6.11.2/mingw_64/include/QtCore/q20functional.h \
@@ -390,4 +391,5 @@ D:/study/courses\ in\ university/ki\ 3/PBL\ 2/Electronic-Payment-Fraud-Detection
   D:/LOQ/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/time.h \
   D:/LOQ/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/vadefs.h \
   D:/LOQ/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h \
-  D:/study/courses\ in\ university/ki\ 3/PBL\ 2/Electronic-Payment-Fraud-Detection---Risk-management\ (1)/include/bll/Auth.h
+  D:/study/courses\ in\ university/ki\ 3/PBL\ 2/Electronic-Payment-Fraud-Detection---Risk-management\ (1)/include/bll/Auth.h \
+  D:/study/courses\ in\ university/ki\ 3/PBL\ 2/Electronic-Payment-Fraud-Detection---Risk-management\ (1)/include/ui/I18n.h

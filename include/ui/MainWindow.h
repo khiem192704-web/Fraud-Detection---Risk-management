@@ -15,6 +15,7 @@
 #include <QHBoxLayout>
 #include <vector>
 
+#include "ui/I18n.h"
 #include "ui/CustomWidgets.h"
 #include "bll/TransactionBLL.h"
 #include "bll/Auth.h"
@@ -38,6 +39,10 @@ private slots:
     // Navigation Sidebar
     void handleNavButtonClicked(int pageIndex);
     void handleLogout();
+    void handleToggleLanguage();
+    void showAboutDialog();
+    void showDemoScenariosDialog();
+    void rebuildUi();
 
     // Quick Scenario Triggers (Bottom Bar)
     void handleTriggerNormalScenario();
@@ -88,6 +93,7 @@ private:
     QWidget* createMlDatasetPage();
 
     // Dashboard Sub-sections
+    QWidget* createWorkflowBanner();
     QWidget* createKpiRow();
     QWidget* createChartsRow();
     QWidget* createRecentTransactionsSection();
@@ -106,7 +112,9 @@ private:
     void updateDashboardKpis();
     void addTransactionToRecentTable(const QString& id, const QString& time, double amount,
                                      const QString& velocity, const QString& deviceRisk,
-                                     double mlProb, int riskScore, const QString& decision);
+                                     double mlProb, int riskScore, const QString& decision,
+                                     bool insertAtTop = false);
+    void ensureDemoEntities();
 
     // Services & Repositories
     AuthService* authService_{nullptr};
@@ -138,6 +146,8 @@ private:
     QLineEdit* txtSearch_{nullptr};
     QLabel* lblLastUpdated_{nullptr};
     QLabel* lblAdminProfile_{nullptr};
+    QPushButton* btnLang_{nullptr};
+    QPushButton* btnAbout_{nullptr};
 
     // Dashboard KPI widgets
     QLabel* lblKpiSample_{nullptr};

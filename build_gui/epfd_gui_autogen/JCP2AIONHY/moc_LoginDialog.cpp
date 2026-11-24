@@ -42,13 +42,13 @@ template <> constexpr inline auto LoginDialog::qt_create_metaobjectdata<qt_meta_
         "LoginDialog",
         "handleLogin",
         "",
-        "handleFillDemo"
+        "handleToggleLanguage"
     };
 
     QtMocHelpers::UintData qt_methods {
         // Slot 'handleLogin'
         QtMocHelpers::SlotData<void()>(1, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'handleFillDemo'
+        // Slot 'handleToggleLanguage'
         QtMocHelpers::SlotData<void()>(3, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
@@ -74,7 +74,7 @@ void LoginDialog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
         case 0: _t->handleLogin(); break;
-        case 1: _t->handleFillDemo(); break;
+        case 1: _t->handleToggleLanguage(); break;
         default: ;
         }
     }

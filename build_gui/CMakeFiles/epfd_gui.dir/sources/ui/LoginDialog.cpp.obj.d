@@ -402,6 +402,8 @@ CMakeFiles/epfd_gui.dir/sources/ui/LoginDialog.cpp.obj: \
  C:/QT/6.11.2/mingw_64/include/QtGui/qpicture.h \
  C:/QT/6.11.2/mingw_64/include/QtCore/qiodevice.h \
  D:/study/courses\ in\ university/ki\ 3/PBL\ 2/Electronic-Payment-Fraud-Detection---Risk-management\ (1)/include/bll/Auth.h \
+ D:/study/courses\ in\ university/ki\ 3/PBL\ 2/Electronic-Payment-Fraud-Detection---Risk-management\ (1)/include/ui/I18n.h \
+ C:/QT/6.11.2/mingw_64/include/QtCore/QString \
  C:/QT/6.11.2/mingw_64/include/QtWidgets/QVBoxLayout \
  C:/QT/6.11.2/mingw_64/include/QtWidgets/qboxlayout.h \
  C:/QT/6.11.2/mingw_64/include/QtWidgets/qlayout.h \

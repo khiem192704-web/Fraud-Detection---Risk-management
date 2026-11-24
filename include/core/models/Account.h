@@ -36,6 +36,7 @@ class Account {
         // Setter
         void setCustomerId(const std::string& customer_id);
         void setCurrency(const std::string& currency);
+        void setBalance(double balance);
 
         // Account operations
         bool hasSufficientBalance(double amount) const;

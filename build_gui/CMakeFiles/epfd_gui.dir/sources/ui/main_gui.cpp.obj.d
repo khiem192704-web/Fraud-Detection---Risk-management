@@ -384,6 +384,9 @@ CMakeFiles/epfd_gui.dir/sources/ui/main_gui.cpp.obj: \
  C:/QT/6.11.2/mingw_64/include/QtCore/qvarlengtharray.h \
  C:/QT/6.11.2/mingw_64/include/QtCore/qalloc.h \
  C:/QT/6.11.2/mingw_64/include/QtGui/qguiapplication_platform.h \
+ C:/QT/6.11.2/mingw_64/include/QtGui/QFont \
+ C:/QT/6.11.2/mingw_64/include/QtGui/qfont.h \
+ C:/QT/6.11.2/mingw_64/include/QtCore/qendian.h \
  D:/study/courses\ in\ university/ki\ 3/PBL\ 2/Electronic-Payment-Fraud-Detection---Risk-management\ (1)/include/ui/LoginDialog.h \
  C:/QT/6.11.2/mingw_64/include/QtWidgets/QDialog \
  C:/QT/6.11.2/mingw_64/include/QtWidgets/qdialog.h \
@@ -393,8 +396,6 @@ CMakeFiles/epfd_gui.dir/sources/ui/main_gui.cpp.obj: \
  C:/QT/6.11.2/mingw_64/include/QtGui/qicon.h \
  C:/QT/6.11.2/mingw_64/include/QtGui/qpalette.h \
  C:/QT/6.11.2/mingw_64/include/QtGui/qbrush.h \
- C:/QT/6.11.2/mingw_64/include/QtGui/qfont.h \
- C:/QT/6.11.2/mingw_64/include/QtCore/qendian.h \
  C:/QT/6.11.2/mingw_64/include/QtGui/qfontmetrics.h \
  C:/QT/6.11.2/mingw_64/include/QtGui/qfontinfo.h \
  C:/QT/6.11.2/mingw_64/include/QtGui/qfontvariableaxis.h \
@@ -416,6 +417,8 @@ CMakeFiles/epfd_gui.dir/sources/ui/main_gui.cpp.obj: \
  C:/QT/6.11.2/mingw_64/include/QtGui/qpicture.h \
  C:/QT/6.11.2/mingw_64/include/QtCore/qiodevice.h \
  D:/study/courses\ in\ university/ki\ 3/PBL\ 2/Electronic-Payment-Fraud-Detection---Risk-management\ (1)/include/bll/Auth.h \
+ D:/study/courses\ in\ university/ki\ 3/PBL\ 2/Electronic-Payment-Fraud-Detection---Risk-management\ (1)/include/ui/I18n.h \
+ C:/QT/6.11.2/mingw_64/include/QtCore/QString \
  D:/study/courses\ in\ university/ki\ 3/PBL\ 2/Electronic-Payment-Fraud-Detection---Risk-management\ (1)/include/ui/MainWindow.h \
  C:/QT/6.11.2/mingw_64/include/QtWidgets/QMainWindow \
  C:/QT/6.11.2/mingw_64/include/QtWidgets/qmainwindow.h \
@@ -461,7 +464,6 @@ CMakeFiles/epfd_gui.dir/sources/ui/main_gui.cpp.obj: \
  C:/QT/6.11.2/mingw_64/include/QtGui/qpainter.h \
  C:/QT/6.11.2/mingw_64/include/QtGui/QPainterPath \
  C:/QT/6.11.2/mingw_64/include/QtGui/qpainterpath.h \
- C:/QT/6.11.2/mingw_64/include/QtCore/QString \
  D:/study/courses\ in\ university/ki\ 3/PBL\ 2/Electronic-Payment-Fraud-Detection---Risk-management\ (1)/include/bll/TransactionBLL.h \
  D:/study/courses\ in\ university/ki\ 3/PBL\ 2/Electronic-Payment-Fraud-Detection---Risk-management\ (1)/include/core/models/Transaction.h \
  D:/study/courses\ in\ university/ki\ 3/PBL\ 2/Electronic-Payment-Fraud-Detection---Risk-management\ (1)/include/core/common/Types.h \

@@ -471,4 +471,5 @@ D:/study/courses\ in\ university/ki\ 3/PBL\ 2/Electronic-Payment-Fraud-Detection
   D:/study/courses\ in\ university/ki\ 3/PBL\ 2/Electronic-Payment-Fraud-Detection---Risk-management\ (1)/include/engine/NativeMLPredictor.h \
   D:/study/courses\ in\ university/ki\ 3/PBL\ 2/Electronic-Payment-Fraud-Detection---Risk-management\ (1)/include/engine/RiskEngine.h \
   D:/study/courses\ in\ university/ki\ 3/PBL\ 2/Electronic-Payment-Fraud-Detection---Risk-management\ (1)/include/engine/rules/IFraudRule.h \
-  D:/study/courses\ in\ university/ki\ 3/PBL\ 2/Electronic-Payment-Fraud-Detection---Risk-management\ (1)/include/ui/CustomWidgets.h
+  D:/study/courses\ in\ university/ki\ 3/PBL\ 2/Electronic-Payment-Fraud-Detection---Risk-management\ (1)/include/ui/CustomWidgets.h \
+  D:/study/courses\ in\ university/ki\ 3/PBL\ 2/Electronic-Payment-Fraud-Detection---Risk-management\ (1)/include/ui/I18n.h
