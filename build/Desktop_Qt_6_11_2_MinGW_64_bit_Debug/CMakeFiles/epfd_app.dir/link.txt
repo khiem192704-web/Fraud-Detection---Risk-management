@@ -1,3 +1,0 @@
-D:\LOQ\Qt\Tools\CMake_64\bin\cmake.exe -E rm -f CMakeFiles\epfd_app.dir/objects.a
-C:\QT\Tools\mingw1310_64\bin\ar.exe qc CMakeFiles\epfd_app.dir/objects.a @CMakeFiles\epfd_app.dir\objects1.rsp
-C:\Qt\Tools\mingw1310_64\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\epfd_app.dir/objects.a -Wl,--no-whole-archive -o epfd_app.exe -Wl,--out-implib,libepfd_app.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\epfd_app.dir\linkLibs.rsp

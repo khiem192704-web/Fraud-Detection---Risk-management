@@ -1,9 +1,0 @@
-D:/study/courses in university/ki 3/PBL 2/Electronic-Payment-Fraud-Detection---Risk-management (1)/build_gui/CMakeFiles/epfd_core.dir
-D:/study/courses in university/ki 3/PBL 2/Electronic-Payment-Fraud-Detection---Risk-management (1)/build_gui/CMakeFiles/epfd_app.dir
-D:/study/courses in university/ki 3/PBL 2/Electronic-Payment-Fraud-Detection---Risk-management (1)/build_gui/CMakeFiles/epfd_tests.dir
-D:/study/courses in university/ki 3/PBL 2/Electronic-Payment-Fraud-Detection---Risk-management (1)/build_gui/CMakeFiles/epfd_gui.dir
-D:/study/courses in university/ki 3/PBL 2/Electronic-Payment-Fraud-Detection---Risk-management (1)/build_gui/CMakeFiles/test.dir
-D:/study/courses in university/ki 3/PBL 2/Electronic-Payment-Fraud-Detection---Risk-management (1)/build_gui/CMakeFiles/edit_cache.dir
-D:/study/courses in university/ki 3/PBL 2/Electronic-Payment-Fraud-Detection---Risk-management (1)/build_gui/CMakeFiles/rebuild_cache.dir
-D:/study/courses in university/ki 3/PBL 2/Electronic-Payment-Fraud-Detection---Risk-management (1)/build_gui/CMakeFiles/epfd_gui_autogen_timestamp_deps.dir
-D:/study/courses in university/ki 3/PBL 2/Electronic-Payment-Fraud-Detection---Risk-management (1)/build_gui/CMakeFiles/epfd_gui_autogen.dir
